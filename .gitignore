@@ -10,6 +10,11 @@
 bin/
 gen/
 build/
+gradle/
+gradlew
+gradlew.bat
+*.ipr
+*.iws
 
 # local configuration file (for Android sdk path, etc)
 local.properties

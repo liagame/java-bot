@@ -1,12 +1,16 @@
 # Java Bot #
 
+* ``` git clone https://bitbucket.org/codinghavoc/java-bot ```
 * Install gradle (4.6)
-
-##### Use in Intellij IDEA #####
-
-* ``` gradle cleanIdea  ```
-* ``` gradle Idea ```
 
 ##### Build the project #####
 * ``` gradle build ```
 * Check if it works: ``` java -jar build/libs/java-bot.jar ```
+
+##### Use in Intellij IDEA #####
+
+* Choose File->New->Project From Existing Sources
+* Follow the instructions
+* On the last screen check:
+    * Use auto-import
+    * Use gradle 'wrapper' task configuration
