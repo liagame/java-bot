@@ -7,7 +7,7 @@
 * ``` gradle build ```
 * Check if it works: ``` java -jar build/libs/java-bot.jar ```
 
-##### Use in Intellij IDEA #####
+##### Use in IntelliJ IDEA #####
 
 * Choose File->New->Project From Existing Sources
 * Follow the instructions
