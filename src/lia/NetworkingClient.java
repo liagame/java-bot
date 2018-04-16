@@ -36,18 +36,16 @@ public class NetworkingClient extends WebSocketClient {
         try {
             Message msg = Message.parseFrom(bytes.array());
 
-            Response response = null;
+            Response response = new Response(msg.getUid());
 
             // If the message is data about map
             if (msg.hasMapData()) {
                 MapData mapData = msg.getMapData();
-                response = new Response(mapData.getUid());
                 myBot.process(mapData);
             }
             // If the message is an update about game state
             else if (msg.hasStateUpdate()) {
                 StateUpdate stateUpdate = msg.getStateUpdate();
-                response = new Response(stateUpdate.getUid());
                 myBot.process(stateUpdate, response);
             }
 

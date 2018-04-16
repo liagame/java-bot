@@ -19,43 +19,35 @@ public final class AiApiMessages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.lia.MapData mapData = 1;</code>
+     * <code>uint64 uid = 1;</code>
+     */
+    long getUid();
+
+    /**
+     * <code>.lia.MapData mapData = 2;</code>
      */
     boolean hasMapData();
     /**
-     * <code>.lia.MapData mapData = 1;</code>
+     * <code>.lia.MapData mapData = 2;</code>
      */
     lia.AiApiMessages.MapData getMapData();
     /**
-     * <code>.lia.MapData mapData = 1;</code>
+     * <code>.lia.MapData mapData = 2;</code>
      */
     lia.AiApiMessages.MapDataOrBuilder getMapDataOrBuilder();
 
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
     boolean hasStateUpdate();
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
     lia.AiApiMessages.StateUpdate getStateUpdate();
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
     lia.AiApiMessages.StateUpdateOrBuilder getStateUpdateOrBuilder();
-
-    /**
-     * <code>.lia.GameOver gameOver = 3;</code>
-     */
-    boolean hasGameOver();
-    /**
-     * <code>.lia.GameOver gameOver = 3;</code>
-     */
-    lia.AiApiMessages.GameOver getGameOver();
-    /**
-     * <code>.lia.GameOver gameOver = 3;</code>
-     */
-    lia.AiApiMessages.GameOverOrBuilder getGameOverOrBuilder();
 
     public lia.AiApiMessages.Message.TypesCase getTypesCase();
   }
@@ -72,6 +64,7 @@ public final class AiApiMessages {
       super(builder);
     }
     private Message() {
+      uid_ = 0L;
     }
 
     @java.lang.Override
@@ -105,9 +98,14 @@ public final class AiApiMessages {
               }
               break;
             }
-            case 10: {
+            case 8: {
+
+              uid_ = input.readUInt64();
+              break;
+            }
+            case 18: {
               lia.AiApiMessages.MapData.Builder subBuilder = null;
-              if (typesCase_ == 1) {
+              if (typesCase_ == 2) {
                 subBuilder = ((lia.AiApiMessages.MapData) types_).toBuilder();
               }
               types_ =
@@ -116,32 +114,18 @@ public final class AiApiMessages {
                 subBuilder.mergeFrom((lia.AiApiMessages.MapData) types_);
                 types_ = subBuilder.buildPartial();
               }
-              typesCase_ = 1;
+              typesCase_ = 2;
               break;
             }
-            case 18: {
+            case 26: {
               lia.AiApiMessages.StateUpdate.Builder subBuilder = null;
-              if (typesCase_ == 2) {
+              if (typesCase_ == 3) {
                 subBuilder = ((lia.AiApiMessages.StateUpdate) types_).toBuilder();
               }
               types_ =
                   input.readMessage(lia.AiApiMessages.StateUpdate.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom((lia.AiApiMessages.StateUpdate) types_);
-                types_ = subBuilder.buildPartial();
-              }
-              typesCase_ = 2;
-              break;
-            }
-            case 26: {
-              lia.AiApiMessages.GameOver.Builder subBuilder = null;
-              if (typesCase_ == 3) {
-                subBuilder = ((lia.AiApiMessages.GameOver) types_).toBuilder();
-              }
-              types_ =
-                  input.readMessage(lia.AiApiMessages.GameOver.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((lia.AiApiMessages.GameOver) types_);
                 types_ = subBuilder.buildPartial();
               }
               typesCase_ = 3;
@@ -175,9 +159,8 @@ public final class AiApiMessages {
     private java.lang.Object types_;
     public enum TypesCase
         implements com.google.protobuf.Internal.EnumLite {
-      MAPDATA(1),
-      STATEUPDATE(2),
-      GAMEOVER(3),
+      MAPDATA(2),
+      STATEUPDATE(3),
       TYPES_NOT_SET(0);
       private final int value;
       private TypesCase(int value) {
@@ -193,9 +176,8 @@ public final class AiApiMessages {
 
       public static TypesCase forNumber(int value) {
         switch (value) {
-          case 1: return MAPDATA;
-          case 2: return STATEUPDATE;
-          case 3: return GAMEOVER;
+          case 2: return MAPDATA;
+          case 3: return STATEUPDATE;
           case 0: return TYPES_NOT_SET;
           default: return null;
         }
@@ -211,82 +193,65 @@ public final class AiApiMessages {
           typesCase_);
     }
 
-    public static final int MAPDATA_FIELD_NUMBER = 1;
+    public static final int UID_FIELD_NUMBER = 1;
+    private long uid_;
     /**
-     * <code>.lia.MapData mapData = 1;</code>
+     * <code>uint64 uid = 1;</code>
      */
-    public boolean hasMapData() {
-      return typesCase_ == 1;
-    }
-    /**
-     * <code>.lia.MapData mapData = 1;</code>
-     */
-    public lia.AiApiMessages.MapData getMapData() {
-      if (typesCase_ == 1) {
-         return (lia.AiApiMessages.MapData) types_;
-      }
-      return lia.AiApiMessages.MapData.getDefaultInstance();
-    }
-    /**
-     * <code>.lia.MapData mapData = 1;</code>
-     */
-    public lia.AiApiMessages.MapDataOrBuilder getMapDataOrBuilder() {
-      if (typesCase_ == 1) {
-         return (lia.AiApiMessages.MapData) types_;
-      }
-      return lia.AiApiMessages.MapData.getDefaultInstance();
+    public long getUid() {
+      return uid_;
     }
 
-    public static final int STATEUPDATE_FIELD_NUMBER = 2;
+    public static final int MAPDATA_FIELD_NUMBER = 2;
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.MapData mapData = 2;</code>
      */
-    public boolean hasStateUpdate() {
+    public boolean hasMapData() {
       return typesCase_ == 2;
     }
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.MapData mapData = 2;</code>
      */
-    public lia.AiApiMessages.StateUpdate getStateUpdate() {
+    public lia.AiApiMessages.MapData getMapData() {
       if (typesCase_ == 2) {
-         return (lia.AiApiMessages.StateUpdate) types_;
+         return (lia.AiApiMessages.MapData) types_;
       }
-      return lia.AiApiMessages.StateUpdate.getDefaultInstance();
+      return lia.AiApiMessages.MapData.getDefaultInstance();
     }
     /**
-     * <code>.lia.StateUpdate stateUpdate = 2;</code>
+     * <code>.lia.MapData mapData = 2;</code>
      */
-    public lia.AiApiMessages.StateUpdateOrBuilder getStateUpdateOrBuilder() {
+    public lia.AiApiMessages.MapDataOrBuilder getMapDataOrBuilder() {
       if (typesCase_ == 2) {
-         return (lia.AiApiMessages.StateUpdate) types_;
+         return (lia.AiApiMessages.MapData) types_;
       }
-      return lia.AiApiMessages.StateUpdate.getDefaultInstance();
+      return lia.AiApiMessages.MapData.getDefaultInstance();
     }
 
-    public static final int GAMEOVER_FIELD_NUMBER = 3;
+    public static final int STATEUPDATE_FIELD_NUMBER = 3;
     /**
-     * <code>.lia.GameOver gameOver = 3;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
-    public boolean hasGameOver() {
+    public boolean hasStateUpdate() {
       return typesCase_ == 3;
     }
     /**
-     * <code>.lia.GameOver gameOver = 3;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
-    public lia.AiApiMessages.GameOver getGameOver() {
+    public lia.AiApiMessages.StateUpdate getStateUpdate() {
       if (typesCase_ == 3) {
-         return (lia.AiApiMessages.GameOver) types_;
+         return (lia.AiApiMessages.StateUpdate) types_;
       }
-      return lia.AiApiMessages.GameOver.getDefaultInstance();
+      return lia.AiApiMessages.StateUpdate.getDefaultInstance();
     }
     /**
-     * <code>.lia.GameOver gameOver = 3;</code>
+     * <code>.lia.StateUpdate stateUpdate = 3;</code>
      */
-    public lia.AiApiMessages.GameOverOrBuilder getGameOverOrBuilder() {
+    public lia.AiApiMessages.StateUpdateOrBuilder getStateUpdateOrBuilder() {
       if (typesCase_ == 3) {
-         return (lia.AiApiMessages.GameOver) types_;
+         return (lia.AiApiMessages.StateUpdate) types_;
       }
-      return lia.AiApiMessages.GameOver.getDefaultInstance();
+      return lia.AiApiMessages.StateUpdate.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -301,14 +266,14 @@ public final class AiApiMessages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (typesCase_ == 1) {
-        output.writeMessage(1, (lia.AiApiMessages.MapData) types_);
+      if (uid_ != 0L) {
+        output.writeUInt64(1, uid_);
       }
       if (typesCase_ == 2) {
-        output.writeMessage(2, (lia.AiApiMessages.StateUpdate) types_);
+        output.writeMessage(2, (lia.AiApiMessages.MapData) types_);
       }
       if (typesCase_ == 3) {
-        output.writeMessage(3, (lia.AiApiMessages.GameOver) types_);
+        output.writeMessage(3, (lia.AiApiMessages.StateUpdate) types_);
       }
       unknownFields.writeTo(output);
     }
@@ -318,17 +283,17 @@ public final class AiApiMessages {
       if (size != -1) return size;
 
       size = 0;
-      if (typesCase_ == 1) {
+      if (uid_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (lia.AiApiMessages.MapData) types_);
+          .computeUInt64Size(1, uid_);
       }
       if (typesCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (lia.AiApiMessages.StateUpdate) types_);
+          .computeMessageSize(2, (lia.AiApiMessages.MapData) types_);
       }
       if (typesCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (lia.AiApiMessages.GameOver) types_);
+          .computeMessageSize(3, (lia.AiApiMessages.StateUpdate) types_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -346,21 +311,19 @@ public final class AiApiMessages {
       lia.AiApiMessages.Message other = (lia.AiApiMessages.Message) obj;
 
       boolean result = true;
+      result = result && (getUid()
+          == other.getUid());
       result = result && getTypesCase().equals(
           other.getTypesCase());
       if (!result) return false;
       switch (typesCase_) {
-        case 1:
+        case 2:
           result = result && getMapData()
               .equals(other.getMapData());
           break;
-        case 2:
+        case 3:
           result = result && getStateUpdate()
               .equals(other.getStateUpdate());
-          break;
-        case 3:
-          result = result && getGameOver()
-              .equals(other.getGameOver());
           break;
         case 0:
         default:
@@ -376,18 +339,17 @@ public final class AiApiMessages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUid());
       switch (typesCase_) {
-        case 1:
+        case 2:
           hash = (37 * hash) + MAPDATA_FIELD_NUMBER;
           hash = (53 * hash) + getMapData().hashCode();
           break;
-        case 2:
+        case 3:
           hash = (37 * hash) + STATEUPDATE_FIELD_NUMBER;
           hash = (53 * hash) + getStateUpdate().hashCode();
-          break;
-        case 3:
-          hash = (37 * hash) + GAMEOVER_FIELD_NUMBER;
-          hash = (53 * hash) + getGameOver().hashCode();
           break;
         case 0:
         default:
@@ -521,6 +483,8 @@ public final class AiApiMessages {
       }
       public Builder clear() {
         super.clear();
+        uid_ = 0L;
+
         typesCase_ = 0;
         types_ = null;
         return this;
@@ -545,25 +509,19 @@ public final class AiApiMessages {
 
       public lia.AiApiMessages.Message buildPartial() {
         lia.AiApiMessages.Message result = new lia.AiApiMessages.Message(this);
-        if (typesCase_ == 1) {
+        result.uid_ = uid_;
+        if (typesCase_ == 2) {
           if (mapDataBuilder_ == null) {
             result.types_ = types_;
           } else {
             result.types_ = mapDataBuilder_.build();
           }
         }
-        if (typesCase_ == 2) {
+        if (typesCase_ == 3) {
           if (stateUpdateBuilder_ == null) {
             result.types_ = types_;
           } else {
             result.types_ = stateUpdateBuilder_.build();
-          }
-        }
-        if (typesCase_ == 3) {
-          if (gameOverBuilder_ == null) {
-            result.types_ = types_;
-          } else {
-            result.types_ = gameOverBuilder_.build();
           }
         }
         result.typesCase_ = typesCase_;
@@ -608,6 +566,9 @@ public final class AiApiMessages {
 
       public Builder mergeFrom(lia.AiApiMessages.Message other) {
         if (other == lia.AiApiMessages.Message.getDefaultInstance()) return this;
+        if (other.getUid() != 0L) {
+          setUid(other.getUid());
+        }
         switch (other.getTypesCase()) {
           case MAPDATA: {
             mergeMapData(other.getMapData());
@@ -615,10 +576,6 @@ public final class AiApiMessages {
           }
           case STATEUPDATE: {
             mergeStateUpdate(other.getStateUpdate());
-            break;
-          }
-          case GAMEOVER: {
-            mergeGameOver(other.getGameOver());
             break;
           }
           case TYPES_NOT_SET: {
@@ -667,32 +624,58 @@ public final class AiApiMessages {
       }
 
 
+      private long uid_ ;
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public long getUid() {
+        return uid_;
+      }
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public Builder setUid(long value) {
+        
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public Builder clearUid() {
+        
+        uid_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.SingleFieldBuilderV3<
           lia.AiApiMessages.MapData, lia.AiApiMessages.MapData.Builder, lia.AiApiMessages.MapDataOrBuilder> mapDataBuilder_;
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public boolean hasMapData() {
-        return typesCase_ == 1;
+        return typesCase_ == 2;
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public lia.AiApiMessages.MapData getMapData() {
         if (mapDataBuilder_ == null) {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             return (lia.AiApiMessages.MapData) types_;
           }
           return lia.AiApiMessages.MapData.getDefaultInstance();
         } else {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             return mapDataBuilder_.getMessage();
           }
           return lia.AiApiMessages.MapData.getDefaultInstance();
         }
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public Builder setMapData(lia.AiApiMessages.MapData value) {
         if (mapDataBuilder_ == null) {
@@ -704,11 +687,11 @@ public final class AiApiMessages {
         } else {
           mapDataBuilder_.setMessage(value);
         }
-        typesCase_ = 1;
+        typesCase_ = 2;
         return this;
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public Builder setMapData(
           lia.AiApiMessages.MapData.Builder builderForValue) {
@@ -718,15 +701,15 @@ public final class AiApiMessages {
         } else {
           mapDataBuilder_.setMessage(builderForValue.build());
         }
-        typesCase_ = 1;
+        typesCase_ = 2;
         return this;
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public Builder mergeMapData(lia.AiApiMessages.MapData value) {
         if (mapDataBuilder_ == null) {
-          if (typesCase_ == 1 &&
+          if (typesCase_ == 2 &&
               types_ != lia.AiApiMessages.MapData.getDefaultInstance()) {
             types_ = lia.AiApiMessages.MapData.newBuilder((lia.AiApiMessages.MapData) types_)
                 .mergeFrom(value).buildPartial();
@@ -735,26 +718,26 @@ public final class AiApiMessages {
           }
           onChanged();
         } else {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             mapDataBuilder_.mergeFrom(value);
           }
           mapDataBuilder_.setMessage(value);
         }
-        typesCase_ = 1;
+        typesCase_ = 2;
         return this;
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public Builder clearMapData() {
         if (mapDataBuilder_ == null) {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             typesCase_ = 0;
             types_ = null;
             onChanged();
           }
         } else {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             typesCase_ = 0;
             types_ = null;
           }
@@ -763,32 +746,32 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public lia.AiApiMessages.MapData.Builder getMapDataBuilder() {
         return getMapDataFieldBuilder().getBuilder();
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       public lia.AiApiMessages.MapDataOrBuilder getMapDataOrBuilder() {
-        if ((typesCase_ == 1) && (mapDataBuilder_ != null)) {
+        if ((typesCase_ == 2) && (mapDataBuilder_ != null)) {
           return mapDataBuilder_.getMessageOrBuilder();
         } else {
-          if (typesCase_ == 1) {
+          if (typesCase_ == 2) {
             return (lia.AiApiMessages.MapData) types_;
           }
           return lia.AiApiMessages.MapData.getDefaultInstance();
         }
       }
       /**
-       * <code>.lia.MapData mapData = 1;</code>
+       * <code>.lia.MapData mapData = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           lia.AiApiMessages.MapData, lia.AiApiMessages.MapData.Builder, lia.AiApiMessages.MapDataOrBuilder> 
           getMapDataFieldBuilder() {
         if (mapDataBuilder_ == null) {
-          if (!(typesCase_ == 1)) {
+          if (!(typesCase_ == 2)) {
             types_ = lia.AiApiMessages.MapData.getDefaultInstance();
           }
           mapDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -798,7 +781,7 @@ public final class AiApiMessages {
                   isClean());
           types_ = null;
         }
-        typesCase_ = 1;
+        typesCase_ = 2;
         onChanged();;
         return mapDataBuilder_;
       }
@@ -806,29 +789,29 @@ public final class AiApiMessages {
       private com.google.protobuf.SingleFieldBuilderV3<
           lia.AiApiMessages.StateUpdate, lia.AiApiMessages.StateUpdate.Builder, lia.AiApiMessages.StateUpdateOrBuilder> stateUpdateBuilder_;
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public boolean hasStateUpdate() {
-        return typesCase_ == 2;
+        return typesCase_ == 3;
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public lia.AiApiMessages.StateUpdate getStateUpdate() {
         if (stateUpdateBuilder_ == null) {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             return (lia.AiApiMessages.StateUpdate) types_;
           }
           return lia.AiApiMessages.StateUpdate.getDefaultInstance();
         } else {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             return stateUpdateBuilder_.getMessage();
           }
           return lia.AiApiMessages.StateUpdate.getDefaultInstance();
         }
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public Builder setStateUpdate(lia.AiApiMessages.StateUpdate value) {
         if (stateUpdateBuilder_ == null) {
@@ -840,11 +823,11 @@ public final class AiApiMessages {
         } else {
           stateUpdateBuilder_.setMessage(value);
         }
-        typesCase_ = 2;
+        typesCase_ = 3;
         return this;
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public Builder setStateUpdate(
           lia.AiApiMessages.StateUpdate.Builder builderForValue) {
@@ -854,15 +837,15 @@ public final class AiApiMessages {
         } else {
           stateUpdateBuilder_.setMessage(builderForValue.build());
         }
-        typesCase_ = 2;
+        typesCase_ = 3;
         return this;
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public Builder mergeStateUpdate(lia.AiApiMessages.StateUpdate value) {
         if (stateUpdateBuilder_ == null) {
-          if (typesCase_ == 2 &&
+          if (typesCase_ == 3 &&
               types_ != lia.AiApiMessages.StateUpdate.getDefaultInstance()) {
             types_ = lia.AiApiMessages.StateUpdate.newBuilder((lia.AiApiMessages.StateUpdate) types_)
                 .mergeFrom(value).buildPartial();
@@ -871,26 +854,26 @@ public final class AiApiMessages {
           }
           onChanged();
         } else {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             stateUpdateBuilder_.mergeFrom(value);
           }
           stateUpdateBuilder_.setMessage(value);
         }
-        typesCase_ = 2;
+        typesCase_ = 3;
         return this;
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public Builder clearStateUpdate() {
         if (stateUpdateBuilder_ == null) {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             typesCase_ = 0;
             types_ = null;
             onChanged();
           }
         } else {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             typesCase_ = 0;
             types_ = null;
           }
@@ -899,32 +882,32 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public lia.AiApiMessages.StateUpdate.Builder getStateUpdateBuilder() {
         return getStateUpdateFieldBuilder().getBuilder();
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       public lia.AiApiMessages.StateUpdateOrBuilder getStateUpdateOrBuilder() {
-        if ((typesCase_ == 2) && (stateUpdateBuilder_ != null)) {
+        if ((typesCase_ == 3) && (stateUpdateBuilder_ != null)) {
           return stateUpdateBuilder_.getMessageOrBuilder();
         } else {
-          if (typesCase_ == 2) {
+          if (typesCase_ == 3) {
             return (lia.AiApiMessages.StateUpdate) types_;
           }
           return lia.AiApiMessages.StateUpdate.getDefaultInstance();
         }
       }
       /**
-       * <code>.lia.StateUpdate stateUpdate = 2;</code>
+       * <code>.lia.StateUpdate stateUpdate = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           lia.AiApiMessages.StateUpdate, lia.AiApiMessages.StateUpdate.Builder, lia.AiApiMessages.StateUpdateOrBuilder> 
           getStateUpdateFieldBuilder() {
         if (stateUpdateBuilder_ == null) {
-          if (!(typesCase_ == 2)) {
+          if (!(typesCase_ == 3)) {
             types_ = lia.AiApiMessages.StateUpdate.getDefaultInstance();
           }
           stateUpdateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -934,145 +917,9 @@ public final class AiApiMessages {
                   isClean());
           types_ = null;
         }
-        typesCase_ = 2;
+        typesCase_ = 3;
         onChanged();;
         return stateUpdateBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.GameOver, lia.AiApiMessages.GameOver.Builder, lia.AiApiMessages.GameOverOrBuilder> gameOverBuilder_;
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public boolean hasGameOver() {
-        return typesCase_ == 3;
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public lia.AiApiMessages.GameOver getGameOver() {
-        if (gameOverBuilder_ == null) {
-          if (typesCase_ == 3) {
-            return (lia.AiApiMessages.GameOver) types_;
-          }
-          return lia.AiApiMessages.GameOver.getDefaultInstance();
-        } else {
-          if (typesCase_ == 3) {
-            return gameOverBuilder_.getMessage();
-          }
-          return lia.AiApiMessages.GameOver.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public Builder setGameOver(lia.AiApiMessages.GameOver value) {
-        if (gameOverBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          types_ = value;
-          onChanged();
-        } else {
-          gameOverBuilder_.setMessage(value);
-        }
-        typesCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public Builder setGameOver(
-          lia.AiApiMessages.GameOver.Builder builderForValue) {
-        if (gameOverBuilder_ == null) {
-          types_ = builderForValue.build();
-          onChanged();
-        } else {
-          gameOverBuilder_.setMessage(builderForValue.build());
-        }
-        typesCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public Builder mergeGameOver(lia.AiApiMessages.GameOver value) {
-        if (gameOverBuilder_ == null) {
-          if (typesCase_ == 3 &&
-              types_ != lia.AiApiMessages.GameOver.getDefaultInstance()) {
-            types_ = lia.AiApiMessages.GameOver.newBuilder((lia.AiApiMessages.GameOver) types_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            types_ = value;
-          }
-          onChanged();
-        } else {
-          if (typesCase_ == 3) {
-            gameOverBuilder_.mergeFrom(value);
-          }
-          gameOverBuilder_.setMessage(value);
-        }
-        typesCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public Builder clearGameOver() {
-        if (gameOverBuilder_ == null) {
-          if (typesCase_ == 3) {
-            typesCase_ = 0;
-            types_ = null;
-            onChanged();
-          }
-        } else {
-          if (typesCase_ == 3) {
-            typesCase_ = 0;
-            types_ = null;
-          }
-          gameOverBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public lia.AiApiMessages.GameOver.Builder getGameOverBuilder() {
-        return getGameOverFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      public lia.AiApiMessages.GameOverOrBuilder getGameOverOrBuilder() {
-        if ((typesCase_ == 3) && (gameOverBuilder_ != null)) {
-          return gameOverBuilder_.getMessageOrBuilder();
-        } else {
-          if (typesCase_ == 3) {
-            return (lia.AiApiMessages.GameOver) types_;
-          }
-          return lia.AiApiMessages.GameOver.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.GameOver gameOver = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.GameOver, lia.AiApiMessages.GameOver.Builder, lia.AiApiMessages.GameOverOrBuilder> 
-          getGameOverFieldBuilder() {
-        if (gameOverBuilder_ == null) {
-          if (!(typesCase_ == 3)) {
-            types_ = lia.AiApiMessages.GameOver.getDefaultInstance();
-          }
-          gameOverBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.GameOver, lia.AiApiMessages.GameOver.Builder, lia.AiApiMessages.GameOverOrBuilder>(
-                  (lia.AiApiMessages.GameOver) types_,
-                  getParentForChildren(),
-                  isClean());
-          types_ = null;
-        }
-        typesCase_ = 3;
-        onChanged();;
-        return gameOverBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1128,40 +975,35 @@ public final class AiApiMessages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 uid = 1;</code>
-     */
-    long getUid();
-
-    /**
-     * <code>float width = 2;</code>
+     * <code>float width = 1;</code>
      */
     float getWidth();
 
     /**
-     * <code>float height = 3;</code>
+     * <code>float height = 2;</code>
      */
     float getHeight();
 
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     java.util.List<lia.AiApiMessages.Obstacle> 
         getObstaclesList();
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     lia.AiApiMessages.Obstacle getObstacles(int index);
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     int getObstaclesCount();
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     java.util.List<? extends lia.AiApiMessages.ObstacleOrBuilder> 
         getObstaclesOrBuilderList();
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     lia.AiApiMessages.ObstacleOrBuilder getObstaclesOrBuilder(
         int index);
@@ -1183,7 +1025,6 @@ public final class AiApiMessages {
       super(builder);
     }
     private MapData() {
-      uid_ = 0L;
       width_ = 0F;
       height_ = 0F;
       obstacles_ = java.util.Collections.emptyList();
@@ -1220,25 +1061,20 @@ public final class AiApiMessages {
               }
               break;
             }
-            case 8: {
-
-              uid_ = input.readUInt64();
-              break;
-            }
-            case 21: {
+            case 13: {
 
               width_ = input.readFloat();
               break;
             }
-            case 29: {
+            case 21: {
 
               height_ = input.readFloat();
               break;
             }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
                 obstacles_ = new java.util.ArrayList<lia.AiApiMessages.Obstacle>();
-                mutable_bitField0_ |= 0x00000008;
+                mutable_bitField0_ |= 0x00000004;
               }
               obstacles_.add(
                   input.readMessage(lia.AiApiMessages.Obstacle.parser(), extensionRegistry));
@@ -1252,7 +1088,7 @@ public final class AiApiMessages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           obstacles_ = java.util.Collections.unmodifiableList(obstacles_);
         }
         this.unknownFields = unknownFields.build();
@@ -1272,62 +1108,53 @@ public final class AiApiMessages {
     }
 
     private int bitField0_;
-    public static final int UID_FIELD_NUMBER = 1;
-    private long uid_;
-    /**
-     * <code>uint64 uid = 1;</code>
-     */
-    public long getUid() {
-      return uid_;
-    }
-
-    public static final int WIDTH_FIELD_NUMBER = 2;
+    public static final int WIDTH_FIELD_NUMBER = 1;
     private float width_;
     /**
-     * <code>float width = 2;</code>
+     * <code>float width = 1;</code>
      */
     public float getWidth() {
       return width_;
     }
 
-    public static final int HEIGHT_FIELD_NUMBER = 3;
+    public static final int HEIGHT_FIELD_NUMBER = 2;
     private float height_;
     /**
-     * <code>float height = 3;</code>
+     * <code>float height = 2;</code>
      */
     public float getHeight() {
       return height_;
     }
 
-    public static final int OBSTACLES_FIELD_NUMBER = 4;
+    public static final int OBSTACLES_FIELD_NUMBER = 3;
     private java.util.List<lia.AiApiMessages.Obstacle> obstacles_;
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     public java.util.List<lia.AiApiMessages.Obstacle> getObstaclesList() {
       return obstacles_;
     }
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     public java.util.List<? extends lia.AiApiMessages.ObstacleOrBuilder> 
         getObstaclesOrBuilderList() {
       return obstacles_;
     }
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     public int getObstaclesCount() {
       return obstacles_.size();
     }
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     public lia.AiApiMessages.Obstacle getObstacles(int index) {
       return obstacles_.get(index);
     }
     /**
-     * <code>repeated .lia.Obstacle obstacles = 4;</code>
+     * <code>repeated .lia.Obstacle obstacles = 3;</code>
      */
     public lia.AiApiMessages.ObstacleOrBuilder getObstaclesOrBuilder(
         int index) {
@@ -1346,17 +1173,14 @@ public final class AiApiMessages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (uid_ != 0L) {
-        output.writeUInt64(1, uid_);
-      }
       if (width_ != 0F) {
-        output.writeFloat(2, width_);
+        output.writeFloat(1, width_);
       }
       if (height_ != 0F) {
-        output.writeFloat(3, height_);
+        output.writeFloat(2, height_);
       }
       for (int i = 0; i < obstacles_.size(); i++) {
-        output.writeMessage(4, obstacles_.get(i));
+        output.writeMessage(3, obstacles_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1366,21 +1190,17 @@ public final class AiApiMessages {
       if (size != -1) return size;
 
       size = 0;
-      if (uid_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, uid_);
-      }
       if (width_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, width_);
+          .computeFloatSize(1, width_);
       }
       if (height_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, height_);
+          .computeFloatSize(2, height_);
       }
       for (int i = 0; i < obstacles_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, obstacles_.get(i));
+          .computeMessageSize(3, obstacles_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1398,8 +1218,6 @@ public final class AiApiMessages {
       lia.AiApiMessages.MapData other = (lia.AiApiMessages.MapData) obj;
 
       boolean result = true;
-      result = result && (getUid()
-          == other.getUid());
       result = result && (
           java.lang.Float.floatToIntBits(getWidth())
           == java.lang.Float.floatToIntBits(
@@ -1421,9 +1239,6 @@ public final class AiApiMessages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + UID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getUid());
       hash = (37 * hash) + WIDTH_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getWidth());
@@ -1568,15 +1383,13 @@ public final class AiApiMessages {
       }
       public Builder clear() {
         super.clear();
-        uid_ = 0L;
-
         width_ = 0F;
 
         height_ = 0F;
 
         if (obstaclesBuilder_ == null) {
           obstacles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           obstaclesBuilder_.clear();
         }
@@ -1604,13 +1417,12 @@ public final class AiApiMessages {
         lia.AiApiMessages.MapData result = new lia.AiApiMessages.MapData(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.uid_ = uid_;
         result.width_ = width_;
         result.height_ = height_;
         if (obstaclesBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
             obstacles_ = java.util.Collections.unmodifiableList(obstacles_);
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.obstacles_ = obstacles_;
         } else {
@@ -1658,9 +1470,6 @@ public final class AiApiMessages {
 
       public Builder mergeFrom(lia.AiApiMessages.MapData other) {
         if (other == lia.AiApiMessages.MapData.getDefaultInstance()) return this;
-        if (other.getUid() != 0L) {
-          setUid(other.getUid());
-        }
         if (other.getWidth() != 0F) {
           setWidth(other.getWidth());
         }
@@ -1671,7 +1480,7 @@ public final class AiApiMessages {
           if (!other.obstacles_.isEmpty()) {
             if (obstacles_.isEmpty()) {
               obstacles_ = other.obstacles_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensureObstaclesIsMutable();
               obstacles_.addAll(other.obstacles_);
@@ -1684,7 +1493,7 @@ public final class AiApiMessages {
               obstaclesBuilder_.dispose();
               obstaclesBuilder_ = null;
               obstacles_ = other.obstacles_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+              bitField0_ = (bitField0_ & ~0x00000004);
               obstaclesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getObstaclesFieldBuilder() : null;
@@ -1721,41 +1530,15 @@ public final class AiApiMessages {
       }
       private int bitField0_;
 
-      private long uid_ ;
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public long getUid() {
-        return uid_;
-      }
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public Builder setUid(long value) {
-        
-        uid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public Builder clearUid() {
-        
-        uid_ = 0L;
-        onChanged();
-        return this;
-      }
-
       private float width_ ;
       /**
-       * <code>float width = 2;</code>
+       * <code>float width = 1;</code>
        */
       public float getWidth() {
         return width_;
       }
       /**
-       * <code>float width = 2;</code>
+       * <code>float width = 1;</code>
        */
       public Builder setWidth(float value) {
         
@@ -1764,7 +1547,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>float width = 2;</code>
+       * <code>float width = 1;</code>
        */
       public Builder clearWidth() {
         
@@ -1775,13 +1558,13 @@ public final class AiApiMessages {
 
       private float height_ ;
       /**
-       * <code>float height = 3;</code>
+       * <code>float height = 2;</code>
        */
       public float getHeight() {
         return height_;
       }
       /**
-       * <code>float height = 3;</code>
+       * <code>float height = 2;</code>
        */
       public Builder setHeight(float value) {
         
@@ -1790,7 +1573,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>float height = 3;</code>
+       * <code>float height = 2;</code>
        */
       public Builder clearHeight() {
         
@@ -1802,9 +1585,9 @@ public final class AiApiMessages {
       private java.util.List<lia.AiApiMessages.Obstacle> obstacles_ =
         java.util.Collections.emptyList();
       private void ensureObstaclesIsMutable() {
-        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
           obstacles_ = new java.util.ArrayList<lia.AiApiMessages.Obstacle>(obstacles_);
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -1812,7 +1595,7 @@ public final class AiApiMessages {
           lia.AiApiMessages.Obstacle, lia.AiApiMessages.Obstacle.Builder, lia.AiApiMessages.ObstacleOrBuilder> obstaclesBuilder_;
 
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Obstacle> getObstaclesList() {
         if (obstaclesBuilder_ == null) {
@@ -1822,7 +1605,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public int getObstaclesCount() {
         if (obstaclesBuilder_ == null) {
@@ -1832,7 +1615,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public lia.AiApiMessages.Obstacle getObstacles(int index) {
         if (obstaclesBuilder_ == null) {
@@ -1842,7 +1625,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder setObstacles(
           int index, lia.AiApiMessages.Obstacle value) {
@@ -1859,7 +1642,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder setObstacles(
           int index, lia.AiApiMessages.Obstacle.Builder builderForValue) {
@@ -1873,7 +1656,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder addObstacles(lia.AiApiMessages.Obstacle value) {
         if (obstaclesBuilder_ == null) {
@@ -1889,7 +1672,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder addObstacles(
           int index, lia.AiApiMessages.Obstacle value) {
@@ -1906,7 +1689,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder addObstacles(
           lia.AiApiMessages.Obstacle.Builder builderForValue) {
@@ -1920,7 +1703,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder addObstacles(
           int index, lia.AiApiMessages.Obstacle.Builder builderForValue) {
@@ -1934,7 +1717,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder addAllObstacles(
           java.lang.Iterable<? extends lia.AiApiMessages.Obstacle> values) {
@@ -1949,12 +1732,12 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder clearObstacles() {
         if (obstaclesBuilder_ == null) {
           obstacles_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           obstaclesBuilder_.clear();
@@ -1962,7 +1745,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public Builder removeObstacles(int index) {
         if (obstaclesBuilder_ == null) {
@@ -1975,14 +1758,14 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public lia.AiApiMessages.Obstacle.Builder getObstaclesBuilder(
           int index) {
         return getObstaclesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public lia.AiApiMessages.ObstacleOrBuilder getObstaclesOrBuilder(
           int index) {
@@ -1992,7 +1775,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public java.util.List<? extends lia.AiApiMessages.ObstacleOrBuilder> 
            getObstaclesOrBuilderList() {
@@ -2003,14 +1786,14 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public lia.AiApiMessages.Obstacle.Builder addObstaclesBuilder() {
         return getObstaclesFieldBuilder().addBuilder(
             lia.AiApiMessages.Obstacle.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public lia.AiApiMessages.Obstacle.Builder addObstaclesBuilder(
           int index) {
@@ -2018,7 +1801,7 @@ public final class AiApiMessages {
             index, lia.AiApiMessages.Obstacle.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Obstacle obstacles = 4;</code>
+       * <code>repeated .lia.Obstacle obstacles = 3;</code>
        */
       public java.util.List<lia.AiApiMessages.Obstacle.Builder> 
            getObstaclesBuilderList() {
@@ -2031,7 +1814,7 @@ public final class AiApiMessages {
           obstaclesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               lia.AiApiMessages.Obstacle, lia.AiApiMessages.Obstacle.Builder, lia.AiApiMessages.ObstacleOrBuilder>(
                   obstacles_,
-                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
           obstacles_ = null;
@@ -2092,35 +1875,30 @@ public final class AiApiMessages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 uid = 1;</code>
-     */
-    long getUid();
-
-    /**
-     * <code>float time = 2;</code>
+     * <code>float time = 1;</code>
      */
     float getTime();
 
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     java.util.List<lia.AiApiMessages.Player> 
         getPlayersList();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     lia.AiApiMessages.Player getPlayers(int index);
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     int getPlayersCount();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList();
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index);
@@ -2142,7 +1920,6 @@ public final class AiApiMessages {
       super(builder);
     }
     private StateUpdate() {
-      uid_ = 0L;
       time_ = 0F;
       players_ = java.util.Collections.emptyList();
     }
@@ -2178,20 +1955,15 @@ public final class AiApiMessages {
               }
               break;
             }
-            case 8: {
-
-              uid_ = input.readUInt64();
-              break;
-            }
-            case 21: {
+            case 13: {
 
               time_ = input.readFloat();
               break;
             }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
                 players_ = new java.util.ArrayList<lia.AiApiMessages.Player>();
-                mutable_bitField0_ |= 0x00000004;
+                mutable_bitField0_ |= 0x00000002;
               }
               players_.add(
                   input.readMessage(lia.AiApiMessages.Player.parser(), extensionRegistry));
@@ -2205,7 +1977,7 @@ public final class AiApiMessages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           players_ = java.util.Collections.unmodifiableList(players_);
         }
         this.unknownFields = unknownFields.build();
@@ -2225,53 +1997,44 @@ public final class AiApiMessages {
     }
 
     private int bitField0_;
-    public static final int UID_FIELD_NUMBER = 1;
-    private long uid_;
-    /**
-     * <code>uint64 uid = 1;</code>
-     */
-    public long getUid() {
-      return uid_;
-    }
-
-    public static final int TIME_FIELD_NUMBER = 2;
+    public static final int TIME_FIELD_NUMBER = 1;
     private float time_;
     /**
-     * <code>float time = 2;</code>
+     * <code>float time = 1;</code>
      */
     public float getTime() {
       return time_;
     }
 
-    public static final int PLAYERS_FIELD_NUMBER = 3;
+    public static final int PLAYERS_FIELD_NUMBER = 2;
     private java.util.List<lia.AiApiMessages.Player> players_;
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
         getPlayersOrBuilderList() {
       return players_;
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     public int getPlayersCount() {
       return players_.size();
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     public lia.AiApiMessages.Player getPlayers(int index) {
       return players_.get(index);
     }
     /**
-     * <code>repeated .lia.Player players = 3;</code>
+     * <code>repeated .lia.Player players = 2;</code>
      */
     public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
         int index) {
@@ -2290,14 +2053,11 @@ public final class AiApiMessages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (uid_ != 0L) {
-        output.writeUInt64(1, uid_);
-      }
       if (time_ != 0F) {
-        output.writeFloat(2, time_);
+        output.writeFloat(1, time_);
       }
       for (int i = 0; i < players_.size(); i++) {
-        output.writeMessage(3, players_.get(i));
+        output.writeMessage(2, players_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2307,17 +2067,13 @@ public final class AiApiMessages {
       if (size != -1) return size;
 
       size = 0;
-      if (uid_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, uid_);
-      }
       if (time_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, time_);
+          .computeFloatSize(1, time_);
       }
       for (int i = 0; i < players_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, players_.get(i));
+          .computeMessageSize(2, players_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2335,8 +2091,6 @@ public final class AiApiMessages {
       lia.AiApiMessages.StateUpdate other = (lia.AiApiMessages.StateUpdate) obj;
 
       boolean result = true;
-      result = result && (getUid()
-          == other.getUid());
       result = result && (
           java.lang.Float.floatToIntBits(getTime())
           == java.lang.Float.floatToIntBits(
@@ -2354,9 +2108,6 @@ public final class AiApiMessages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + UID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getUid());
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getTime());
@@ -2498,13 +2249,11 @@ public final class AiApiMessages {
       }
       public Builder clear() {
         super.clear();
-        uid_ = 0L;
-
         time_ = 0F;
 
         if (playersBuilder_ == null) {
           players_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
           playersBuilder_.clear();
         }
@@ -2532,12 +2281,11 @@ public final class AiApiMessages {
         lia.AiApiMessages.StateUpdate result = new lia.AiApiMessages.StateUpdate(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.uid_ = uid_;
         result.time_ = time_;
         if (playersBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
             players_ = java.util.Collections.unmodifiableList(players_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.players_ = players_;
         } else {
@@ -2585,9 +2333,6 @@ public final class AiApiMessages {
 
       public Builder mergeFrom(lia.AiApiMessages.StateUpdate other) {
         if (other == lia.AiApiMessages.StateUpdate.getDefaultInstance()) return this;
-        if (other.getUid() != 0L) {
-          setUid(other.getUid());
-        }
         if (other.getTime() != 0F) {
           setTime(other.getTime());
         }
@@ -2595,7 +2340,7 @@ public final class AiApiMessages {
           if (!other.players_.isEmpty()) {
             if (players_.isEmpty()) {
               players_ = other.players_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensurePlayersIsMutable();
               players_.addAll(other.players_);
@@ -2608,7 +2353,7 @@ public final class AiApiMessages {
               playersBuilder_.dispose();
               playersBuilder_ = null;
               players_ = other.players_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000002);
               playersBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPlayersFieldBuilder() : null;
@@ -2645,41 +2390,15 @@ public final class AiApiMessages {
       }
       private int bitField0_;
 
-      private long uid_ ;
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public long getUid() {
-        return uid_;
-      }
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public Builder setUid(long value) {
-        
-        uid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint64 uid = 1;</code>
-       */
-      public Builder clearUid() {
-        
-        uid_ = 0L;
-        onChanged();
-        return this;
-      }
-
       private float time_ ;
       /**
-       * <code>float time = 2;</code>
+       * <code>float time = 1;</code>
        */
       public float getTime() {
         return time_;
       }
       /**
-       * <code>float time = 2;</code>
+       * <code>float time = 1;</code>
        */
       public Builder setTime(float value) {
         
@@ -2688,7 +2407,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>float time = 2;</code>
+       * <code>float time = 1;</code>
        */
       public Builder clearTime() {
         
@@ -2700,9 +2419,9 @@ public final class AiApiMessages {
       private java.util.List<lia.AiApiMessages.Player> players_ =
         java.util.Collections.emptyList();
       private void ensurePlayersIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
           players_ = new java.util.ArrayList<lia.AiApiMessages.Player>(players_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -2710,7 +2429,7 @@ public final class AiApiMessages {
           lia.AiApiMessages.Player, lia.AiApiMessages.Player.Builder, lia.AiApiMessages.PlayerOrBuilder> playersBuilder_;
 
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public java.util.List<lia.AiApiMessages.Player> getPlayersList() {
         if (playersBuilder_ == null) {
@@ -2720,7 +2439,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public int getPlayersCount() {
         if (playersBuilder_ == null) {
@@ -2730,7 +2449,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public lia.AiApiMessages.Player getPlayers(int index) {
         if (playersBuilder_ == null) {
@@ -2740,7 +2459,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -2757,7 +2476,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder setPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2771,7 +2490,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder addPlayers(lia.AiApiMessages.Player value) {
         if (playersBuilder_ == null) {
@@ -2787,7 +2506,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player value) {
@@ -2804,7 +2523,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder addPlayers(
           lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2818,7 +2537,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder addPlayers(
           int index, lia.AiApiMessages.Player.Builder builderForValue) {
@@ -2832,7 +2551,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder addAllPlayers(
           java.lang.Iterable<? extends lia.AiApiMessages.Player> values) {
@@ -2847,12 +2566,12 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder clearPlayers() {
         if (playersBuilder_ == null) {
           players_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           playersBuilder_.clear();
@@ -2860,7 +2579,7 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public Builder removePlayers(int index) {
         if (playersBuilder_ == null) {
@@ -2873,14 +2592,14 @@ public final class AiApiMessages {
         return this;
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public lia.AiApiMessages.Player.Builder getPlayersBuilder(
           int index) {
         return getPlayersFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public lia.AiApiMessages.PlayerOrBuilder getPlayersOrBuilder(
           int index) {
@@ -2890,7 +2609,7 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public java.util.List<? extends lia.AiApiMessages.PlayerOrBuilder> 
            getPlayersOrBuilderList() {
@@ -2901,14 +2620,14 @@ public final class AiApiMessages {
         }
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder() {
         return getPlayersFieldBuilder().addBuilder(
             lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public lia.AiApiMessages.Player.Builder addPlayersBuilder(
           int index) {
@@ -2916,7 +2635,7 @@ public final class AiApiMessages {
             index, lia.AiApiMessages.Player.getDefaultInstance());
       }
       /**
-       * <code>repeated .lia.Player players = 3;</code>
+       * <code>repeated .lia.Player players = 2;</code>
        */
       public java.util.List<lia.AiApiMessages.Player.Builder> 
            getPlayersBuilderList() {
@@ -2929,7 +2648,7 @@ public final class AiApiMessages {
           playersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               lia.AiApiMessages.Player, lia.AiApiMessages.Player.Builder, lia.AiApiMessages.PlayerOrBuilder>(
                   players_,
-                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
                   isClean());
           players_ = null;
@@ -4926,393 +4645,6 @@ public final class AiApiMessages {
 
   }
 
-  public interface GameOverOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:lia.GameOver)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code lia.GameOver}
-   */
-  public  static final class GameOver extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:lia.GameOver)
-      GameOverOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GameOver.newBuilder() to construct.
-    private GameOver(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GameOver() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GameOver(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return lia.AiApiMessages.internal_static_lia_GameOver_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return lia.AiApiMessages.internal_static_lia_GameOver_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              lia.AiApiMessages.GameOver.class, lia.AiApiMessages.GameOver.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof lia.AiApiMessages.GameOver)) {
-        return super.equals(obj);
-      }
-      lia.AiApiMessages.GameOver other = (lia.AiApiMessages.GameOver) obj;
-
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static lia.AiApiMessages.GameOver parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static lia.AiApiMessages.GameOver parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.GameOver parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.GameOver parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(lia.AiApiMessages.GameOver prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code lia.GameOver}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:lia.GameOver)
-        lia.AiApiMessages.GameOverOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return lia.AiApiMessages.internal_static_lia_GameOver_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return lia.AiApiMessages.internal_static_lia_GameOver_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                lia.AiApiMessages.GameOver.class, lia.AiApiMessages.GameOver.Builder.class);
-      }
-
-      // Construct using lia.AiApiMessages.GameOver.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return lia.AiApiMessages.internal_static_lia_GameOver_descriptor;
-      }
-
-      public lia.AiApiMessages.GameOver getDefaultInstanceForType() {
-        return lia.AiApiMessages.GameOver.getDefaultInstance();
-      }
-
-      public lia.AiApiMessages.GameOver build() {
-        lia.AiApiMessages.GameOver result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public lia.AiApiMessages.GameOver buildPartial() {
-        lia.AiApiMessages.GameOver result = new lia.AiApiMessages.GameOver(this);
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof lia.AiApiMessages.GameOver) {
-          return mergeFrom((lia.AiApiMessages.GameOver)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(lia.AiApiMessages.GameOver other) {
-        if (other == lia.AiApiMessages.GameOver.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        lia.AiApiMessages.GameOver parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (lia.AiApiMessages.GameOver) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:lia.GameOver)
-    }
-
-    // @@protoc_insertion_point(class_scope:lia.GameOver)
-    private static final lia.AiApiMessages.GameOver DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new lia.AiApiMessages.GameOver();
-    }
-
-    public static lia.AiApiMessages.GameOver getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GameOver>
-        PARSER = new com.google.protobuf.AbstractParser<GameOver>() {
-      public GameOver parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GameOver(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GameOver> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GameOver> getParserForType() {
-      return PARSER;
-    }
-
-    public lia.AiApiMessages.GameOver getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface ObstacleOrBuilder extends
       // @@protoc_insertion_point(interface_extends:lia.Obstacle)
       com.google.protobuf.MessageOrBuilder {
@@ -6008,17 +5340,13 @@ public final class AiApiMessages {
     lia.AiApiMessages.ThrustSpeed.Enum getThrustSpeed();
 
     /**
-     * <code>.lia.Rotation rotation = 7;</code>
+     * <code>.lia.Rotation.Enum rotation = 7;</code>
      */
-    boolean hasRotation();
+    int getRotationValue();
     /**
-     * <code>.lia.Rotation rotation = 7;</code>
+     * <code>.lia.Rotation.Enum rotation = 7;</code>
      */
-    lia.AiApiMessages.Rotation getRotation();
-    /**
-     * <code>.lia.Rotation rotation = 7;</code>
-     */
-    lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder();
+    lia.AiApiMessages.Rotation.Enum getRotation();
 
     /**
      * <code>bool weaponLoaded = 8;</code>
@@ -6088,6 +5416,7 @@ public final class AiApiMessages {
       y_ = 0F;
       orientation_ = 0F;
       thrustSpeed_ = 0;
+      rotation_ = 0;
       weaponLoaded_ = false;
       detectedOponents_ = java.util.Collections.emptyList();
     }
@@ -6154,17 +5483,10 @@ public final class AiApiMessages {
               thrustSpeed_ = rawValue;
               break;
             }
-            case 58: {
-              lia.AiApiMessages.Rotation.Builder subBuilder = null;
-              if (rotation_ != null) {
-                subBuilder = rotation_.toBuilder();
-              }
-              rotation_ = input.readMessage(lia.AiApiMessages.Rotation.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(rotation_);
-                rotation_ = subBuilder.buildPartial();
-              }
+            case 56: {
+              int rawValue = input.readEnum();
 
+              rotation_ = rawValue;
               break;
             }
             case 64: {
@@ -6275,24 +5597,19 @@ public final class AiApiMessages {
     }
 
     public static final int ROTATION_FIELD_NUMBER = 7;
-    private lia.AiApiMessages.Rotation rotation_;
+    private int rotation_;
     /**
-     * <code>.lia.Rotation rotation = 7;</code>
+     * <code>.lia.Rotation.Enum rotation = 7;</code>
      */
-    public boolean hasRotation() {
-      return rotation_ != null;
+    public int getRotationValue() {
+      return rotation_;
     }
     /**
-     * <code>.lia.Rotation rotation = 7;</code>
+     * <code>.lia.Rotation.Enum rotation = 7;</code>
      */
-    public lia.AiApiMessages.Rotation getRotation() {
-      return rotation_ == null ? lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-    }
-    /**
-     * <code>.lia.Rotation rotation = 7;</code>
-     */
-    public lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder() {
-      return getRotation();
+    public lia.AiApiMessages.Rotation.Enum getRotation() {
+      lia.AiApiMessages.Rotation.Enum result = lia.AiApiMessages.Rotation.Enum.valueOf(rotation_);
+      return result == null ? lia.AiApiMessages.Rotation.Enum.UNRECOGNIZED : result;
     }
 
     public static final int WEAPONLOADED_FIELD_NUMBER = 8;
@@ -6389,8 +5706,8 @@ public final class AiApiMessages {
       if (thrustSpeed_ != lia.AiApiMessages.ThrustSpeed.Enum.UNKNOWN.getNumber()) {
         output.writeEnum(6, thrustSpeed_);
       }
-      if (rotation_ != null) {
-        output.writeMessage(7, getRotation());
+      if (rotation_ != lia.AiApiMessages.Rotation.Enum.UNKNOWN.getNumber()) {
+        output.writeEnum(7, rotation_);
       }
       if (weaponLoaded_ != false) {
         output.writeBool(8, weaponLoaded_);
@@ -6430,9 +5747,9 @@ public final class AiApiMessages {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, thrustSpeed_);
       }
-      if (rotation_ != null) {
+      if (rotation_ != lia.AiApiMessages.Rotation.Enum.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getRotation());
+          .computeEnumSize(7, rotation_);
       }
       if (weaponLoaded_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -6475,11 +5792,7 @@ public final class AiApiMessages {
           == java.lang.Float.floatToIntBits(
               other.getOrientation()));
       result = result && thrustSpeed_ == other.thrustSpeed_;
-      result = result && (hasRotation() == other.hasRotation());
-      if (hasRotation()) {
-        result = result && getRotation()
-            .equals(other.getRotation());
-      }
+      result = result && rotation_ == other.rotation_;
       result = result && (getWeaponLoaded()
           == other.getWeaponLoaded());
       result = result && getDetectedOponentsList()
@@ -6510,10 +5823,8 @@ public final class AiApiMessages {
           getOrientation());
       hash = (37 * hash) + THRUSTSPEED_FIELD_NUMBER;
       hash = (53 * hash) + thrustSpeed_;
-      if (hasRotation()) {
-        hash = (37 * hash) + ROTATION_FIELD_NUMBER;
-        hash = (53 * hash) + getRotation().hashCode();
-      }
+      hash = (37 * hash) + ROTATION_FIELD_NUMBER;
+      hash = (53 * hash) + rotation_;
       hash = (37 * hash) + WEAPONLOADED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getWeaponLoaded());
@@ -6663,12 +5974,8 @@ public final class AiApiMessages {
 
         thrustSpeed_ = 0;
 
-        if (rotationBuilder_ == null) {
-          rotation_ = null;
-        } else {
-          rotation_ = null;
-          rotationBuilder_ = null;
-        }
+        rotation_ = 0;
+
         weaponLoaded_ = false;
 
         if (detectedOponentsBuilder_ == null) {
@@ -6707,11 +6014,7 @@ public final class AiApiMessages {
         result.y_ = y_;
         result.orientation_ = orientation_;
         result.thrustSpeed_ = thrustSpeed_;
-        if (rotationBuilder_ == null) {
-          result.rotation_ = rotation_;
-        } else {
-          result.rotation_ = rotationBuilder_.build();
-        }
+        result.rotation_ = rotation_;
         result.weaponLoaded_ = weaponLoaded_;
         if (detectedOponentsBuilder_ == null) {
           if (((bitField0_ & 0x00000100) == 0x00000100)) {
@@ -6782,8 +6085,8 @@ public final class AiApiMessages {
         if (other.thrustSpeed_ != 0) {
           setThrustSpeedValue(other.getThrustSpeedValue());
         }
-        if (other.hasRotation()) {
-          mergeRotation(other.getRotation());
+        if (other.rotation_ != 0) {
+          setRotationValue(other.getRotationValue());
         }
         if (other.getWeaponLoaded() != false) {
           setWeaponLoaded(other.getWeaponLoaded());
@@ -7028,121 +6331,48 @@ public final class AiApiMessages {
         return this;
       }
 
-      private lia.AiApiMessages.Rotation rotation_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder> rotationBuilder_;
+      private int rotation_ = 0;
       /**
-       * <code>.lia.Rotation rotation = 7;</code>
+       * <code>.lia.Rotation.Enum rotation = 7;</code>
        */
-      public boolean hasRotation() {
-        return rotationBuilder_ != null || rotation_ != null;
+      public int getRotationValue() {
+        return rotation_;
       }
       /**
-       * <code>.lia.Rotation rotation = 7;</code>
+       * <code>.lia.Rotation.Enum rotation = 7;</code>
        */
-      public lia.AiApiMessages.Rotation getRotation() {
-        if (rotationBuilder_ == null) {
-          return rotation_ == null ? lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-        } else {
-          return rotationBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.lia.Rotation rotation = 7;</code>
-       */
-      public Builder setRotation(lia.AiApiMessages.Rotation value) {
-        if (rotationBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          rotation_ = value;
-          onChanged();
-        } else {
-          rotationBuilder_.setMessage(value);
-        }
-
+      public Builder setRotationValue(int value) {
+        rotation_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.Rotation rotation = 7;</code>
+       * <code>.lia.Rotation.Enum rotation = 7;</code>
        */
-      public Builder setRotation(
-          lia.AiApiMessages.Rotation.Builder builderForValue) {
-        if (rotationBuilder_ == null) {
-          rotation_ = builderForValue.build();
-          onChanged();
-        } else {
-          rotationBuilder_.setMessage(builderForValue.build());
+      public lia.AiApiMessages.Rotation.Enum getRotation() {
+        lia.AiApiMessages.Rotation.Enum result = lia.AiApiMessages.Rotation.Enum.valueOf(rotation_);
+        return result == null ? lia.AiApiMessages.Rotation.Enum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.lia.Rotation.Enum rotation = 7;</code>
+       */
+      public Builder setRotation(lia.AiApiMessages.Rotation.Enum value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
-
+        
+        rotation_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.Rotation rotation = 7;</code>
-       */
-      public Builder mergeRotation(lia.AiApiMessages.Rotation value) {
-        if (rotationBuilder_ == null) {
-          if (rotation_ != null) {
-            rotation_ =
-              lia.AiApiMessages.Rotation.newBuilder(rotation_).mergeFrom(value).buildPartial();
-          } else {
-            rotation_ = value;
-          }
-          onChanged();
-        } else {
-          rotationBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.Rotation rotation = 7;</code>
+       * <code>.lia.Rotation.Enum rotation = 7;</code>
        */
       public Builder clearRotation() {
-        if (rotationBuilder_ == null) {
-          rotation_ = null;
-          onChanged();
-        } else {
-          rotation_ = null;
-          rotationBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.Rotation rotation = 7;</code>
-       */
-      public lia.AiApiMessages.Rotation.Builder getRotationBuilder() {
         
+        rotation_ = 0;
         onChanged();
-        return getRotationFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.Rotation rotation = 7;</code>
-       */
-      public lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder() {
-        if (rotationBuilder_ != null) {
-          return rotationBuilder_.getMessageOrBuilder();
-        } else {
-          return rotation_ == null ?
-              lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-        }
-      }
-      /**
-       * <code>.lia.Rotation rotation = 7;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder> 
-          getRotationFieldBuilder() {
-        if (rotationBuilder_ == null) {
-          rotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder>(
-                  getRotation(),
-                  getParentForChildren(),
-                  isClean());
-          rotation_ = null;
-        }
-        return rotationBuilder_;
+        return this;
       }
 
       private boolean weaponLoaded_ ;
@@ -9286,17 +8516,13 @@ public final class AiApiMessages {
     int getPlayerId();
 
     /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
+     * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
      */
-    boolean hasSpeed();
+    int getSpeedValue();
     /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
+     * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
      */
-    lia.AiApiMessages.ThrustSpeed getSpeed();
-    /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
-     */
-    lia.AiApiMessages.ThrustSpeedOrBuilder getSpeedOrBuilder();
+    lia.AiApiMessages.ThrustSpeed.Enum getSpeed();
   }
   /**
    * Protobuf type {@code lia.SetThrustSpeedEvent}
@@ -9312,6 +8538,7 @@ public final class AiApiMessages {
     }
     private SetThrustSpeedEvent() {
       playerId_ = 0;
+      speed_ = 0;
     }
 
     @java.lang.Override
@@ -9350,17 +8577,10 @@ public final class AiApiMessages {
               playerId_ = input.readInt32();
               break;
             }
-            case 18: {
-              lia.AiApiMessages.ThrustSpeed.Builder subBuilder = null;
-              if (speed_ != null) {
-                subBuilder = speed_.toBuilder();
-              }
-              speed_ = input.readMessage(lia.AiApiMessages.ThrustSpeed.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(speed_);
-                speed_ = subBuilder.buildPartial();
-              }
+            case 16: {
+              int rawValue = input.readEnum();
 
+              speed_ = rawValue;
               break;
             }
           }
@@ -9397,24 +8617,19 @@ public final class AiApiMessages {
     }
 
     public static final int SPEED_FIELD_NUMBER = 2;
-    private lia.AiApiMessages.ThrustSpeed speed_;
+    private int speed_;
     /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
+     * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
      */
-    public boolean hasSpeed() {
-      return speed_ != null;
+    public int getSpeedValue() {
+      return speed_;
     }
     /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
+     * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
      */
-    public lia.AiApiMessages.ThrustSpeed getSpeed() {
-      return speed_ == null ? lia.AiApiMessages.ThrustSpeed.getDefaultInstance() : speed_;
-    }
-    /**
-     * <code>.lia.ThrustSpeed speed = 2;</code>
-     */
-    public lia.AiApiMessages.ThrustSpeedOrBuilder getSpeedOrBuilder() {
-      return getSpeed();
+    public lia.AiApiMessages.ThrustSpeed.Enum getSpeed() {
+      lia.AiApiMessages.ThrustSpeed.Enum result = lia.AiApiMessages.ThrustSpeed.Enum.valueOf(speed_);
+      return result == null ? lia.AiApiMessages.ThrustSpeed.Enum.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -9432,8 +8647,8 @@ public final class AiApiMessages {
       if (playerId_ != 0) {
         output.writeInt32(1, playerId_);
       }
-      if (speed_ != null) {
-        output.writeMessage(2, getSpeed());
+      if (speed_ != lia.AiApiMessages.ThrustSpeed.Enum.UNKNOWN.getNumber()) {
+        output.writeEnum(2, speed_);
       }
       unknownFields.writeTo(output);
     }
@@ -9447,9 +8662,9 @@ public final class AiApiMessages {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, playerId_);
       }
-      if (speed_ != null) {
+      if (speed_ != lia.AiApiMessages.ThrustSpeed.Enum.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getSpeed());
+          .computeEnumSize(2, speed_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -9469,11 +8684,7 @@ public final class AiApiMessages {
       boolean result = true;
       result = result && (getPlayerId()
           == other.getPlayerId());
-      result = result && (hasSpeed() == other.hasSpeed());
-      if (hasSpeed()) {
-        result = result && getSpeed()
-            .equals(other.getSpeed());
-      }
+      result = result && speed_ == other.speed_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -9487,10 +8698,8 @@ public final class AiApiMessages {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
       hash = (53 * hash) + getPlayerId();
-      if (hasSpeed()) {
-        hash = (37 * hash) + SPEED_FIELD_NUMBER;
-        hash = (53 * hash) + getSpeed().hashCode();
-      }
+      hash = (37 * hash) + SPEED_FIELD_NUMBER;
+      hash = (53 * hash) + speed_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9622,12 +8831,8 @@ public final class AiApiMessages {
         super.clear();
         playerId_ = 0;
 
-        if (speedBuilder_ == null) {
-          speed_ = null;
-        } else {
-          speed_ = null;
-          speedBuilder_ = null;
-        }
+        speed_ = 0;
+
         return this;
       }
 
@@ -9651,11 +8856,7 @@ public final class AiApiMessages {
       public lia.AiApiMessages.SetThrustSpeedEvent buildPartial() {
         lia.AiApiMessages.SetThrustSpeedEvent result = new lia.AiApiMessages.SetThrustSpeedEvent(this);
         result.playerId_ = playerId_;
-        if (speedBuilder_ == null) {
-          result.speed_ = speed_;
-        } else {
-          result.speed_ = speedBuilder_.build();
-        }
+        result.speed_ = speed_;
         onBuilt();
         return result;
       }
@@ -9700,8 +8901,8 @@ public final class AiApiMessages {
         if (other.getPlayerId() != 0) {
           setPlayerId(other.getPlayerId());
         }
-        if (other.hasSpeed()) {
-          mergeSpeed(other.getSpeed());
+        if (other.speed_ != 0) {
+          setSpeedValue(other.getSpeedValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -9756,121 +8957,48 @@ public final class AiApiMessages {
         return this;
       }
 
-      private lia.AiApiMessages.ThrustSpeed speed_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.ThrustSpeed, lia.AiApiMessages.ThrustSpeed.Builder, lia.AiApiMessages.ThrustSpeedOrBuilder> speedBuilder_;
+      private int speed_ = 0;
       /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
+       * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
        */
-      public boolean hasSpeed() {
-        return speedBuilder_ != null || speed_ != null;
+      public int getSpeedValue() {
+        return speed_;
       }
       /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
+       * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
        */
-      public lia.AiApiMessages.ThrustSpeed getSpeed() {
-        if (speedBuilder_ == null) {
-          return speed_ == null ? lia.AiApiMessages.ThrustSpeed.getDefaultInstance() : speed_;
-        } else {
-          return speedBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
-       */
-      public Builder setSpeed(lia.AiApiMessages.ThrustSpeed value) {
-        if (speedBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          speed_ = value;
-          onChanged();
-        } else {
-          speedBuilder_.setMessage(value);
-        }
-
+      public Builder setSpeedValue(int value) {
+        speed_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
+       * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
        */
-      public Builder setSpeed(
-          lia.AiApiMessages.ThrustSpeed.Builder builderForValue) {
-        if (speedBuilder_ == null) {
-          speed_ = builderForValue.build();
-          onChanged();
-        } else {
-          speedBuilder_.setMessage(builderForValue.build());
+      public lia.AiApiMessages.ThrustSpeed.Enum getSpeed() {
+        lia.AiApiMessages.ThrustSpeed.Enum result = lia.AiApiMessages.ThrustSpeed.Enum.valueOf(speed_);
+        return result == null ? lia.AiApiMessages.ThrustSpeed.Enum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
+       */
+      public Builder setSpeed(lia.AiApiMessages.ThrustSpeed.Enum value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
-
+        
+        speed_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
-       */
-      public Builder mergeSpeed(lia.AiApiMessages.ThrustSpeed value) {
-        if (speedBuilder_ == null) {
-          if (speed_ != null) {
-            speed_ =
-              lia.AiApiMessages.ThrustSpeed.newBuilder(speed_).mergeFrom(value).buildPartial();
-          } else {
-            speed_ = value;
-          }
-          onChanged();
-        } else {
-          speedBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
+       * <code>.lia.ThrustSpeed.Enum speed = 2;</code>
        */
       public Builder clearSpeed() {
-        if (speedBuilder_ == null) {
-          speed_ = null;
-          onChanged();
-        } else {
-          speed_ = null;
-          speedBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
-       */
-      public lia.AiApiMessages.ThrustSpeed.Builder getSpeedBuilder() {
         
+        speed_ = 0;
         onChanged();
-        return getSpeedFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
-       */
-      public lia.AiApiMessages.ThrustSpeedOrBuilder getSpeedOrBuilder() {
-        if (speedBuilder_ != null) {
-          return speedBuilder_.getMessageOrBuilder();
-        } else {
-          return speed_ == null ?
-              lia.AiApiMessages.ThrustSpeed.getDefaultInstance() : speed_;
-        }
-      }
-      /**
-       * <code>.lia.ThrustSpeed speed = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.ThrustSpeed, lia.AiApiMessages.ThrustSpeed.Builder, lia.AiApiMessages.ThrustSpeedOrBuilder> 
-          getSpeedFieldBuilder() {
-        if (speedBuilder_ == null) {
-          speedBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.ThrustSpeed, lia.AiApiMessages.ThrustSpeed.Builder, lia.AiApiMessages.ThrustSpeedOrBuilder>(
-                  getSpeed(),
-                  getParentForChildren(),
-                  isClean());
-          speed_ = null;
-        }
-        return speedBuilder_;
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -9931,17 +9059,13 @@ public final class AiApiMessages {
     int getPlayerId();
 
     /**
-     * <code>.lia.Rotation rotation = 2;</code>
+     * <code>.lia.Rotation.Enum rotation = 2;</code>
      */
-    boolean hasRotation();
+    int getRotationValue();
     /**
-     * <code>.lia.Rotation rotation = 2;</code>
+     * <code>.lia.Rotation.Enum rotation = 2;</code>
      */
-    lia.AiApiMessages.Rotation getRotation();
-    /**
-     * <code>.lia.Rotation rotation = 2;</code>
-     */
-    lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder();
+    lia.AiApiMessages.Rotation.Enum getRotation();
   }
   /**
    * Protobuf type {@code lia.SetRotationEvent}
@@ -9957,6 +9081,7 @@ public final class AiApiMessages {
     }
     private SetRotationEvent() {
       playerId_ = 0;
+      rotation_ = 0;
     }
 
     @java.lang.Override
@@ -9995,17 +9120,10 @@ public final class AiApiMessages {
               playerId_ = input.readInt32();
               break;
             }
-            case 18: {
-              lia.AiApiMessages.Rotation.Builder subBuilder = null;
-              if (rotation_ != null) {
-                subBuilder = rotation_.toBuilder();
-              }
-              rotation_ = input.readMessage(lia.AiApiMessages.Rotation.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(rotation_);
-                rotation_ = subBuilder.buildPartial();
-              }
+            case 16: {
+              int rawValue = input.readEnum();
 
+              rotation_ = rawValue;
               break;
             }
           }
@@ -10042,24 +9160,19 @@ public final class AiApiMessages {
     }
 
     public static final int ROTATION_FIELD_NUMBER = 2;
-    private lia.AiApiMessages.Rotation rotation_;
+    private int rotation_;
     /**
-     * <code>.lia.Rotation rotation = 2;</code>
+     * <code>.lia.Rotation.Enum rotation = 2;</code>
      */
-    public boolean hasRotation() {
-      return rotation_ != null;
+    public int getRotationValue() {
+      return rotation_;
     }
     /**
-     * <code>.lia.Rotation rotation = 2;</code>
+     * <code>.lia.Rotation.Enum rotation = 2;</code>
      */
-    public lia.AiApiMessages.Rotation getRotation() {
-      return rotation_ == null ? lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-    }
-    /**
-     * <code>.lia.Rotation rotation = 2;</code>
-     */
-    public lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder() {
-      return getRotation();
+    public lia.AiApiMessages.Rotation.Enum getRotation() {
+      lia.AiApiMessages.Rotation.Enum result = lia.AiApiMessages.Rotation.Enum.valueOf(rotation_);
+      return result == null ? lia.AiApiMessages.Rotation.Enum.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -10077,8 +9190,8 @@ public final class AiApiMessages {
       if (playerId_ != 0) {
         output.writeInt32(1, playerId_);
       }
-      if (rotation_ != null) {
-        output.writeMessage(2, getRotation());
+      if (rotation_ != lia.AiApiMessages.Rotation.Enum.UNKNOWN.getNumber()) {
+        output.writeEnum(2, rotation_);
       }
       unknownFields.writeTo(output);
     }
@@ -10092,9 +9205,9 @@ public final class AiApiMessages {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, playerId_);
       }
-      if (rotation_ != null) {
+      if (rotation_ != lia.AiApiMessages.Rotation.Enum.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getRotation());
+          .computeEnumSize(2, rotation_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -10114,11 +9227,7 @@ public final class AiApiMessages {
       boolean result = true;
       result = result && (getPlayerId()
           == other.getPlayerId());
-      result = result && (hasRotation() == other.hasRotation());
-      if (hasRotation()) {
-        result = result && getRotation()
-            .equals(other.getRotation());
-      }
+      result = result && rotation_ == other.rotation_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -10132,10 +9241,8 @@ public final class AiApiMessages {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
       hash = (53 * hash) + getPlayerId();
-      if (hasRotation()) {
-        hash = (37 * hash) + ROTATION_FIELD_NUMBER;
-        hash = (53 * hash) + getRotation().hashCode();
-      }
+      hash = (37 * hash) + ROTATION_FIELD_NUMBER;
+      hash = (53 * hash) + rotation_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -10267,12 +9374,8 @@ public final class AiApiMessages {
         super.clear();
         playerId_ = 0;
 
-        if (rotationBuilder_ == null) {
-          rotation_ = null;
-        } else {
-          rotation_ = null;
-          rotationBuilder_ = null;
-        }
+        rotation_ = 0;
+
         return this;
       }
 
@@ -10296,11 +9399,7 @@ public final class AiApiMessages {
       public lia.AiApiMessages.SetRotationEvent buildPartial() {
         lia.AiApiMessages.SetRotationEvent result = new lia.AiApiMessages.SetRotationEvent(this);
         result.playerId_ = playerId_;
-        if (rotationBuilder_ == null) {
-          result.rotation_ = rotation_;
-        } else {
-          result.rotation_ = rotationBuilder_.build();
-        }
+        result.rotation_ = rotation_;
         onBuilt();
         return result;
       }
@@ -10345,8 +9444,8 @@ public final class AiApiMessages {
         if (other.getPlayerId() != 0) {
           setPlayerId(other.getPlayerId());
         }
-        if (other.hasRotation()) {
-          mergeRotation(other.getRotation());
+        if (other.rotation_ != 0) {
+          setRotationValue(other.getRotationValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -10401,121 +9500,48 @@ public final class AiApiMessages {
         return this;
       }
 
-      private lia.AiApiMessages.Rotation rotation_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder> rotationBuilder_;
+      private int rotation_ = 0;
       /**
-       * <code>.lia.Rotation rotation = 2;</code>
+       * <code>.lia.Rotation.Enum rotation = 2;</code>
        */
-      public boolean hasRotation() {
-        return rotationBuilder_ != null || rotation_ != null;
+      public int getRotationValue() {
+        return rotation_;
       }
       /**
-       * <code>.lia.Rotation rotation = 2;</code>
+       * <code>.lia.Rotation.Enum rotation = 2;</code>
        */
-      public lia.AiApiMessages.Rotation getRotation() {
-        if (rotationBuilder_ == null) {
-          return rotation_ == null ? lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-        } else {
-          return rotationBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.lia.Rotation rotation = 2;</code>
-       */
-      public Builder setRotation(lia.AiApiMessages.Rotation value) {
-        if (rotationBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          rotation_ = value;
-          onChanged();
-        } else {
-          rotationBuilder_.setMessage(value);
-        }
-
+      public Builder setRotationValue(int value) {
+        rotation_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.Rotation rotation = 2;</code>
+       * <code>.lia.Rotation.Enum rotation = 2;</code>
        */
-      public Builder setRotation(
-          lia.AiApiMessages.Rotation.Builder builderForValue) {
-        if (rotationBuilder_ == null) {
-          rotation_ = builderForValue.build();
-          onChanged();
-        } else {
-          rotationBuilder_.setMessage(builderForValue.build());
+      public lia.AiApiMessages.Rotation.Enum getRotation() {
+        lia.AiApiMessages.Rotation.Enum result = lia.AiApiMessages.Rotation.Enum.valueOf(rotation_);
+        return result == null ? lia.AiApiMessages.Rotation.Enum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.lia.Rotation.Enum rotation = 2;</code>
+       */
+      public Builder setRotation(lia.AiApiMessages.Rotation.Enum value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
-
+        
+        rotation_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
-       * <code>.lia.Rotation rotation = 2;</code>
-       */
-      public Builder mergeRotation(lia.AiApiMessages.Rotation value) {
-        if (rotationBuilder_ == null) {
-          if (rotation_ != null) {
-            rotation_ =
-              lia.AiApiMessages.Rotation.newBuilder(rotation_).mergeFrom(value).buildPartial();
-          } else {
-            rotation_ = value;
-          }
-          onChanged();
-        } else {
-          rotationBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.Rotation rotation = 2;</code>
+       * <code>.lia.Rotation.Enum rotation = 2;</code>
        */
       public Builder clearRotation() {
-        if (rotationBuilder_ == null) {
-          rotation_ = null;
-          onChanged();
-        } else {
-          rotation_ = null;
-          rotationBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.lia.Rotation rotation = 2;</code>
-       */
-      public lia.AiApiMessages.Rotation.Builder getRotationBuilder() {
         
+        rotation_ = 0;
         onChanged();
-        return getRotationFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.Rotation rotation = 2;</code>
-       */
-      public lia.AiApiMessages.RotationOrBuilder getRotationOrBuilder() {
-        if (rotationBuilder_ != null) {
-          return rotationBuilder_.getMessageOrBuilder();
-        } else {
-          return rotation_ == null ?
-              lia.AiApiMessages.Rotation.getDefaultInstance() : rotation_;
-        }
-      }
-      /**
-       * <code>.lia.Rotation rotation = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder> 
-          getRotationFieldBuilder() {
-        if (rotationBuilder_ == null) {
-          rotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.Rotation, lia.AiApiMessages.Rotation.Builder, lia.AiApiMessages.RotationOrBuilder>(
-                  getRotation(),
-                  getParentForChildren(),
-                  isClean());
-          rotation_ = null;
-        }
-        return rotationBuilder_;
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11043,11 +10069,6 @@ public final class AiApiMessages {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_lia_ResponseEvent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_lia_GameOver_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_lia_GameOver_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_lia_Obstacle_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -11096,38 +10117,36 @@ public final class AiApiMessages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014ai_api.proto\022\003lia\"\177\n\007Message\022\037\n\007mapDat" +
-      "a\030\001 \001(\0132\014.lia.MapDataH\000\022\'\n\013stateUpdate\030\002" +
-      " \001(\0132\020.lia.StateUpdateH\000\022!\n\010gameOver\030\003 \001" +
-      "(\0132\r.lia.GameOverH\000B\007\n\005types\"W\n\007MapData\022" +
-      "\013\n\003uid\030\001 \001(\004\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030\003 " +
-      "\001(\002\022 \n\tobstacles\030\004 \003(\0132\r.lia.Obstacle\"F\n" +
-      "\013StateUpdate\022\013\n\003uid\030\001 \001(\004\022\014\n\004time\030\002 \001(\002\022" +
-      "\034\n\007players\030\003 \003(\0132\013.lia.Player\"=\n\nAiRespo" +
-      "nse\022\013\n\003uid\030\001 \001(\004\022\"\n\006events\030\002 \003(\0132\022.lia.R" +
-      "esponseEvent\"\234\001\n\rResponseEvent\0222\n\016setThr" +
-      "ustSpeed\030\001 \001(\0132\030.lia.SetThrustSpeedEvent" +
-      "H\000\022,\n\013setRotation\030\002 \001(\0132\025.lia.SetRotatio" +
-      "nEventH\000\022 \n\005shoot\030\003 \001(\0132\017.lia.ShootEvent" +
-      "H\000B\007\n\005event\"\n\n\010GameOver\"?\n\010Obstacle\022\t\n\001x" +
-      "\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\r\n\005width\030\003 \001(\002\022\016\n\006heig" +
-      "ht\030\004 \001(\002\"\332\001\n\006Player\022\n\n\002id\030\001 \001(\005\022\016\n\006healt" +
-      "h\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y\030\004 \001(\002\022\023\n\013orienta" +
-      "tion\030\005 \001(\002\022*\n\013thrustSpeed\030\006 \001(\0162\025.lia.Th" +
-      "rustSpeed.Enum\022\037\n\010rotation\030\007 \001(\0132\r.lia.R" +
-      "otation\022\024\n\014weaponLoaded\030\010 \001(\010\022&\n\020detecte" +
-      "dOponents\030\t \003(\0132\014.lia.Oponent\"<\n\013ThrustS" +
-      "peed\"-\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\016\n\nF" +
-      "ULL_SPEED\020\002\">\n\010Rotation\"2\n\004Enum\022\013\n\007UNKNO" +
-      "WN\020\000\022\010\n\004NONE\020\001\022\010\n\004LEFT\020\002\022\t\n\005RIGHT\020\003\"P\n\007O" +
-      "ponent\022\n\n\002id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030" +
-      "\003 \001(\002\022\t\n\001y\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\"H\n" +
-      "\023SetThrustSpeedEvent\022\020\n\010playerId\030\001 \001(\005\022\037" +
-      "\n\005speed\030\002 \001(\0132\020.lia.ThrustSpeed\"E\n\020SetRo" +
-      "tationEvent\022\020\n\010playerId\030\001 \001(\005\022\037\n\010rotatio" +
-      "n\030\002 \001(\0132\r.lia.Rotation\"\036\n\nShootEvent\022\020\n\010" +
-      "playerId\030\001 \001(\005B\024\n\003liaB\rAiApiMessagesb\006pr" +
-      "oto3"
+      "\n\014ai_api.proto\022\003lia\"i\n\007Message\022\013\n\003uid\030\001 " +
+      "\001(\004\022\037\n\007mapData\030\002 \001(\0132\014.lia.MapDataH\000\022\'\n\013" +
+      "stateUpdate\030\003 \001(\0132\020.lia.StateUpdateH\000B\007\n" +
+      "\005types\"J\n\007MapData\022\r\n\005width\030\001 \001(\002\022\016\n\006heig" +
+      "ht\030\002 \001(\002\022 \n\tobstacles\030\003 \003(\0132\r.lia.Obstac" +
+      "le\"9\n\013StateUpdate\022\014\n\004time\030\001 \001(\002\022\034\n\007playe" +
+      "rs\030\002 \003(\0132\013.lia.Player\"=\n\nAiResponse\022\013\n\003u" +
+      "id\030\001 \001(\004\022\"\n\006events\030\002 \003(\0132\022.lia.ResponseE" +
+      "vent\"\234\001\n\rResponseEvent\0222\n\016setThrustSpeed" +
+      "\030\001 \001(\0132\030.lia.SetThrustSpeedEventH\000\022,\n\013se" +
+      "tRotation\030\002 \001(\0132\025.lia.SetRotationEventH\000" +
+      "\022 \n\005shoot\030\003 \001(\0132\017.lia.ShootEventH\000B\007\n\005ev" +
+      "ent\"?\n\010Obstacle\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\r\n" +
+      "\005width\030\003 \001(\002\022\016\n\006height\030\004 \001(\002\"\337\001\n\006Player\022" +
+      "\n\n\002id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t" +
+      "\n\001y\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\022*\n\013thrust" +
+      "Speed\030\006 \001(\0162\025.lia.ThrustSpeed.Enum\022$\n\010ro" +
+      "tation\030\007 \001(\0162\022.lia.Rotation.Enum\022\024\n\014weap" +
+      "onLoaded\030\010 \001(\010\022&\n\020detectedOponents\030\t \003(\013" +
+      "2\014.lia.Oponent\"<\n\013ThrustSpeed\"-\n\004Enum\022\013\n" +
+      "\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\016\n\nFULL_SPEED\020\002\">\n\010" +
+      "Rotation\"2\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022" +
+      "\010\n\004LEFT\020\002\022\t\n\005RIGHT\020\003\"P\n\007Oponent\022\n\n\002id\030\001 " +
+      "\001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y\030\004 \001(" +
+      "\002\022\023\n\013orientation\030\005 \001(\002\"M\n\023SetThrustSpeed" +
+      "Event\022\020\n\010playerId\030\001 \001(\005\022$\n\005speed\030\002 \001(\0162\025" +
+      ".lia.ThrustSpeed.Enum\"J\n\020SetRotationEven" +
+      "t\022\020\n\010playerId\030\001 \001(\005\022$\n\010rotation\030\002 \001(\0162\022." +
+      "lia.Rotation.Enum\"\036\n\nShootEvent\022\020\n\010playe" +
+      "rId\030\001 \001(\005B\024\n\003liaB\rAiApiMessagesb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11146,19 +10165,19 @@ public final class AiApiMessages {
     internal_static_lia_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Message_descriptor,
-        new java.lang.String[] { "MapData", "StateUpdate", "GameOver", "Types", });
+        new java.lang.String[] { "Uid", "MapData", "StateUpdate", "Types", });
     internal_static_lia_MapData_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_lia_MapData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_MapData_descriptor,
-        new java.lang.String[] { "Uid", "Width", "Height", "Obstacles", });
+        new java.lang.String[] { "Width", "Height", "Obstacles", });
     internal_static_lia_StateUpdate_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_lia_StateUpdate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_StateUpdate_descriptor,
-        new java.lang.String[] { "Uid", "Time", "Players", });
+        new java.lang.String[] { "Time", "Players", });
     internal_static_lia_AiResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_lia_AiResponse_fieldAccessorTable = new
@@ -11171,56 +10190,50 @@ public final class AiApiMessages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ResponseEvent_descriptor,
         new java.lang.String[] { "SetThrustSpeed", "SetRotation", "Shoot", "Event", });
-    internal_static_lia_GameOver_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_lia_GameOver_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_lia_GameOver_descriptor,
-        new java.lang.String[] { });
     internal_static_lia_Obstacle_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_lia_Obstacle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Obstacle_descriptor,
         new java.lang.String[] { "X", "Y", "Width", "Height", });
     internal_static_lia_Player_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_lia_Player_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Player_descriptor,
         new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", "ThrustSpeed", "Rotation", "WeaponLoaded", "DetectedOponents", });
     internal_static_lia_ThrustSpeed_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_lia_ThrustSpeed_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ThrustSpeed_descriptor,
         new java.lang.String[] { });
     internal_static_lia_Rotation_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_lia_Rotation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Rotation_descriptor,
         new java.lang.String[] { });
     internal_static_lia_Oponent_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_lia_Oponent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Oponent_descriptor,
         new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", });
     internal_static_lia_SetThrustSpeedEvent_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_lia_SetThrustSpeedEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetThrustSpeedEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Speed", });
     internal_static_lia_SetRotationEvent_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_lia_SetRotationEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetRotationEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Rotation", });
     internal_static_lia_ShootEvent_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_lia_ShootEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ShootEvent_descriptor,

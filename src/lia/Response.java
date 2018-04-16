@@ -16,7 +16,7 @@ public class Response {
     }
 
     /** Change thrust speed of a player */
-    public void setThrustSpeed(int playerId, ThrustSpeed speed) {
+    public void setThrustSpeed(int playerId, ThrustSpeed.Enum speed) {
         SetThrustSpeedEvent thrustEvent = SetThrustSpeedEvent.newBuilder()
                 .setPlayerId(playerId)
                 .setSpeed(speed)
@@ -30,7 +30,7 @@ public class Response {
     }
 
     /** Change rotation speed of a player */
-    public void setRotationSpeed(int playerId, Rotation rotation) {
+    public void setRotationSpeed(int playerId, Rotation.Enum rotation) {
         SetRotationEvent rotationEvent = SetRotationEvent.newBuilder()
                 .setPlayerId(playerId)
                 .setRotation(rotation)
