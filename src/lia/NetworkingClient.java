@@ -20,10 +20,14 @@ public class NetworkingClient extends WebSocketClient {
 
     private Callable myBot;
 
-    public static NetworkingClient create(String uri, String playerId, Callable myBot) throws URISyntaxException {
+    public static NetworkingClient connectNew(String uri, String playerId, Callable myBot) throws URISyntaxException {
         Map<String,String> httpHeaders = new HashMap<>();
         httpHeaders.put("Id", playerId);
-        return new NetworkingClient(new URI(uri), httpHeaders, myBot);
+
+        NetworkingClient c = new NetworkingClient(new URI(uri), httpHeaders, myBot);
+
+        c.connect();
+        return c;
     }
 
     private NetworkingClient(URI serverUri, Map<String, String> httpHeaders, Callable myBot) {
