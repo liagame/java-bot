@@ -26,6 +26,7 @@ public class MyBot implements Callable {
         //String playerId = args[1];
 
         // TODO try connecting few times before quit
+        // TODO accept URI and IDs through args
         NetworkingClient.connectNew(URI, PLAYER_ID_1, new MyBot());
         NetworkingClient.connectNew(URI, PLAYER_ID_2, new MyBot());
     }
@@ -40,6 +41,11 @@ public class MyBot implements Callable {
     /** Repeatedly called from game engine with game status updates.  */
     @Override
     public synchronized void process(StateUpdate stateUpdate, Response response) {
+        /*
+        * This is a sample code that moves players randomly and shoots when the
+        * opponent is in sight.
+        **/
+
         List<Player> players = stateUpdate.getPlayersList();
 
         for (Player player : players) {
