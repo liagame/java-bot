@@ -72,7 +72,7 @@ public class MyBot implements Callable {
             counter++;
 
             // Shoot
-            if (player.getWeaponLoaded() && player.getEntititesInViewCount() > 0)
+            if (player.getWeaponLoaded() && player.getOpponentsInViewCount() > 0)
                 response.shoot(id);
         }
     }

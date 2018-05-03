@@ -5355,46 +5355,70 @@ public final class AiApiMessages {
 
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    java.util.List<lia.AiApiMessages.Entity> 
-        getEntititesInViewList();
+    java.util.List<lia.AiApiMessages.Opponent> 
+        getOpponentsInViewList();
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    lia.AiApiMessages.Entity getEntititesInView(int index);
+    lia.AiApiMessages.Opponent getOpponentsInView(int index);
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    int getEntititesInViewCount();
+    int getOpponentsInViewCount();
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    java.util.List<? extends lia.AiApiMessages.EntityOrBuilder> 
-        getEntititesInViewOrBuilderList();
+    java.util.List<? extends lia.AiApiMessages.OpponentOrBuilder> 
+        getOpponentsInViewOrBuilderList();
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    lia.AiApiMessages.EntityOrBuilder getEntititesInViewOrBuilder(
+    lia.AiApiMessages.OpponentOrBuilder getOpponentsInViewOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    java.util.List<lia.AiApiMessages.Bullet> 
+        getOpponentBulletsInViewList();
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    lia.AiApiMessages.Bullet getOpponentBulletsInView(int index);
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    int getOpponentBulletsInViewCount();
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    java.util.List<? extends lia.AiApiMessages.BulletOrBuilder> 
+        getOpponentBulletsInViewOrBuilderList();
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    lia.AiApiMessages.BulletOrBuilder getOpponentBulletsInViewOrBuilder(
         int index);
   }
   /**
@@ -5418,7 +5442,8 @@ public final class AiApiMessages {
       thrustSpeed_ = 0;
       rotation_ = 0;
       weaponLoaded_ = false;
-      entititesInView_ = java.util.Collections.emptyList();
+      opponentsInView_ = java.util.Collections.emptyList();
+      opponentBulletsInView_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -5496,11 +5521,20 @@ public final class AiApiMessages {
             }
             case 74: {
               if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-                entititesInView_ = new java.util.ArrayList<lia.AiApiMessages.Entity>();
+                opponentsInView_ = new java.util.ArrayList<lia.AiApiMessages.Opponent>();
                 mutable_bitField0_ |= 0x00000100;
               }
-              entititesInView_.add(
-                  input.readMessage(lia.AiApiMessages.Entity.parser(), extensionRegistry));
+              opponentsInView_.add(
+                  input.readMessage(lia.AiApiMessages.Opponent.parser(), extensionRegistry));
+              break;
+            }
+            case 82: {
+              if (!((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+                opponentBulletsInView_ = new java.util.ArrayList<lia.AiApiMessages.Bullet>();
+                mutable_bitField0_ |= 0x00000200;
+              }
+              opponentBulletsInView_.add(
+                  input.readMessage(lia.AiApiMessages.Bullet.parser(), extensionRegistry));
               break;
             }
           }
@@ -5512,7 +5546,10 @@ public final class AiApiMessages {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-          entititesInView_ = java.util.Collections.unmodifiableList(entititesInView_);
+          opponentsInView_ = java.util.Collections.unmodifiableList(opponentsInView_);
+        }
+        if (((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+          opponentBulletsInView_ = java.util.Collections.unmodifiableList(opponentBulletsInView_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -5621,59 +5658,94 @@ public final class AiApiMessages {
       return weaponLoaded_;
     }
 
-    public static final int ENTITITESINVIEW_FIELD_NUMBER = 9;
-    private java.util.List<lia.AiApiMessages.Entity> entititesInView_;
+    public static final int OPPONENTSINVIEW_FIELD_NUMBER = 9;
+    private java.util.List<lia.AiApiMessages.Opponent> opponentsInView_;
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    public java.util.List<lia.AiApiMessages.Entity> getEntititesInViewList() {
-      return entititesInView_;
+    public java.util.List<lia.AiApiMessages.Opponent> getOpponentsInViewList() {
+      return opponentsInView_;
     }
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    public java.util.List<? extends lia.AiApiMessages.EntityOrBuilder> 
-        getEntititesInViewOrBuilderList() {
-      return entititesInView_;
+    public java.util.List<? extends lia.AiApiMessages.OpponentOrBuilder> 
+        getOpponentsInViewOrBuilderList() {
+      return opponentsInView_;
     }
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    public int getEntititesInViewCount() {
-      return entititesInView_.size();
+    public int getOpponentsInViewCount() {
+      return opponentsInView_.size();
     }
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    public lia.AiApiMessages.Entity getEntititesInView(int index) {
-      return entititesInView_.get(index);
+    public lia.AiApiMessages.Opponent getOpponentsInView(int index) {
+      return opponentsInView_.get(index);
     }
     /**
      * <pre>
-     * Oponents that this player sees in his viewing area
+     * Opponents that this player sees in his viewing area
      * </pre>
      *
-     * <code>repeated .lia.Entity entititesInView = 9;</code>
+     * <code>repeated .lia.Opponent opponentsInView = 9;</code>
      */
-    public lia.AiApiMessages.EntityOrBuilder getEntititesInViewOrBuilder(
+    public lia.AiApiMessages.OpponentOrBuilder getOpponentsInViewOrBuilder(
         int index) {
-      return entititesInView_.get(index);
+      return opponentsInView_.get(index);
+    }
+
+    public static final int OPPONENTBULLETSINVIEW_FIELD_NUMBER = 10;
+    private java.util.List<lia.AiApiMessages.Bullet> opponentBulletsInView_;
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    public java.util.List<lia.AiApiMessages.Bullet> getOpponentBulletsInViewList() {
+      return opponentBulletsInView_;
+    }
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    public java.util.List<? extends lia.AiApiMessages.BulletOrBuilder> 
+        getOpponentBulletsInViewOrBuilderList() {
+      return opponentBulletsInView_;
+    }
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    public int getOpponentBulletsInViewCount() {
+      return opponentBulletsInView_.size();
+    }
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    public lia.AiApiMessages.Bullet getOpponentBulletsInView(int index) {
+      return opponentBulletsInView_.get(index);
+    }
+    /**
+     * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+     */
+    public lia.AiApiMessages.BulletOrBuilder getOpponentBulletsInViewOrBuilder(
+        int index) {
+      return opponentBulletsInView_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5712,8 +5784,11 @@ public final class AiApiMessages {
       if (weaponLoaded_ != false) {
         output.writeBool(8, weaponLoaded_);
       }
-      for (int i = 0; i < entititesInView_.size(); i++) {
-        output.writeMessage(9, entititesInView_.get(i));
+      for (int i = 0; i < opponentsInView_.size(); i++) {
+        output.writeMessage(9, opponentsInView_.get(i));
+      }
+      for (int i = 0; i < opponentBulletsInView_.size(); i++) {
+        output.writeMessage(10, opponentBulletsInView_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -5755,9 +5830,13 @@ public final class AiApiMessages {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, weaponLoaded_);
       }
-      for (int i = 0; i < entititesInView_.size(); i++) {
+      for (int i = 0; i < opponentsInView_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, entititesInView_.get(i));
+          .computeMessageSize(9, opponentsInView_.get(i));
+      }
+      for (int i = 0; i < opponentBulletsInView_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, opponentBulletsInView_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5795,8 +5874,10 @@ public final class AiApiMessages {
       result = result && rotation_ == other.rotation_;
       result = result && (getWeaponLoaded()
           == other.getWeaponLoaded());
-      result = result && getEntititesInViewList()
-          .equals(other.getEntititesInViewList());
+      result = result && getOpponentsInViewList()
+          .equals(other.getOpponentsInViewList());
+      result = result && getOpponentBulletsInViewList()
+          .equals(other.getOpponentBulletsInViewList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5828,9 +5909,13 @@ public final class AiApiMessages {
       hash = (37 * hash) + WEAPONLOADED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getWeaponLoaded());
-      if (getEntititesInViewCount() > 0) {
-        hash = (37 * hash) + ENTITITESINVIEW_FIELD_NUMBER;
-        hash = (53 * hash) + getEntititesInViewList().hashCode();
+      if (getOpponentsInViewCount() > 0) {
+        hash = (37 * hash) + OPPONENTSINVIEW_FIELD_NUMBER;
+        hash = (53 * hash) + getOpponentsInViewList().hashCode();
+      }
+      if (getOpponentBulletsInViewCount() > 0) {
+        hash = (37 * hash) + OPPONENTBULLETSINVIEW_FIELD_NUMBER;
+        hash = (53 * hash) + getOpponentBulletsInViewList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -5957,7 +6042,8 @@ public final class AiApiMessages {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getEntititesInViewFieldBuilder();
+          getOpponentsInViewFieldBuilder();
+          getOpponentBulletsInViewFieldBuilder();
         }
       }
       public Builder clear() {
@@ -5978,11 +6064,17 @@ public final class AiApiMessages {
 
         weaponLoaded_ = false;
 
-        if (entititesInViewBuilder_ == null) {
-          entititesInView_ = java.util.Collections.emptyList();
+        if (opponentsInViewBuilder_ == null) {
+          opponentsInView_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000100);
         } else {
-          entititesInViewBuilder_.clear();
+          opponentsInViewBuilder_.clear();
+        }
+        if (opponentBulletsInViewBuilder_ == null) {
+          opponentBulletsInView_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000200);
+        } else {
+          opponentBulletsInViewBuilder_.clear();
         }
         return this;
       }
@@ -6016,14 +6108,23 @@ public final class AiApiMessages {
         result.thrustSpeed_ = thrustSpeed_;
         result.rotation_ = rotation_;
         result.weaponLoaded_ = weaponLoaded_;
-        if (entititesInViewBuilder_ == null) {
+        if (opponentsInViewBuilder_ == null) {
           if (((bitField0_ & 0x00000100) == 0x00000100)) {
-            entititesInView_ = java.util.Collections.unmodifiableList(entititesInView_);
+            opponentsInView_ = java.util.Collections.unmodifiableList(opponentsInView_);
             bitField0_ = (bitField0_ & ~0x00000100);
           }
-          result.entititesInView_ = entititesInView_;
+          result.opponentsInView_ = opponentsInView_;
         } else {
-          result.entititesInView_ = entititesInViewBuilder_.build();
+          result.opponentsInView_ = opponentsInViewBuilder_.build();
+        }
+        if (opponentBulletsInViewBuilder_ == null) {
+          if (((bitField0_ & 0x00000200) == 0x00000200)) {
+            opponentBulletsInView_ = java.util.Collections.unmodifiableList(opponentBulletsInView_);
+            bitField0_ = (bitField0_ & ~0x00000200);
+          }
+          result.opponentBulletsInView_ = opponentBulletsInView_;
+        } else {
+          result.opponentBulletsInView_ = opponentBulletsInViewBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -6091,29 +6192,55 @@ public final class AiApiMessages {
         if (other.getWeaponLoaded() != false) {
           setWeaponLoaded(other.getWeaponLoaded());
         }
-        if (entititesInViewBuilder_ == null) {
-          if (!other.entititesInView_.isEmpty()) {
-            if (entititesInView_.isEmpty()) {
-              entititesInView_ = other.entititesInView_;
+        if (opponentsInViewBuilder_ == null) {
+          if (!other.opponentsInView_.isEmpty()) {
+            if (opponentsInView_.isEmpty()) {
+              opponentsInView_ = other.opponentsInView_;
               bitField0_ = (bitField0_ & ~0x00000100);
             } else {
-              ensureEntititesInViewIsMutable();
-              entititesInView_.addAll(other.entititesInView_);
+              ensureOpponentsInViewIsMutable();
+              opponentsInView_.addAll(other.opponentsInView_);
             }
             onChanged();
           }
         } else {
-          if (!other.entititesInView_.isEmpty()) {
-            if (entititesInViewBuilder_.isEmpty()) {
-              entititesInViewBuilder_.dispose();
-              entititesInViewBuilder_ = null;
-              entititesInView_ = other.entititesInView_;
+          if (!other.opponentsInView_.isEmpty()) {
+            if (opponentsInViewBuilder_.isEmpty()) {
+              opponentsInViewBuilder_.dispose();
+              opponentsInViewBuilder_ = null;
+              opponentsInView_ = other.opponentsInView_;
               bitField0_ = (bitField0_ & ~0x00000100);
-              entititesInViewBuilder_ = 
+              opponentsInViewBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getEntititesInViewFieldBuilder() : null;
+                   getOpponentsInViewFieldBuilder() : null;
             } else {
-              entititesInViewBuilder_.addAllMessages(other.entititesInView_);
+              opponentsInViewBuilder_.addAllMessages(other.opponentsInView_);
+            }
+          }
+        }
+        if (opponentBulletsInViewBuilder_ == null) {
+          if (!other.opponentBulletsInView_.isEmpty()) {
+            if (opponentBulletsInView_.isEmpty()) {
+              opponentBulletsInView_ = other.opponentBulletsInView_;
+              bitField0_ = (bitField0_ & ~0x00000200);
+            } else {
+              ensureOpponentBulletsInViewIsMutable();
+              opponentBulletsInView_.addAll(other.opponentBulletsInView_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.opponentBulletsInView_.isEmpty()) {
+            if (opponentBulletsInViewBuilder_.isEmpty()) {
+              opponentBulletsInViewBuilder_.dispose();
+              opponentBulletsInViewBuilder_ = null;
+              opponentBulletsInView_ = other.opponentBulletsInView_;
+              bitField0_ = (bitField0_ & ~0x00000200);
+              opponentBulletsInViewBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getOpponentBulletsInViewFieldBuilder() : null;
+            } else {
+              opponentBulletsInViewBuilder_.addAllMessages(other.opponentBulletsInView_);
             }
           }
         }
@@ -6401,316 +6528,556 @@ public final class AiApiMessages {
         return this;
       }
 
-      private java.util.List<lia.AiApiMessages.Entity> entititesInView_ =
+      private java.util.List<lia.AiApiMessages.Opponent> opponentsInView_ =
         java.util.Collections.emptyList();
-      private void ensureEntititesInViewIsMutable() {
+      private void ensureOpponentsInViewIsMutable() {
         if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          entititesInView_ = new java.util.ArrayList<lia.AiApiMessages.Entity>(entititesInView_);
+          opponentsInView_ = new java.util.ArrayList<lia.AiApiMessages.Opponent>(opponentsInView_);
           bitField0_ |= 0x00000100;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          lia.AiApiMessages.Entity, lia.AiApiMessages.Entity.Builder, lia.AiApiMessages.EntityOrBuilder> entititesInViewBuilder_;
+          lia.AiApiMessages.Opponent, lia.AiApiMessages.Opponent.Builder, lia.AiApiMessages.OpponentOrBuilder> opponentsInViewBuilder_;
 
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public java.util.List<lia.AiApiMessages.Entity> getEntititesInViewList() {
-        if (entititesInViewBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(entititesInView_);
+      public java.util.List<lia.AiApiMessages.Opponent> getOpponentsInViewList() {
+        if (opponentsInViewBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(opponentsInView_);
         } else {
-          return entititesInViewBuilder_.getMessageList();
+          return opponentsInViewBuilder_.getMessageList();
         }
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public int getEntititesInViewCount() {
-        if (entititesInViewBuilder_ == null) {
-          return entititesInView_.size();
+      public int getOpponentsInViewCount() {
+        if (opponentsInViewBuilder_ == null) {
+          return opponentsInView_.size();
         } else {
-          return entititesInViewBuilder_.getCount();
+          return opponentsInViewBuilder_.getCount();
         }
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public lia.AiApiMessages.Entity getEntititesInView(int index) {
-        if (entititesInViewBuilder_ == null) {
-          return entititesInView_.get(index);
+      public lia.AiApiMessages.Opponent getOpponentsInView(int index) {
+        if (opponentsInViewBuilder_ == null) {
+          return opponentsInView_.get(index);
         } else {
-          return entititesInViewBuilder_.getMessage(index);
+          return opponentsInViewBuilder_.getMessage(index);
         }
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder setEntititesInView(
-          int index, lia.AiApiMessages.Entity value) {
-        if (entititesInViewBuilder_ == null) {
+      public Builder setOpponentsInView(
+          int index, lia.AiApiMessages.Opponent value) {
+        if (opponentsInViewBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntititesInViewIsMutable();
-          entititesInView_.set(index, value);
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.set(index, value);
           onChanged();
         } else {
-          entititesInViewBuilder_.setMessage(index, value);
+          opponentsInViewBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder setEntititesInView(
-          int index, lia.AiApiMessages.Entity.Builder builderForValue) {
-        if (entititesInViewBuilder_ == null) {
-          ensureEntititesInViewIsMutable();
-          entititesInView_.set(index, builderForValue.build());
+      public Builder setOpponentsInView(
+          int index, lia.AiApiMessages.Opponent.Builder builderForValue) {
+        if (opponentsInViewBuilder_ == null) {
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.set(index, builderForValue.build());
           onChanged();
         } else {
-          entititesInViewBuilder_.setMessage(index, builderForValue.build());
+          opponentsInViewBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder addEntititesInView(lia.AiApiMessages.Entity value) {
-        if (entititesInViewBuilder_ == null) {
+      public Builder addOpponentsInView(lia.AiApiMessages.Opponent value) {
+        if (opponentsInViewBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntititesInViewIsMutable();
-          entititesInView_.add(value);
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.add(value);
           onChanged();
         } else {
-          entititesInViewBuilder_.addMessage(value);
+          opponentsInViewBuilder_.addMessage(value);
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder addEntititesInView(
-          int index, lia.AiApiMessages.Entity value) {
-        if (entititesInViewBuilder_ == null) {
+      public Builder addOpponentsInView(
+          int index, lia.AiApiMessages.Opponent value) {
+        if (opponentsInViewBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntititesInViewIsMutable();
-          entititesInView_.add(index, value);
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.add(index, value);
           onChanged();
         } else {
-          entititesInViewBuilder_.addMessage(index, value);
+          opponentsInViewBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder addEntititesInView(
-          lia.AiApiMessages.Entity.Builder builderForValue) {
-        if (entititesInViewBuilder_ == null) {
-          ensureEntititesInViewIsMutable();
-          entititesInView_.add(builderForValue.build());
+      public Builder addOpponentsInView(
+          lia.AiApiMessages.Opponent.Builder builderForValue) {
+        if (opponentsInViewBuilder_ == null) {
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.add(builderForValue.build());
           onChanged();
         } else {
-          entititesInViewBuilder_.addMessage(builderForValue.build());
+          opponentsInViewBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder addEntititesInView(
-          int index, lia.AiApiMessages.Entity.Builder builderForValue) {
-        if (entititesInViewBuilder_ == null) {
-          ensureEntititesInViewIsMutable();
-          entititesInView_.add(index, builderForValue.build());
+      public Builder addOpponentsInView(
+          int index, lia.AiApiMessages.Opponent.Builder builderForValue) {
+        if (opponentsInViewBuilder_ == null) {
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.add(index, builderForValue.build());
           onChanged();
         } else {
-          entititesInViewBuilder_.addMessage(index, builderForValue.build());
+          opponentsInViewBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder addAllEntititesInView(
-          java.lang.Iterable<? extends lia.AiApiMessages.Entity> values) {
-        if (entititesInViewBuilder_ == null) {
-          ensureEntititesInViewIsMutable();
+      public Builder addAllOpponentsInView(
+          java.lang.Iterable<? extends lia.AiApiMessages.Opponent> values) {
+        if (opponentsInViewBuilder_ == null) {
+          ensureOpponentsInViewIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, entititesInView_);
+              values, opponentsInView_);
           onChanged();
         } else {
-          entititesInViewBuilder_.addAllMessages(values);
+          opponentsInViewBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder clearEntititesInView() {
-        if (entititesInViewBuilder_ == null) {
-          entititesInView_ = java.util.Collections.emptyList();
+      public Builder clearOpponentsInView() {
+        if (opponentsInViewBuilder_ == null) {
+          opponentsInView_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000100);
           onChanged();
         } else {
-          entititesInViewBuilder_.clear();
+          opponentsInViewBuilder_.clear();
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public Builder removeEntititesInView(int index) {
-        if (entititesInViewBuilder_ == null) {
-          ensureEntititesInViewIsMutable();
-          entititesInView_.remove(index);
+      public Builder removeOpponentsInView(int index) {
+        if (opponentsInViewBuilder_ == null) {
+          ensureOpponentsInViewIsMutable();
+          opponentsInView_.remove(index);
           onChanged();
         } else {
-          entititesInViewBuilder_.remove(index);
+          opponentsInViewBuilder_.remove(index);
         }
         return this;
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public lia.AiApiMessages.Entity.Builder getEntititesInViewBuilder(
+      public lia.AiApiMessages.Opponent.Builder getOpponentsInViewBuilder(
           int index) {
-        return getEntititesInViewFieldBuilder().getBuilder(index);
+        return getOpponentsInViewFieldBuilder().getBuilder(index);
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public lia.AiApiMessages.EntityOrBuilder getEntititesInViewOrBuilder(
+      public lia.AiApiMessages.OpponentOrBuilder getOpponentsInViewOrBuilder(
           int index) {
-        if (entititesInViewBuilder_ == null) {
-          return entititesInView_.get(index);  } else {
-          return entititesInViewBuilder_.getMessageOrBuilder(index);
+        if (opponentsInViewBuilder_ == null) {
+          return opponentsInView_.get(index);  } else {
+          return opponentsInViewBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public java.util.List<? extends lia.AiApiMessages.EntityOrBuilder> 
-           getEntititesInViewOrBuilderList() {
-        if (entititesInViewBuilder_ != null) {
-          return entititesInViewBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends lia.AiApiMessages.OpponentOrBuilder> 
+           getOpponentsInViewOrBuilderList() {
+        if (opponentsInViewBuilder_ != null) {
+          return opponentsInViewBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(entititesInView_);
+          return java.util.Collections.unmodifiableList(opponentsInView_);
         }
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public lia.AiApiMessages.Entity.Builder addEntititesInViewBuilder() {
-        return getEntititesInViewFieldBuilder().addBuilder(
-            lia.AiApiMessages.Entity.getDefaultInstance());
+      public lia.AiApiMessages.Opponent.Builder addOpponentsInViewBuilder() {
+        return getOpponentsInViewFieldBuilder().addBuilder(
+            lia.AiApiMessages.Opponent.getDefaultInstance());
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public lia.AiApiMessages.Entity.Builder addEntititesInViewBuilder(
+      public lia.AiApiMessages.Opponent.Builder addOpponentsInViewBuilder(
           int index) {
-        return getEntititesInViewFieldBuilder().addBuilder(
-            index, lia.AiApiMessages.Entity.getDefaultInstance());
+        return getOpponentsInViewFieldBuilder().addBuilder(
+            index, lia.AiApiMessages.Opponent.getDefaultInstance());
       }
       /**
        * <pre>
-       * Oponents that this player sees in his viewing area
+       * Opponents that this player sees in his viewing area
        * </pre>
        *
-       * <code>repeated .lia.Entity entititesInView = 9;</code>
+       * <code>repeated .lia.Opponent opponentsInView = 9;</code>
        */
-      public java.util.List<lia.AiApiMessages.Entity.Builder> 
-           getEntititesInViewBuilderList() {
-        return getEntititesInViewFieldBuilder().getBuilderList();
+      public java.util.List<lia.AiApiMessages.Opponent.Builder> 
+           getOpponentsInViewBuilderList() {
+        return getOpponentsInViewFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          lia.AiApiMessages.Entity, lia.AiApiMessages.Entity.Builder, lia.AiApiMessages.EntityOrBuilder> 
-          getEntititesInViewFieldBuilder() {
-        if (entititesInViewBuilder_ == null) {
-          entititesInViewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              lia.AiApiMessages.Entity, lia.AiApiMessages.Entity.Builder, lia.AiApiMessages.EntityOrBuilder>(
-                  entititesInView_,
+          lia.AiApiMessages.Opponent, lia.AiApiMessages.Opponent.Builder, lia.AiApiMessages.OpponentOrBuilder> 
+          getOpponentsInViewFieldBuilder() {
+        if (opponentsInViewBuilder_ == null) {
+          opponentsInViewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              lia.AiApiMessages.Opponent, lia.AiApiMessages.Opponent.Builder, lia.AiApiMessages.OpponentOrBuilder>(
+                  opponentsInView_,
                   ((bitField0_ & 0x00000100) == 0x00000100),
                   getParentForChildren(),
                   isClean());
-          entititesInView_ = null;
+          opponentsInView_ = null;
         }
-        return entititesInViewBuilder_;
+        return opponentsInViewBuilder_;
+      }
+
+      private java.util.List<lia.AiApiMessages.Bullet> opponentBulletsInView_ =
+        java.util.Collections.emptyList();
+      private void ensureOpponentBulletsInViewIsMutable() {
+        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
+          opponentBulletsInView_ = new java.util.ArrayList<lia.AiApiMessages.Bullet>(opponentBulletsInView_);
+          bitField0_ |= 0x00000200;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder> opponentBulletsInViewBuilder_;
+
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public java.util.List<lia.AiApiMessages.Bullet> getOpponentBulletsInViewList() {
+        if (opponentBulletsInViewBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(opponentBulletsInView_);
+        } else {
+          return opponentBulletsInViewBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public int getOpponentBulletsInViewCount() {
+        if (opponentBulletsInViewBuilder_ == null) {
+          return opponentBulletsInView_.size();
+        } else {
+          return opponentBulletsInViewBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public lia.AiApiMessages.Bullet getOpponentBulletsInView(int index) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          return opponentBulletsInView_.get(index);
+        } else {
+          return opponentBulletsInViewBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder setOpponentBulletsInView(
+          int index, lia.AiApiMessages.Bullet value) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.set(index, value);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder setOpponentBulletsInView(
+          int index, lia.AiApiMessages.Bullet.Builder builderForValue) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder addOpponentBulletsInView(lia.AiApiMessages.Bullet value) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.add(value);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder addOpponentBulletsInView(
+          int index, lia.AiApiMessages.Bullet value) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.add(index, value);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder addOpponentBulletsInView(
+          lia.AiApiMessages.Bullet.Builder builderForValue) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.add(builderForValue.build());
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder addOpponentBulletsInView(
+          int index, lia.AiApiMessages.Bullet.Builder builderForValue) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder addAllOpponentBulletsInView(
+          java.lang.Iterable<? extends lia.AiApiMessages.Bullet> values) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          ensureOpponentBulletsInViewIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, opponentBulletsInView_);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder clearOpponentBulletsInView() {
+        if (opponentBulletsInViewBuilder_ == null) {
+          opponentBulletsInView_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000200);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public Builder removeOpponentBulletsInView(int index) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          ensureOpponentBulletsInViewIsMutable();
+          opponentBulletsInView_.remove(index);
+          onChanged();
+        } else {
+          opponentBulletsInViewBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public lia.AiApiMessages.Bullet.Builder getOpponentBulletsInViewBuilder(
+          int index) {
+        return getOpponentBulletsInViewFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public lia.AiApiMessages.BulletOrBuilder getOpponentBulletsInViewOrBuilder(
+          int index) {
+        if (opponentBulletsInViewBuilder_ == null) {
+          return opponentBulletsInView_.get(index);  } else {
+          return opponentBulletsInViewBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public java.util.List<? extends lia.AiApiMessages.BulletOrBuilder> 
+           getOpponentBulletsInViewOrBuilderList() {
+        if (opponentBulletsInViewBuilder_ != null) {
+          return opponentBulletsInViewBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(opponentBulletsInView_);
+        }
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public lia.AiApiMessages.Bullet.Builder addOpponentBulletsInViewBuilder() {
+        return getOpponentBulletsInViewFieldBuilder().addBuilder(
+            lia.AiApiMessages.Bullet.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public lia.AiApiMessages.Bullet.Builder addOpponentBulletsInViewBuilder(
+          int index) {
+        return getOpponentBulletsInViewFieldBuilder().addBuilder(
+            index, lia.AiApiMessages.Bullet.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .lia.Bullet opponentBulletsInView = 10;</code>
+       */
+      public java.util.List<lia.AiApiMessages.Bullet.Builder> 
+           getOpponentBulletsInViewBuilderList() {
+        return getOpponentBulletsInViewFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder> 
+          getOpponentBulletsInViewFieldBuilder() {
+        if (opponentBulletsInViewBuilder_ == null) {
+          opponentBulletsInViewBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder>(
+                  opponentBulletsInView_,
+                  ((bitField0_ & 0x00000200) == 0x00000200),
+                  getParentForChildren(),
+                  isClean());
+          opponentBulletsInView_ = null;
+        }
+        return opponentBulletsInViewBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7774,900 +8141,8 @@ public final class AiApiMessages {
 
   }
 
-  public interface EntityOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:lia.Entity)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    boolean hasOponent();
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    lia.AiApiMessages.Oponent getOponent();
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    lia.AiApiMessages.OponentOrBuilder getOponentOrBuilder();
-
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    boolean hasBullet();
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    lia.AiApiMessages.Bullet getBullet();
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    lia.AiApiMessages.BulletOrBuilder getBulletOrBuilder();
-
-    public lia.AiApiMessages.Entity.EntityCase getEntityCase();
-  }
-  /**
-   * Protobuf type {@code lia.Entity}
-   */
-  public  static final class Entity extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:lia.Entity)
-      EntityOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Entity.newBuilder() to construct.
-    private Entity(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Entity() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Entity(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              lia.AiApiMessages.Oponent.Builder subBuilder = null;
-              if (entityCase_ == 1) {
-                subBuilder = ((lia.AiApiMessages.Oponent) entity_).toBuilder();
-              }
-              entity_ =
-                  input.readMessage(lia.AiApiMessages.Oponent.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((lia.AiApiMessages.Oponent) entity_);
-                entity_ = subBuilder.buildPartial();
-              }
-              entityCase_ = 1;
-              break;
-            }
-            case 18: {
-              lia.AiApiMessages.Bullet.Builder subBuilder = null;
-              if (entityCase_ == 2) {
-                subBuilder = ((lia.AiApiMessages.Bullet) entity_).toBuilder();
-              }
-              entity_ =
-                  input.readMessage(lia.AiApiMessages.Bullet.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((lia.AiApiMessages.Bullet) entity_);
-                entity_ = subBuilder.buildPartial();
-              }
-              entityCase_ = 2;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return lia.AiApiMessages.internal_static_lia_Entity_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return lia.AiApiMessages.internal_static_lia_Entity_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              lia.AiApiMessages.Entity.class, lia.AiApiMessages.Entity.Builder.class);
-    }
-
-    private int entityCase_ = 0;
-    private java.lang.Object entity_;
-    public enum EntityCase
-        implements com.google.protobuf.Internal.EnumLite {
-      OPONENT(1),
-      BULLET(2),
-      ENTITY_NOT_SET(0);
-      private final int value;
-      private EntityCase(int value) {
-        this.value = value;
-      }
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static EntityCase valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static EntityCase forNumber(int value) {
-        switch (value) {
-          case 1: return OPONENT;
-          case 2: return BULLET;
-          case 0: return ENTITY_NOT_SET;
-          default: return null;
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public EntityCase
-    getEntityCase() {
-      return EntityCase.forNumber(
-          entityCase_);
-    }
-
-    public static final int OPONENT_FIELD_NUMBER = 1;
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    public boolean hasOponent() {
-      return entityCase_ == 1;
-    }
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    public lia.AiApiMessages.Oponent getOponent() {
-      if (entityCase_ == 1) {
-         return (lia.AiApiMessages.Oponent) entity_;
-      }
-      return lia.AiApiMessages.Oponent.getDefaultInstance();
-    }
-    /**
-     * <code>.lia.Oponent oponent = 1;</code>
-     */
-    public lia.AiApiMessages.OponentOrBuilder getOponentOrBuilder() {
-      if (entityCase_ == 1) {
-         return (lia.AiApiMessages.Oponent) entity_;
-      }
-      return lia.AiApiMessages.Oponent.getDefaultInstance();
-    }
-
-    public static final int BULLET_FIELD_NUMBER = 2;
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    public boolean hasBullet() {
-      return entityCase_ == 2;
-    }
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    public lia.AiApiMessages.Bullet getBullet() {
-      if (entityCase_ == 2) {
-         return (lia.AiApiMessages.Bullet) entity_;
-      }
-      return lia.AiApiMessages.Bullet.getDefaultInstance();
-    }
-    /**
-     * <code>.lia.Bullet bullet = 2;</code>
-     */
-    public lia.AiApiMessages.BulletOrBuilder getBulletOrBuilder() {
-      if (entityCase_ == 2) {
-         return (lia.AiApiMessages.Bullet) entity_;
-      }
-      return lia.AiApiMessages.Bullet.getDefaultInstance();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (entityCase_ == 1) {
-        output.writeMessage(1, (lia.AiApiMessages.Oponent) entity_);
-      }
-      if (entityCase_ == 2) {
-        output.writeMessage(2, (lia.AiApiMessages.Bullet) entity_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (entityCase_ == 1) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, (lia.AiApiMessages.Oponent) entity_);
-      }
-      if (entityCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (lia.AiApiMessages.Bullet) entity_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof lia.AiApiMessages.Entity)) {
-        return super.equals(obj);
-      }
-      lia.AiApiMessages.Entity other = (lia.AiApiMessages.Entity) obj;
-
-      boolean result = true;
-      result = result && getEntityCase().equals(
-          other.getEntityCase());
-      if (!result) return false;
-      switch (entityCase_) {
-        case 1:
-          result = result && getOponent()
-              .equals(other.getOponent());
-          break;
-        case 2:
-          result = result && getBullet()
-              .equals(other.getBullet());
-          break;
-        case 0:
-        default:
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      switch (entityCase_) {
-        case 1:
-          hash = (37 * hash) + OPONENT_FIELD_NUMBER;
-          hash = (53 * hash) + getOponent().hashCode();
-          break;
-        case 2:
-          hash = (37 * hash) + BULLET_FIELD_NUMBER;
-          hash = (53 * hash) + getBullet().hashCode();
-          break;
-        case 0:
-        default:
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static lia.AiApiMessages.Entity parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static lia.AiApiMessages.Entity parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.Entity parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static lia.AiApiMessages.Entity parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(lia.AiApiMessages.Entity prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code lia.Entity}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:lia.Entity)
-        lia.AiApiMessages.EntityOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return lia.AiApiMessages.internal_static_lia_Entity_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return lia.AiApiMessages.internal_static_lia_Entity_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                lia.AiApiMessages.Entity.class, lia.AiApiMessages.Entity.Builder.class);
-      }
-
-      // Construct using lia.AiApiMessages.Entity.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        entityCase_ = 0;
-        entity_ = null;
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return lia.AiApiMessages.internal_static_lia_Entity_descriptor;
-      }
-
-      public lia.AiApiMessages.Entity getDefaultInstanceForType() {
-        return lia.AiApiMessages.Entity.getDefaultInstance();
-      }
-
-      public lia.AiApiMessages.Entity build() {
-        lia.AiApiMessages.Entity result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public lia.AiApiMessages.Entity buildPartial() {
-        lia.AiApiMessages.Entity result = new lia.AiApiMessages.Entity(this);
-        if (entityCase_ == 1) {
-          if (oponentBuilder_ == null) {
-            result.entity_ = entity_;
-          } else {
-            result.entity_ = oponentBuilder_.build();
-          }
-        }
-        if (entityCase_ == 2) {
-          if (bulletBuilder_ == null) {
-            result.entity_ = entity_;
-          } else {
-            result.entity_ = bulletBuilder_.build();
-          }
-        }
-        result.entityCase_ = entityCase_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof lia.AiApiMessages.Entity) {
-          return mergeFrom((lia.AiApiMessages.Entity)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(lia.AiApiMessages.Entity other) {
-        if (other == lia.AiApiMessages.Entity.getDefaultInstance()) return this;
-        switch (other.getEntityCase()) {
-          case OPONENT: {
-            mergeOponent(other.getOponent());
-            break;
-          }
-          case BULLET: {
-            mergeBullet(other.getBullet());
-            break;
-          }
-          case ENTITY_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        lia.AiApiMessages.Entity parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (lia.AiApiMessages.Entity) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int entityCase_ = 0;
-      private java.lang.Object entity_;
-      public EntityCase
-          getEntityCase() {
-        return EntityCase.forNumber(
-            entityCase_);
-      }
-
-      public Builder clearEntity() {
-        entityCase_ = 0;
-        entity_ = null;
-        onChanged();
-        return this;
-      }
-
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Oponent, lia.AiApiMessages.Oponent.Builder, lia.AiApiMessages.OponentOrBuilder> oponentBuilder_;
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public boolean hasOponent() {
-        return entityCase_ == 1;
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public lia.AiApiMessages.Oponent getOponent() {
-        if (oponentBuilder_ == null) {
-          if (entityCase_ == 1) {
-            return (lia.AiApiMessages.Oponent) entity_;
-          }
-          return lia.AiApiMessages.Oponent.getDefaultInstance();
-        } else {
-          if (entityCase_ == 1) {
-            return oponentBuilder_.getMessage();
-          }
-          return lia.AiApiMessages.Oponent.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public Builder setOponent(lia.AiApiMessages.Oponent value) {
-        if (oponentBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          entity_ = value;
-          onChanged();
-        } else {
-          oponentBuilder_.setMessage(value);
-        }
-        entityCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public Builder setOponent(
-          lia.AiApiMessages.Oponent.Builder builderForValue) {
-        if (oponentBuilder_ == null) {
-          entity_ = builderForValue.build();
-          onChanged();
-        } else {
-          oponentBuilder_.setMessage(builderForValue.build());
-        }
-        entityCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public Builder mergeOponent(lia.AiApiMessages.Oponent value) {
-        if (oponentBuilder_ == null) {
-          if (entityCase_ == 1 &&
-              entity_ != lia.AiApiMessages.Oponent.getDefaultInstance()) {
-            entity_ = lia.AiApiMessages.Oponent.newBuilder((lia.AiApiMessages.Oponent) entity_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            entity_ = value;
-          }
-          onChanged();
-        } else {
-          if (entityCase_ == 1) {
-            oponentBuilder_.mergeFrom(value);
-          }
-          oponentBuilder_.setMessage(value);
-        }
-        entityCase_ = 1;
-        return this;
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public Builder clearOponent() {
-        if (oponentBuilder_ == null) {
-          if (entityCase_ == 1) {
-            entityCase_ = 0;
-            entity_ = null;
-            onChanged();
-          }
-        } else {
-          if (entityCase_ == 1) {
-            entityCase_ = 0;
-            entity_ = null;
-          }
-          oponentBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public lia.AiApiMessages.Oponent.Builder getOponentBuilder() {
-        return getOponentFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      public lia.AiApiMessages.OponentOrBuilder getOponentOrBuilder() {
-        if ((entityCase_ == 1) && (oponentBuilder_ != null)) {
-          return oponentBuilder_.getMessageOrBuilder();
-        } else {
-          if (entityCase_ == 1) {
-            return (lia.AiApiMessages.Oponent) entity_;
-          }
-          return lia.AiApiMessages.Oponent.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.Oponent oponent = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Oponent, lia.AiApiMessages.Oponent.Builder, lia.AiApiMessages.OponentOrBuilder> 
-          getOponentFieldBuilder() {
-        if (oponentBuilder_ == null) {
-          if (!(entityCase_ == 1)) {
-            entity_ = lia.AiApiMessages.Oponent.getDefaultInstance();
-          }
-          oponentBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.Oponent, lia.AiApiMessages.Oponent.Builder, lia.AiApiMessages.OponentOrBuilder>(
-                  (lia.AiApiMessages.Oponent) entity_,
-                  getParentForChildren(),
-                  isClean());
-          entity_ = null;
-        }
-        entityCase_ = 1;
-        onChanged();;
-        return oponentBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder> bulletBuilder_;
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public boolean hasBullet() {
-        return entityCase_ == 2;
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public lia.AiApiMessages.Bullet getBullet() {
-        if (bulletBuilder_ == null) {
-          if (entityCase_ == 2) {
-            return (lia.AiApiMessages.Bullet) entity_;
-          }
-          return lia.AiApiMessages.Bullet.getDefaultInstance();
-        } else {
-          if (entityCase_ == 2) {
-            return bulletBuilder_.getMessage();
-          }
-          return lia.AiApiMessages.Bullet.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public Builder setBullet(lia.AiApiMessages.Bullet value) {
-        if (bulletBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          entity_ = value;
-          onChanged();
-        } else {
-          bulletBuilder_.setMessage(value);
-        }
-        entityCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public Builder setBullet(
-          lia.AiApiMessages.Bullet.Builder builderForValue) {
-        if (bulletBuilder_ == null) {
-          entity_ = builderForValue.build();
-          onChanged();
-        } else {
-          bulletBuilder_.setMessage(builderForValue.build());
-        }
-        entityCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public Builder mergeBullet(lia.AiApiMessages.Bullet value) {
-        if (bulletBuilder_ == null) {
-          if (entityCase_ == 2 &&
-              entity_ != lia.AiApiMessages.Bullet.getDefaultInstance()) {
-            entity_ = lia.AiApiMessages.Bullet.newBuilder((lia.AiApiMessages.Bullet) entity_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            entity_ = value;
-          }
-          onChanged();
-        } else {
-          if (entityCase_ == 2) {
-            bulletBuilder_.mergeFrom(value);
-          }
-          bulletBuilder_.setMessage(value);
-        }
-        entityCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public Builder clearBullet() {
-        if (bulletBuilder_ == null) {
-          if (entityCase_ == 2) {
-            entityCase_ = 0;
-            entity_ = null;
-            onChanged();
-          }
-        } else {
-          if (entityCase_ == 2) {
-            entityCase_ = 0;
-            entity_ = null;
-          }
-          bulletBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public lia.AiApiMessages.Bullet.Builder getBulletBuilder() {
-        return getBulletFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      public lia.AiApiMessages.BulletOrBuilder getBulletOrBuilder() {
-        if ((entityCase_ == 2) && (bulletBuilder_ != null)) {
-          return bulletBuilder_.getMessageOrBuilder();
-        } else {
-          if (entityCase_ == 2) {
-            return (lia.AiApiMessages.Bullet) entity_;
-          }
-          return lia.AiApiMessages.Bullet.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.lia.Bullet bullet = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder> 
-          getBulletFieldBuilder() {
-        if (bulletBuilder_ == null) {
-          if (!(entityCase_ == 2)) {
-            entity_ = lia.AiApiMessages.Bullet.getDefaultInstance();
-          }
-          bulletBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              lia.AiApiMessages.Bullet, lia.AiApiMessages.Bullet.Builder, lia.AiApiMessages.BulletOrBuilder>(
-                  (lia.AiApiMessages.Bullet) entity_,
-                  getParentForChildren(),
-                  isClean());
-          entity_ = null;
-        }
-        entityCase_ = 2;
-        onChanged();;
-        return bulletBuilder_;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:lia.Entity)
-    }
-
-    // @@protoc_insertion_point(class_scope:lia.Entity)
-    private static final lia.AiApiMessages.Entity DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new lia.AiApiMessages.Entity();
-    }
-
-    public static lia.AiApiMessages.Entity getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Entity>
-        PARSER = new com.google.protobuf.AbstractParser<Entity>() {
-      public Entity parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Entity(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Entity> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Entity> getParserForType() {
-      return PARSER;
-    }
-
-    public lia.AiApiMessages.Entity getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface OponentOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:lia.Oponent)
+  public interface OpponentOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:lia.Opponent)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -8700,18 +8175,18 @@ public final class AiApiMessages {
     float getOrientation();
   }
   /**
-   * Protobuf type {@code lia.Oponent}
+   * Protobuf type {@code lia.Opponent}
    */
-  public  static final class Oponent extends
+  public  static final class Opponent extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:lia.Oponent)
-      OponentOrBuilder {
+      // @@protoc_insertion_point(message_implements:lia.Opponent)
+      OpponentOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Oponent.newBuilder() to construct.
-    private Oponent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Opponent.newBuilder() to construct.
+    private Opponent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Oponent() {
+    private Opponent() {
       id_ = 0;
       health_ = 0;
       x_ = 0F;
@@ -8724,7 +8199,7 @@ public final class AiApiMessages {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Oponent(
+    private Opponent(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8789,14 +8264,14 @@ public final class AiApiMessages {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return lia.AiApiMessages.internal_static_lia_Oponent_descriptor;
+      return lia.AiApiMessages.internal_static_lia_Opponent_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return lia.AiApiMessages.internal_static_lia_Oponent_fieldAccessorTable
+      return lia.AiApiMessages.internal_static_lia_Opponent_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              lia.AiApiMessages.Oponent.class, lia.AiApiMessages.Oponent.Builder.class);
+              lia.AiApiMessages.Opponent.class, lia.AiApiMessages.Opponent.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -8913,10 +8388,10 @@ public final class AiApiMessages {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof lia.AiApiMessages.Oponent)) {
+      if (!(obj instanceof lia.AiApiMessages.Opponent)) {
         return super.equals(obj);
       }
-      lia.AiApiMessages.Oponent other = (lia.AiApiMessages.Oponent) obj;
+      lia.AiApiMessages.Opponent other = (lia.AiApiMessages.Opponent) obj;
 
       boolean result = true;
       result = result && (getId()
@@ -8964,69 +8439,69 @@ public final class AiApiMessages {
       return hash;
     }
 
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(byte[] data)
+    public static lia.AiApiMessages.Opponent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(java.io.InputStream input)
+    public static lia.AiApiMessages.Opponent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static lia.AiApiMessages.Oponent parseDelimitedFrom(java.io.InputStream input)
+    public static lia.AiApiMessages.Opponent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static lia.AiApiMessages.Oponent parseDelimitedFrom(
+    public static lia.AiApiMessages.Opponent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static lia.AiApiMessages.Oponent parseFrom(
+    public static lia.AiApiMessages.Opponent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9038,7 +8513,7 @@ public final class AiApiMessages {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(lia.AiApiMessages.Oponent prototype) {
+    public static Builder newBuilder(lia.AiApiMessages.Opponent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -9053,25 +8528,25 @@ public final class AiApiMessages {
       return builder;
     }
     /**
-     * Protobuf type {@code lia.Oponent}
+     * Protobuf type {@code lia.Opponent}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:lia.Oponent)
-        lia.AiApiMessages.OponentOrBuilder {
+        // @@protoc_insertion_point(builder_implements:lia.Opponent)
+        lia.AiApiMessages.OpponentOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return lia.AiApiMessages.internal_static_lia_Oponent_descriptor;
+        return lia.AiApiMessages.internal_static_lia_Opponent_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return lia.AiApiMessages.internal_static_lia_Oponent_fieldAccessorTable
+        return lia.AiApiMessages.internal_static_lia_Opponent_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                lia.AiApiMessages.Oponent.class, lia.AiApiMessages.Oponent.Builder.class);
+                lia.AiApiMessages.Opponent.class, lia.AiApiMessages.Opponent.Builder.class);
       }
 
-      // Construct using lia.AiApiMessages.Oponent.newBuilder()
+      // Construct using lia.AiApiMessages.Opponent.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9103,23 +8578,23 @@ public final class AiApiMessages {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return lia.AiApiMessages.internal_static_lia_Oponent_descriptor;
+        return lia.AiApiMessages.internal_static_lia_Opponent_descriptor;
       }
 
-      public lia.AiApiMessages.Oponent getDefaultInstanceForType() {
-        return lia.AiApiMessages.Oponent.getDefaultInstance();
+      public lia.AiApiMessages.Opponent getDefaultInstanceForType() {
+        return lia.AiApiMessages.Opponent.getDefaultInstance();
       }
 
-      public lia.AiApiMessages.Oponent build() {
-        lia.AiApiMessages.Oponent result = buildPartial();
+      public lia.AiApiMessages.Opponent build() {
+        lia.AiApiMessages.Opponent result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public lia.AiApiMessages.Oponent buildPartial() {
-        lia.AiApiMessages.Oponent result = new lia.AiApiMessages.Oponent(this);
+      public lia.AiApiMessages.Opponent buildPartial() {
+        lia.AiApiMessages.Opponent result = new lia.AiApiMessages.Opponent(this);
         result.id_ = id_;
         result.health_ = health_;
         result.x_ = x_;
@@ -9156,16 +8631,16 @@ public final class AiApiMessages {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof lia.AiApiMessages.Oponent) {
-          return mergeFrom((lia.AiApiMessages.Oponent)other);
+        if (other instanceof lia.AiApiMessages.Opponent) {
+          return mergeFrom((lia.AiApiMessages.Opponent)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(lia.AiApiMessages.Oponent other) {
-        if (other == lia.AiApiMessages.Oponent.getDefaultInstance()) return this;
+      public Builder mergeFrom(lia.AiApiMessages.Opponent other) {
+        if (other == lia.AiApiMessages.Opponent.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -9194,11 +8669,11 @@ public final class AiApiMessages {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        lia.AiApiMessages.Oponent parsedMessage = null;
+        lia.AiApiMessages.Opponent parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (lia.AiApiMessages.Oponent) e.getUnfinishedMessage();
+          parsedMessage = (lia.AiApiMessages.Opponent) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -9360,39 +8835,39 @@ public final class AiApiMessages {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:lia.Oponent)
+      // @@protoc_insertion_point(builder_scope:lia.Opponent)
     }
 
-    // @@protoc_insertion_point(class_scope:lia.Oponent)
-    private static final lia.AiApiMessages.Oponent DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:lia.Opponent)
+    private static final lia.AiApiMessages.Opponent DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new lia.AiApiMessages.Oponent();
+      DEFAULT_INSTANCE = new lia.AiApiMessages.Opponent();
     }
 
-    public static lia.AiApiMessages.Oponent getDefaultInstance() {
+    public static lia.AiApiMessages.Opponent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Oponent>
-        PARSER = new com.google.protobuf.AbstractParser<Oponent>() {
-      public Oponent parsePartialFrom(
+    private static final com.google.protobuf.Parser<Opponent>
+        PARSER = new com.google.protobuf.AbstractParser<Opponent>() {
+      public Opponent parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Oponent(input, extensionRegistry);
+        return new Opponent(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Oponent> parser() {
+    public static com.google.protobuf.Parser<Opponent> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Oponent> getParserForType() {
+    public com.google.protobuf.Parser<Opponent> getParserForType() {
       return PARSER;
     }
 
-    public lia.AiApiMessages.Oponent getDefaultInstanceForType() {
+    public lia.AiApiMessages.Opponent getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11653,15 +11128,10 @@ public final class AiApiMessages {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_lia_Rotation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_lia_Entity_descriptor;
+    internal_static_lia_Opponent_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_lia_Entity_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_lia_Oponent_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_lia_Oponent_fieldAccessorTable;
+      internal_static_lia_Opponent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_lia_Bullet_descriptor;
   private static final 
@@ -11704,27 +11174,26 @@ public final class AiApiMessages {
       "tRotation\030\002 \001(\0132\025.lia.SetRotationEventH\000" +
       "\022 \n\005shoot\030\003 \001(\0132\017.lia.ShootEventH\000B\007\n\005ev" +
       "ent\"?\n\010Obstacle\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\r\n" +
-      "\005width\030\003 \001(\002\022\016\n\006height\030\004 \001(\002\"\335\001\n\006Player\022" +
+      "\005width\030\003 \001(\002\022\016\n\006height\030\004 \001(\002\"\213\002\n\006Player\022" +
       "\n\n\002id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t" +
       "\n\001y\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\022*\n\013thrust" +
       "Speed\030\006 \001(\0162\025.lia.ThrustSpeed.Enum\022$\n\010ro" +
       "tation\030\007 \001(\0162\022.lia.Rotation.Enum\022\024\n\014weap" +
-      "onLoaded\030\010 \001(\010\022$\n\017entititesInView\030\t \003(\0132" +
-      "\013.lia.Entity\"<\n\013ThrustSpeed\"-\n\004Enum\022\013\n\007U" +
-      "NKNOWN\020\000\022\010\n\004NONE\020\001\022\016\n\nFULL_SPEED\020\002\">\n\010Ro" +
-      "tation\"2\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\010\n" +
-      "\004LEFT\020\002\022\t\n\005RIGHT\020\003\"R\n\006Entity\022\037\n\007oponent\030" +
-      "\001 \001(\0132\014.lia.OponentH\000\022\035\n\006bullet\030\002 \001(\0132\013." +
-      "lia.BulletH\000B\010\n\006entity\"P\n\007Oponent\022\n\n\002id\030" +
-      "\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y\030\004 " +
-      "\001(\002\022\023\n\013orientation\030\005 \001(\002\"E\n\006Bullet\022\t\n\001x\030" +
-      "\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\023\n\013orientation\030\003 \001(\002\022\020\n" +
-      "\010velocity\030\004 \001(\002\"M\n\023SetThrustSpeedEvent\022\020" +
-      "\n\010playerId\030\001 \001(\005\022$\n\005speed\030\002 \001(\0162\025.lia.Th" +
-      "rustSpeed.Enum\"J\n\020SetRotationEvent\022\020\n\010pl" +
-      "ayerId\030\001 \001(\005\022$\n\010rotation\030\002 \001(\0162\022.lia.Rot" +
-      "ation.Enum\"\036\n\nShootEvent\022\020\n\010playerId\030\001 \001" +
-      "(\005B\024\n\003liaB\rAiApiMessagesb\006proto3"
+      "onLoaded\030\010 \001(\010\022&\n\017opponentsInView\030\t \003(\0132" +
+      "\r.lia.Opponent\022*\n\025opponentBulletsInView\030" +
+      "\n \003(\0132\013.lia.Bullet\"<\n\013ThrustSpeed\"-\n\004Enu" +
+      "m\022\013\n\007UNKNOWN\020\000\022\010\n\004NONE\020\001\022\016\n\nFULL_SPEED\020\002" +
+      "\">\n\010Rotation\"2\n\004Enum\022\013\n\007UNKNOWN\020\000\022\010\n\004NON" +
+      "E\020\001\022\010\n\004LEFT\020\002\022\t\n\005RIGHT\020\003\"Q\n\010Opponent\022\n\n\002" +
+      "id\030\001 \001(\005\022\016\n\006health\030\002 \001(\005\022\t\n\001x\030\003 \001(\002\022\t\n\001y" +
+      "\030\004 \001(\002\022\023\n\013orientation\030\005 \001(\002\"E\n\006Bullet\022\t\n" +
+      "\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\023\n\013orientation\030\003 \001(\002" +
+      "\022\020\n\010velocity\030\004 \001(\002\"M\n\023SetThrustSpeedEven" +
+      "t\022\020\n\010playerId\030\001 \001(\005\022$\n\005speed\030\002 \001(\0162\025.lia" +
+      ".ThrustSpeed.Enum\"J\n\020SetRotationEvent\022\020\n" +
+      "\010playerId\030\001 \001(\005\022$\n\010rotation\030\002 \001(\0162\022.lia." +
+      "Rotation.Enum\"\036\n\nShootEvent\022\020\n\010playerId\030" +
+      "\001 \001(\005B\024\n\003liaB\rAiApiMessagesb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11779,7 +11248,7 @@ public final class AiApiMessages {
     internal_static_lia_Player_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Player_descriptor,
-        new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", "ThrustSpeed", "Rotation", "WeaponLoaded", "EntititesInView", });
+        new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", "ThrustSpeed", "Rotation", "WeaponLoaded", "OpponentsInView", "OpponentBulletsInView", });
     internal_static_lia_ThrustSpeed_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_lia_ThrustSpeed_fieldAccessorTable = new
@@ -11792,38 +11261,32 @@ public final class AiApiMessages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Rotation_descriptor,
         new java.lang.String[] { });
-    internal_static_lia_Entity_descriptor =
+    internal_static_lia_Opponent_descriptor =
       getDescriptor().getMessageTypes().get(9);
-    internal_static_lia_Entity_fieldAccessorTable = new
+    internal_static_lia_Opponent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_lia_Entity_descriptor,
-        new java.lang.String[] { "Oponent", "Bullet", "Entity", });
-    internal_static_lia_Oponent_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_lia_Oponent_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_lia_Oponent_descriptor,
+        internal_static_lia_Opponent_descriptor,
         new java.lang.String[] { "Id", "Health", "X", "Y", "Orientation", });
     internal_static_lia_Bullet_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_lia_Bullet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_Bullet_descriptor,
         new java.lang.String[] { "X", "Y", "Orientation", "Velocity", });
     internal_static_lia_SetThrustSpeedEvent_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_lia_SetThrustSpeedEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetThrustSpeedEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Speed", });
     internal_static_lia_SetRotationEvent_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_lia_SetRotationEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_SetRotationEvent_descriptor,
         new java.lang.String[] { "PlayerId", "Rotation", });
     internal_static_lia_ShootEvent_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_lia_ShootEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_lia_ShootEvent_descriptor,
