@@ -3,7 +3,6 @@ import lia.Callable;
 import lia.NetworkingClient;
 import lia.Response;
 
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Random;
 
@@ -12,29 +11,16 @@ import java.util.Random;
  * */
 public class MyBot implements Callable {
 
-    private static final String URI = "ws://localhost:8887";
-    private static final String PLAYER_ID_1 = "125haadfwe1231";
-    private static final String PLAYER_ID_2 = "3r1532r32r2352";
-
-    private static long seed = 15;
-
     private long counter = 0;
-    private Random random = new Random(seed++);
+    private Random random = new Random(15);
 
-    public static void main(String[] args) throws URISyntaxException {
-        //String uri = args[0];
-        //String playerId = args[1];
-
-        // TODO try connecting few times before quit
-        // TODO accept URI and IDs through args
-        NetworkingClient.connectNew(URI, PLAYER_ID_1, new MyBot());
-        NetworkingClient.connectNew(URI, PLAYER_ID_2, new MyBot());
+    public static void main(String[] args) throws Exception {
+        NetworkingClient.connectNew(args, new MyBot());
     }
 
     /** Called only once when the game is initialized. */
     @Override
     public synchronized void process(MapData mapData) {
-        // TODO: Your logic here
         System.out.println(mapData);
     }
 
@@ -52,7 +38,7 @@ public class MyBot implements Callable {
             int id = player.getId();
 
             // Rotation and thrust speed
-            if (counter % 30 == 0 || counter % 31 == 0) {
+            if (counter % 10 == 0 || counter % 11 == 0) {
 
                 // Handle rotation
                 double rand = random.nextFloat();
