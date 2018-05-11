@@ -10,7 +10,6 @@
 bin/
 gen/
 build/
-gradle/
 *.ipr
 *.iws
 
