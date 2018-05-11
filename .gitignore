@@ -11,8 +11,6 @@ bin/
 gen/
 build/
 gradle/
-gradlew
-gradlew.bat
 *.ipr
 *.iws
 

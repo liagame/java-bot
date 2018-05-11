@@ -16,6 +16,7 @@ public class MyBot implements Callable {
 
     public static void main(String[] args) throws Exception {
         NetworkingClient.connectNew(args, new MyBot());
+        //NetworkingClient.connectNew(args, new MyBot());
     }
 
     /** Called only once when the game is initialized. */
