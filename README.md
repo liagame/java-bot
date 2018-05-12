@@ -1,10 +1,9 @@
 # Java Bot #
 
 * ``` git clone https://bitbucket.org/codinghavoc/java-bot ```
-* Install gradle (4.6)
 
 ##### Build the project #####
-* ``` gradle build ```
+* ``` gradlew build ```
 * Check if it works: ``` java -jar build/libs/java-bot.jar ```
 
 ##### Use in IntelliJ IDEA #####
