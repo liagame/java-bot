@@ -1,10 +1,10 @@
-import lia.AiApiMessages.*;
+import lia.Api;
 import lia.Callable;
 import lia.NetworkingClient;
-import lia.Response;
+import lia.api.*;
 
-import java.util.List;
 import java.util.Random;
+
 
 /**
  * Place to write the logic for your bots.
@@ -13,6 +13,7 @@ public class MyBot implements Callable {
 
     private long counter = 0;
     private Random random = new Random(15);
+    private boolean shouldShoot = true;
 
     public static void main(String[] args) throws Exception {
         NetworkingClient.connectNew(args, new MyBot());
@@ -21,46 +22,47 @@ public class MyBot implements Callable {
 
     /** Called only once when the game is initialized. */
     @Override
-    public synchronized void process(MapData mapData) {
-        System.out.println(mapData);
-    }
+    public synchronized void process(MapData mapData) {}
 
     /** Repeatedly called from game engine with game status updates.  */
     @Override
-    public synchronized void process(StateUpdate stateUpdate, Response response) {
+    public synchronized void process(StateUpdate stateUpdate, Api api) {
         /*
         * This is a sample code that moves players randomly and shoots when the
         * opponent is in sight.
         **/
-
-        List<Player> players = stateUpdate.getPlayersList();
+        Player[] players = stateUpdate.players;
 
         for (Player player : players) {
-            int id = player.getId();
+           int id = player.id;
 
             // Rotation and thrust speed
             if (counter % 10 == 0 || counter % 11 == 0) {
 
                 // Handle rotation
                 double rand = random.nextFloat();
-                if (rand < 0.4) response.setRotationSpeed(id, Rotation.Enum.LEFT);
-                else if (rand < 0.8) response.setRotationSpeed(id, Rotation.Enum.RIGHT);
-                else response.setRotationSpeed(id, Rotation.Enum.NONE);
+                if (rand < 0.4) api.setRotationSpeed(id, Rotation.LEFT);
+                else if (rand < 0.8) api.setRotationSpeed(id, Rotation.RIGHT);
+                else api.setRotationSpeed(id, Rotation.NONE);
 
                 // Handle thrust speed
                 rand = random.nextFloat();
                 if (rand < 0.9) {
-                    response.setThrustSpeed(id, ThrustSpeed.Enum.FULL_SPEED);
+                    api.setThrustSpeed(id, ThrustSpeed.BACKWARD);
                 }
                 else {
-                    response.setThrustSpeed(id, ThrustSpeed.Enum.NONE);
+                    api.setThrustSpeed(id, ThrustSpeed.NONE);
                 }
             }
             counter++;
 
+            if (player.nBullets == 3) shouldShoot = true;
+            if (player.nBullets == 0) shouldShoot = false;
+
             // Shoot
-            if (player.getWeaponLoaded() && player.getOpponentsInViewCount() > 0)
-                response.shoot(id);
+            //if (player.canShoot && player.opponentsInView.length > 0)
+            if (player.canShoot && shouldShoot)
+                api.shoot(id);
         }
     }
 }
