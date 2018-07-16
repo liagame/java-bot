@@ -31,7 +31,7 @@ public class NetworkingClient extends WebSocketClient {
         String port = "8887";
 
         if (args.length == 1 && (args[0].equals("--help") || args[0].equals("-h"))) {
-            System.out.println("HELP!!");
+            System.out.println("Displaying help (TODO)...");
             return null;
         }
 
@@ -82,6 +82,9 @@ public class NetworkingClient extends WebSocketClient {
     @Override
     public void onError(Exception ex) {
         ex.printStackTrace();
+        if (!isOpen()) {
+            System.exit(1);
+        }
     }
 
     @Override

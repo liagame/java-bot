@@ -1,8 +1,12 @@
+import com.adamldavis.pathfinder.PathGrid;
 import lia.Api;
 import lia.Callable;
 import lia.NetworkingClient;
 import lia.api.*;
+import logic.PlayerData;
+import logic.PathFinding;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -11,57 +15,53 @@ import java.util.Random;
  * */
 public class MyBot implements Callable {
 
-    private long counter = 0;
-    private Random random = new Random(15);
-    private boolean shouldShoot = true;
+    private PathGrid grid;
+    private HashMap<Integer, PlayerData> playersData;
 
     public static void main(String[] args) throws Exception {
         NetworkingClient.connectNew(args, new MyBot());
-        //NetworkingClient.connectNew(args, new MyBot());
     }
 
     /** Called only once when the game is initialized. */
     @Override
-    public synchronized void process(MapData mapData) {}
+    public synchronized void process(MapData mapData) {
+        grid = PathFinding.createGrid(
+                (int) mapData.width,
+                (int) mapData.height,
+                mapData.obstacles
+        );
+    }
 
-    /** Repeatedly called from game engine with game status updates.  */
+    /** Repeatedly called from game engine with game state updates.  */
     @Override
     public synchronized void process(StateUpdate stateUpdate, Api api) {
-        /*
-        * This is a sample code that moves players randomly and shoots when the
-        * opponent is in sight.
-        **/
-        Player[] players = stateUpdate.players;
+        // When the process is called for the first time
+        if (playersData == null) {
+            playersData = new HashMap<>();
 
-        for (Player player : players) {
-           int id = player.id;
-
-            // Rotation and thrust speed
-            if (counter % 10 == 0 || counter % 11 == 0) {
-
-                // Handle rotation
-                double rand = random.nextFloat();
-                if (rand < 0.4) api.setRotationSpeed(id, Rotation.LEFT);
-                else if (rand < 0.8) api.setRotationSpeed(id, Rotation.RIGHT);
-                else api.setRotationSpeed(id, Rotation.NONE);
-
-                // Handle thrust speed
-                rand = random.nextFloat();
-                if (rand < 0.9) {
-                    api.setThrustSpeed(id, ThrustSpeed.BACKWARD);
-                }
-                else {
-                    api.setThrustSpeed(id, ThrustSpeed.NONE);
-                }
+            // Map player ids with player data for later use
+            for (Player player : stateUpdate.players) {
+                PlayerData data = new PlayerData(player.id, grid);
+                playersData.put(player.id, data);
             }
-            counter++;
 
-            if (player.nBullets == 3) shouldShoot = true;
-            if (player.nBullets == 0) shouldShoot = false;
+            // Set path of all players on coordinate (140, 2)
+            for (Player player : stateUpdate.players) {
+                PlayerData data = playersData.get(player.id);
+                data.setPathFollower(player.x, player.y, 140, 2);
+            }
+        }
 
-            // Shoot
-            //if (player.canShoot && player.opponentsInView.length > 0)
-            if (player.canShoot && shouldShoot)
+        // Go through all players every frame
+        for (Player player : stateUpdate.players) {
+            int id = player.id;
+
+            // Make the player follow the path
+            playersData.get(id).followPath(player, api);
+
+            // Shoot if your gun is loaded and you see an opponent
+            // (But you may kill your fellow player... :) )
+            if (player.canShoot && player.opponentsInView.length > 0)
                 api.shoot(id);
         }
     }
