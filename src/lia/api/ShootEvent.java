@@ -2,10 +2,10 @@ package lia.api;
 
 public class ShootEvent {
     public EventType type;
-    public int playerId;
+    public int unitId;
 
-    public ShootEvent(EventType type, int playerId) {
+    public ShootEvent(EventType type, int unitId) {
         this.type = type;
-        this.playerId = playerId;
+        this.unitId = unitId;
     }
 }

@@ -2,12 +2,12 @@ package lia.api;
 
 public class ThrustSpeedEvent {
     public EventType type;
-    public int playerId;
+    public int unitId;
     public ThrustSpeed speed;
 
-    public ThrustSpeedEvent(EventType type, int playerId, ThrustSpeed speed) {
+    public ThrustSpeedEvent(EventType type, int unitId, ThrustSpeed speed) {
         this.type = type;
-        this.playerId = playerId;
+        this.unitId = unitId;
         this.speed = speed;
     }
 }

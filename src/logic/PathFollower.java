@@ -3,7 +3,7 @@ package logic;
 import com.adamldavis.pathfinder.AntPathFinder;
 import com.adamldavis.pathfinder.PathGrid;
 import lia.Api;
-import lia.api.Player;
+import lia.api.Unit;
 import lia.api.Rotation;
 import lia.api.ThrustSpeed;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PathFollower {
 
-    private static final float ALLOWED_PLAYER_OFFSET = 2f;
+    private static final float ALLOWED_UNIT_OFFSET = 2f;
     private static final float ALLOWED_ANGLE_OFFSET = 15f;
 
     private ArrayList<Vector2> points;
@@ -65,22 +65,22 @@ public class PathFollower {
         //  2: Find shortcuts by choosing points further
         //     apart and checking if there are no obstacles
         //     on the line between them.
-        //  3: Make players move in circular motions without
+        //  3: Make units move in circular motions without
         //     stopping.
     }
 
     /**
      * Follows the previously chosen path and writes
      * the needed step to api.
-     * @return true if the player is at the last point.
+     * @return true if the unit is at the last point.
      * */
-    public boolean follow(Player player, Api api) {
-        int x = (int) player.x;
-        int y = (int) player.y;
+    public boolean follow(Unit unit, Api api) {
+        int x = (int) unit.x;
+        int y = (int) unit.y;
 
         Vector2 nextPoint;
 
-        // If player is close enough to the nextPoint then
+        // If unit is close enough to the nextPoint then
         // move to the next point
         while (true) {
             if (nextPointIndex >= points.size()) return true;
@@ -88,8 +88,8 @@ public class PathFollower {
             int oldIndex = nextPointIndex;
             nextPoint = points.get(nextPointIndex);
 
-            if (Math.abs(nextPoint.x - x) < ALLOWED_PLAYER_OFFSET &&
-                    Math.abs(nextPoint.y - y) < ALLOWED_PLAYER_OFFSET) {
+            if (Math.abs(nextPoint.x - x) < ALLOWED_UNIT_OFFSET &&
+                    Math.abs(nextPoint.y - y) < ALLOWED_UNIT_OFFSET) {
 
                 nextPointIndex++;
 
@@ -106,22 +106,22 @@ public class PathFollower {
         // Get angle between current point and nextPoint
         vector2.set(nextPoint);
         vector2.sub(x, y);
-        float angle = player.orientation - vector2.angle();
+        float angle = unit.orientation - vector2.angle();
         if (angle > 180) angle -= 360;
         else if (angle < -180) angle += 360;
 
         // If the angle is small enough are close move forward
         if (Math.abs(angle) < ALLOWED_ANGLE_OFFSET) {
-            api.setRotationSpeed(player.id, Rotation.NONE);
-            api.setThrustSpeed(player.id, ThrustSpeed.FORWARD);
+            api.setRotationSpeed(unit.id, Rotation.NONE);
+            api.setThrustSpeed(unit.id, ThrustSpeed.FORWARD);
         }
         // Else rotate to the needed direction
         else {
-            api.setThrustSpeed(player.id, ThrustSpeed.NONE);
+            api.setThrustSpeed(unit.id, ThrustSpeed.NONE);
             if (angle < 0f) {
-                api.setRotationSpeed(player.id, Rotation.LEFT);
+                api.setRotationSpeed(unit.id, Rotation.LEFT);
             } else {
-                api.setRotationSpeed(player.id, Rotation.RIGHT);
+                api.setRotationSpeed(unit.id, Rotation.RIGHT);
             }
         }
 

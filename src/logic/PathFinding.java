@@ -12,7 +12,7 @@ public class PathFinding {
     public static PathGrid createGrid(int mapWidth, int mapHeight, Obstacle[] obstacles) {
         PathGrid grid = new SimplePathGrid(mapWidth, mapHeight);
 
-        // Set grid to false where we don't want for players to move (based on the
+        // Set grid to false where we don't want for units to move (based on the
         // positions of obstacles)
         for (Obstacle obstacle : obstacles) {
             int x1 = (int) obstacle.x - OFFSET_FROM_OBSTACLE;

@@ -3,7 +3,7 @@ import lia.Api;
 import lia.Callable;
 import lia.NetworkingClient;
 import lia.api.*;
-import logic.PlayerData;
+import logic.UnitData;
 import logic.PathFinding;
 import logic.Vector2;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.HashMap;
  * */
 public class MyBot implements Callable {
 
-    private HashMap<Integer, PlayerData> playersData = new HashMap<>();
+    private HashMap<Integer, UnitData> unitsData = new HashMap<>();
 
     private Vector2 bottomRightCorner = new Vector2(140, 2);
     private Vector2 topLeftCorner = new Vector2(2, 78);
@@ -30,38 +30,38 @@ public class MyBot implements Callable {
                     mapData.obstacles
             );
 
-            // Store data related to each player in PlayerData object.
-            // All PlayerData objects will be accessible through playersData map.
-            for (PlayerLocation player : mapData.playerLocations) {
-                PlayerData data = new PlayerData(player.id, grid);
-                playersData.put(player.id, data);
+            // Store data related to each unit in UnitData object.
+            // All UnitData objects will be accessible through unitsData map.
+            for (UnitLocation unit : mapData.unitLocations) {
+                UnitData data = new UnitData(unit.id, grid);
+                unitsData.put(unit.id, data);
             }
     }
 
     /** Repeatedly called from game engine with game state updates.  */
     @Override
     public synchronized void process(StateUpdate stateUpdate, Api api) {
-        // Go through all players
-        for (Player player : stateUpdate.players) {
-            // Get data for this player
-            PlayerData playerData = playersData.get(player.id);
+        // Go through all units
+        for (Unit unit : stateUpdate.units) {
+            // Get data for this unit
+            UnitData unitData = unitsData.get(unit.id);
 
-            // If the player is not following any path, set it
-            if (playerData.pathNotSet) {
-                if (playerData.goingToTopLeftCorner) {
-                    playerData.setPathToFollow(player, topLeftCorner.x,  topLeftCorner.y);
+            // If the unit is not following any path, set it
+            if (unitData.pathNotSet) {
+                if (unitData.goingToTopLeftCorner) {
+                    unitData.setPathToFollow(unit, topLeftCorner.x,  topLeftCorner.y);
                 } else {
-                    playerData.setPathToFollow(player, bottomRightCorner.x,  bottomRightCorner.y);
+                    unitData.setPathToFollow(unit, bottomRightCorner.x,  bottomRightCorner.y);
                 }
-                playerData.goingToTopLeftCorner = !playerData.goingToTopLeftCorner;
+                unitData.goingToTopLeftCorner = !unitData.goingToTopLeftCorner;
             }
 
-            // Make the player follow the path
-            playerData.followPath(player, api);
+            // Make the unit follow the path
+            unitData.followPath(unit, api);
 
             // Shoot if you see an opponent and your gun is loaded
-            if (player.opponentsInView.length > 0 && player.canShoot)
-                api.shoot(player.id);
+            if (unit.opponentsInView.length > 0 && unit.canShoot)
+                api.shoot(unit.id);
         }
     }
 

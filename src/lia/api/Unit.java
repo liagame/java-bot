@@ -1,6 +1,6 @@
 package lia.api;
 
-public class Player {
+public class Unit {
     public int id;
     public int health;
     public float x;
@@ -13,16 +13,16 @@ public class Player {
     public OpponentInView[] opponentsInView;
     public BulletInView[] bulletsInView;
 
-    public Player(int id,
-                  int health,
-                  float x, float y,
-                  float orientation,
-                  ThrustSpeed thrustSpeed,
-                  Rotation rotation,
-                  boolean canShoot,
-                  int nBullets,
-                  OpponentInView[] opponentsInView,
-                  BulletInView[] bulletsInView) {
+    public Unit(int id,
+                int health,
+                float x, float y,
+                float orientation,
+                ThrustSpeed thrustSpeed,
+                Rotation rotation,
+                boolean canShoot,
+                int nBullets,
+                OpponentInView[] opponentsInView,
+                BulletInView[] bulletsInView) {
         this.id = id;
         this.health = health;
         this.x = x;
