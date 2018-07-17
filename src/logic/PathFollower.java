@@ -35,7 +35,6 @@ public class PathFollower {
         int y = y1;
 
         for (int move : moves) {
-            System.out.print(move + " ");
             switch (move) {
                 case 0 : y -= 1; break;
                 case 1 : x += 1; break;

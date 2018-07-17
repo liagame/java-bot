@@ -10,18 +10,23 @@ public class PlayerData {
     public PathFollower follower;
     public PathGrid grid;
     public Vector2 position;
+    public boolean pathNotSet;
+    public boolean goingToTopLeftCorner;
 
     public PlayerData(int id, PathGrid grid) {
         this.id = id;
         this.grid = grid;
         this.position = new Vector2();
+        this.pathNotSet = true;
     }
 
-    public void setPathFollower(float xPlayer, float yPlayer, float x, float y) {
-        follower = new PathFollower(grid, (int) xPlayer, (int) yPlayer, (int) x, (int) y);
+    public void setPathToFollow(Player player, float x, float y) {
+        follower = new PathFollower(grid, (int) player.x, (int) player.y, (int) x, (int) y);
+        pathNotSet = false;
     }
 
-    public boolean followPath(Player player, Api api) {
-        return follower.follow(player, api);
+    public void followPath(Player player, Api api) {
+        if (follower == null) return;
+        pathNotSet = follower.follow(player, api);
     }
 }
