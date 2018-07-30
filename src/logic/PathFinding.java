@@ -1,16 +1,22 @@
 package logic;
 
-import com.adamldavis.pathfinder.PathGrid;
-import com.adamldavis.pathfinder.SimplePathGrid;
 import lia.api.Obstacle;
+import org.xguzm.pathfinding.grid.GridCell;
+import org.xguzm.pathfinding.grid.NavigationGrid;
 
 public class PathFinding {
 
     private static final int OFFSET_FROM_OBSTACLE = 1;
 
 
-    public static PathGrid createGrid(int mapWidth, int mapHeight, Obstacle[] obstacles) {
-        PathGrid grid = new SimplePathGrid(mapWidth, mapHeight);
+    public static NavigationGrid<GridCell> createGridNavigator(int mapWidth, int mapHeight, Obstacle[] obstacles) {
+        // Initialize grid and set every cell to walkable
+        GridCell[][] cells = new GridCell[mapWidth][mapHeight];
+        for (int x = 0; x < mapWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) {
+                cells[x][y] = new GridCell(x, y, true);
+            }
+        }
 
         // Set grid to false where we don't want for units to move (based on the
         // positions of obstacles)
@@ -23,14 +29,15 @@ public class PathFinding {
                 int y2 = (int) (obstacle.y + obstacle.height) + OFFSET_FROM_OBSTACLE;
 
                 for (int y = y1; y < y2; y++) {
-                    // If x and y are in obstacle or very close to it, set grid to true
-                    if (x < grid.getWidth() && x >= 0 && y < grid.getHeight() && y >= 0) {
-                        grid.setGrid(x, y, true);
+                    // If x and y are in obstacle or very close to it, set cell to not walkable
+                    if (x < mapWidth && x >= 0 && y < mapHeight && y >= 0) {
+                        cells[x][y].setWalkable(false);
                     }
                 }
             }
         }
 
-        return grid;
+        // Create a navigation grid with the cells you just created
+        return new NavigationGrid<>(cells, true);
     }
 }

@@ -1,72 +1,50 @@
 package logic;
 
-import com.adamldavis.pathfinder.AntPathFinder;
-import com.adamldavis.pathfinder.PathGrid;
 import lia.Api;
 import lia.api.Unit;
 import lia.api.Rotation;
 import lia.api.ThrustSpeed;
+import org.xguzm.pathfinding.PathFinder;
+import org.xguzm.pathfinding.grid.GridCell;
+import org.xguzm.pathfinding.grid.NavigationGrid;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import static logic.Constants.RADIANS_TO_DEGREES;
 
 public class PathFollower {
 
     private static final float ALLOWED_UNIT_OFFSET = 2f;
     private static final float ALLOWED_ANGLE_OFFSET = 15f;
 
-    private ArrayList<Vector2> points;
-    private int nextPointIndex = 0;
-    private Vector2 vector2 = new Vector2();
+    private List<GridCell> cells;
+    private int nextCellIndex = 0;
 
     /**
      * Find and create a path from (x1, y1) to (x2, y2) on specified grid.
      * */
-    public PathFollower(PathGrid grid, int x1, int y1, int x2, int y2) {
+    public PathFollower(NavigationGrid<GridCell> grid,
+                        PathFinder<GridCell> finder,
+                        int x1, int y1,
+                        int x2, int y2) {
 
-        AntPathFinder finder = new AntPathFinder(80);
-
-        int[] moves = finder.findPath(grid, x1, y1, x2, y2);
-        if (moves == null) return;
-
-        // Convert moves to points
-        points = new ArrayList<>(moves.length + 1);
-
-        int x = x1;
-        int y = y1;
-
-        for (int move : moves) {
-            switch (move) {
-                case 0 : y -= 1; break;
-                case 1 : x += 1; break;
-                case 2 : y += 1; break;
-                case 3 : x -= 1; break;
-            }
-            points.add(new Vector2(x, y));
-        }
+        cells = finder.findPath(grid.getCell(x1, y1), grid.getCell(x2, y2), grid);
 
         optimizePathPoints();
     }
 
     private void optimizePathPoints() {
-        // Removes redundant points on vertical and horizontal lines
-        for (int i = 1; i < points.size() - 1; i++) {
-            Vector2 p1 = points.get(i - 1);
-            Vector2 p2 = points.get(i);
-            Vector2 p3 = points.get(i + 1);
+        // Removes redundant cells on vertical and horizontal lines
+        for (int i = 1; i < cells.size() - 1; i++) {
+            GridCell c1 = cells.get(i - 1);
+            GridCell c2 = cells.get(i);
+            GridCell c3 = cells.get(i + 1);
 
-            if (p1.x == p2.x && p2.x == p3.x ||
-                    p1.y == p2.y && p2.y == p3.y) {
-                points.remove(i);
+            if (angle(c1, c2) == angle(c2, c3)) {
+                cells.remove(i);
                 i--;
             }
         }
-        // TODO Improvements:
-        //  1: Remove redundant points on diagonal lines
-        //  2: Find shortcuts by choosing points further
-        //     apart and checking if there are no obstacles
-        //     on the line between them.
-        //  3: Make units move in circular motions without
-        //     stopping.
     }
 
     /**
@@ -78,58 +56,76 @@ public class PathFollower {
         int x = (int) unit.x;
         int y = (int) unit.y;
 
-        Vector2 nextPoint;
+        GridCell nextCell;
 
-        // If unit is close enough to the nextPoint then
-        // move to the next point
+        // If unit is close enough to the nextCell then
+        // move to the next
         while (true) {
-            if (nextPointIndex >= points.size()) return true;
+            if (nextCellIndex >= cells.size()) return true;
 
-            int oldIndex = nextPointIndex;
-            nextPoint = points.get(nextPointIndex);
+            int oldIndex = nextCellIndex;
+            nextCell = cells.get(nextCellIndex);
 
-            if (Math.abs(nextPoint.x - x) < ALLOWED_UNIT_OFFSET &&
-                    Math.abs(nextPoint.y - y) < ALLOWED_UNIT_OFFSET) {
+            if (Math.abs(nextCell.x - x) < ALLOWED_UNIT_OFFSET &&
+                    Math.abs(nextCell.y - y) < ALLOWED_UNIT_OFFSET) {
 
-                nextPointIndex++;
+                nextCellIndex++;
 
-                if (nextPointIndex == points.size()) {
-                    // No more points to visit
+                if (nextCellIndex == cells.size()) {
+                    // No more cells to visit
                     return true;
                 }
             }
-            if (oldIndex == nextPointIndex) {
+            if (oldIndex == nextCellIndex) {
                 break;
             }
         }
 
-        // Get angle between current point and nextPoint
-        vector2.set(nextPoint);
-        vector2.sub(x, y);
-        float angle = unit.orientation - vector2.angle();
-        if (angle > 180) angle -= 360;
-        else if (angle < -180) angle += 360;
+        // Get angle between current point and nextCell
+        float angle = getAngleToRotate(unit, nextCell);
 
-        // If the angle is small enough are close move forward
+        // If the angle is small enough are close move straight
         if (Math.abs(angle) < ALLOWED_ANGLE_OFFSET) {
             api.setRotationSpeed(unit.id, Rotation.NONE);
             api.setThrustSpeed(unit.id, ThrustSpeed.FORWARD);
         }
         // Else rotate to the needed direction
         else {
-            api.setThrustSpeed(unit.id, ThrustSpeed.NONE);
+            if (Math.abs(angle) > ALLOWED_ANGLE_OFFSET * 1.3f) {
+                api.setThrustSpeed(unit.id, ThrustSpeed.NONE);
+            } else if (unit.thrustSpeed == ThrustSpeed.NONE) {
+                api.setThrustSpeed(unit.id, ThrustSpeed.FORWARD);
+            }
             if (angle < 0f) {
-                api.setRotationSpeed(unit.id, Rotation.LEFT);
-            } else {
                 api.setRotationSpeed(unit.id, Rotation.RIGHT);
+            } else {
+                api.setRotationSpeed(unit.id, Rotation.LEFT);
             }
         }
 
         return false;
     }
 
-    public void printPoints() {
-        for (Vector2 point : points) System.out.print(point);
-        System.out.println();
+    private float getAngleToRotate(Unit unit, GridCell c) {
+        int x = c.x - (int) unit.x;
+        int y = c.y - (int) unit.y;
+
+        double angleUnitToCell = Math.atan2(y, x) * RADIANS_TO_DEGREES;
+        if (angleUnitToCell < 0) angleUnitToCell += 360f;
+
+        float angle = (float) angleUnitToCell - unit.orientation;
+        if (angle > 180) angle -= 360;
+        else if (angle < -180) angle += 360;
+
+        return angle;
+    }
+
+    private float angle(GridCell c1, GridCell c2) {
+        int x = c2.x - c1.x;
+        int y = c2.y - c1.y;
+
+        double angle = Math.atan2(y, x) * RADIANS_TO_DEGREES;
+        if (angle < 0) angle += 360f;
+        return (float) angle;
     }
 }

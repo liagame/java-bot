@@ -1,11 +1,12 @@
-import com.adamldavis.pathfinder.PathGrid;
 import lia.Api;
 import lia.Callable;
 import lia.NetworkingClient;
 import lia.api.*;
 import logic.UnitData;
 import logic.PathFinding;
-import logic.Vector2;
+import org.xguzm.pathfinding.grid.GridCell;
+import org.xguzm.pathfinding.grid.NavigationGrid;
+
 import java.util.HashMap;
 
 
@@ -16,15 +17,15 @@ public class MyBot implements Callable {
 
     private HashMap<Integer, UnitData> unitsData = new HashMap<>();
 
-    private Vector2 bottomRightCorner = new Vector2(140, 2);
-    private Vector2 topLeftCorner = new Vector2(2, 78);
+    private int[] bottomRightCorner = new int[]{110, 2};
+    private int[] topLeftCorner =  new int[]{2, 60};
 
     /** Called only once when the game is initialized. */
     @Override
     public synchronized void process(MapData mapData) {
             // Convert map with obstacles to a grid that will be used for
             // path finding algorithm
-            PathGrid grid = PathFinding.createGrid(
+        NavigationGrid<GridCell> grid = PathFinding.createGridNavigator(
                     (int) mapData.width,
                     (int) mapData.height,
                     mapData.obstacles
@@ -49,9 +50,9 @@ public class MyBot implements Callable {
             // If the unit is not following any path, set it
             if (unitData.pathNotSet) {
                 if (unitData.goingToTopLeftCorner) {
-                    unitData.setPathToFollow(unit, topLeftCorner.x,  topLeftCorner.y);
+                    unitData.setPathToFollow(unit, topLeftCorner[0],  topLeftCorner[1]);
                 } else {
-                    unitData.setPathToFollow(unit, bottomRightCorner.x,  bottomRightCorner.y);
+                    unitData.setPathToFollow(unit, bottomRightCorner[0],  bottomRightCorner[1]);
                 }
                 unitData.goingToTopLeftCorner = !unitData.goingToTopLeftCorner;
             }
