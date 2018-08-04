@@ -23,18 +23,17 @@ public class MyBot implements Callable {
     /** Called only once when the game is initialized. */
     @Override
     public synchronized void process(MapData mapData) {
-        // Convert map with obstacles to a grid that will be used for
-        // path finding algorithm
-        NavigationGrid<GridCell> grid = PathFinding.createGridNavigator(
-                (int) mapData.width,
-                (int) mapData.height,
-                mapData.obstacles
-        );
-
         // Store data related to each unit in UnitData object.
         // All UnitData objects will be accessible through unitsData map.
         for (UnitLocation unit : mapData.unitLocations) {
-            UnitData data = new UnitData(unit.id, grid);
+            UnitData data = new UnitData(
+                    unit.id,
+                    PathFinding.createGridNavigator(
+                            (int) mapData.width,
+                            (int) mapData.height,
+                            mapData.obstacles
+                    )
+            );
             unitsData.put(unit.id, data);
         }
     }
