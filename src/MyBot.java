@@ -4,8 +4,6 @@ import lia.NetworkingClient;
 import lia.api.*;
 import logic.UnitData;
 import logic.PathFinding;
-import org.xguzm.pathfinding.grid.GridCell;
-import org.xguzm.pathfinding.grid.NavigationGrid;
 
 import java.util.HashMap;
 
