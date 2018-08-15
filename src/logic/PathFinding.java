@@ -1,6 +1,6 @@
 package logic;
 
-import lia.api.Obstacle;
+import lia.api.ObstacleData;
 import org.xguzm.pathfinding.grid.GridCell;
 import org.xguzm.pathfinding.grid.NavigationGrid;
 
@@ -9,7 +9,7 @@ public class PathFinding {
     private static final int OFFSET_FROM_OBSTACLE = 1;
 
 
-    public static NavigationGrid<GridCell> createGridNavigator(int mapWidth, int mapHeight, Obstacle[] obstacles) {
+    public static NavigationGrid<GridCell> createGridNavigator(int mapWidth, int mapHeight, ObstacleData[] obstacles) {
         // Initialize grid and set every cell to walkable
         GridCell[][] cells = new GridCell[mapWidth][mapHeight];
         for (int x = 0; x < mapWidth; x++) {
@@ -20,7 +20,7 @@ public class PathFinding {
 
         // Set grid to false where we don't want for units to move (based on the
         // positions of obstacles)
-        for (Obstacle obstacle : obstacles) {
+        for (ObstacleData obstacle : obstacles) {
             int x1 = (int) obstacle.x - OFFSET_FROM_OBSTACLE;
             int x2 = (int) (obstacle.x + obstacle.width) + OFFSET_FROM_OBSTACLE;
 

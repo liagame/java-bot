@@ -1,12 +1,12 @@
 package lia.api;
 
-public class Obstacle {
+public class ObstacleData {
     public float x;
     public float y;
     public float width;
     public float height;
 
-    public Obstacle(float x, float y, float width, float height) {
+    public ObstacleData(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;

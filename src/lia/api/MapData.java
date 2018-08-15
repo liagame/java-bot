@@ -5,11 +5,11 @@ public class MapData {
     public MessageType type;
     public float width;
     public float height;
-    public Obstacle[] obstacles;
+    public ObstacleData[] obstacles;
     public UnitLocation[] unitLocations;
 
     public MapData(long uid, MessageType type, float width, float height,
-                   Obstacle[] obstacles, UnitLocation[] unitLocations) {
+                   ObstacleData[] obstacles, UnitLocation[] unitLocations) {
         this.uid = uid;
         this.type = type;
         this.width = width;
