@@ -1,7 +1,7 @@
 package logic;
 
 import lia.Api;
-import lia.api.Unit;
+import lia.api.UnitData;
 import lia.api.Rotation;
 import lia.api.ThrustSpeed;
 import org.xguzm.pathfinding.PathFinder;
@@ -52,7 +52,7 @@ public class PathFollower {
      * the needed step to api.
      * @return true if the unit is at the last point.
      * */
-    public boolean follow(Unit unit, Api api) {
+    public boolean follow(UnitData unit, Api api) {
         int x = (int) unit.x;
         int y = (int) unit.y;
 
@@ -106,7 +106,7 @@ public class PathFollower {
         return false;
     }
 
-    private float getAngleToRotate(Unit unit, GridCell c) {
+    private float getAngleToRotate(UnitData unit, GridCell c) {
         int x = c.x - (int) unit.x;
         int y = c.y - (int) unit.y;
 

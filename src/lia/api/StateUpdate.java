@@ -4,9 +4,9 @@ public class StateUpdate {
     public long uid;
     public MessageType type;
     public float time;
-    public Unit[] units;
+    public UnitData[] units;
 
-    public StateUpdate(long uid, MessageType type, float time, Unit[] units) {
+    public StateUpdate(long uid, MessageType type, float time, UnitData[] units) {
         this.uid = uid;
         this.type = type;
         this.time = time;

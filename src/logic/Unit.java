@@ -1,14 +1,13 @@
 package logic;
 
 import lia.Api;
-import lia.api.Unit;
 import org.xguzm.pathfinding.PathFinder;
 import org.xguzm.pathfinding.grid.GridCell;
 import org.xguzm.pathfinding.grid.NavigationGrid;
 import org.xguzm.pathfinding.grid.finders.GridFinderOptions;
 import org.xguzm.pathfinding.grid.finders.ThetaStarGridFinder;
 
-public class UnitData {
+public class Unit {
 
     public int id;
     public PathFollower follower;
@@ -17,7 +16,7 @@ public class UnitData {
     public boolean pathNotSet;
     public boolean goingToTopLeftCorner;
 
-    public UnitData(int id, NavigationGrid<GridCell> grid) {
+    public Unit(int id, NavigationGrid<GridCell> grid) {
         this.id = id;
         this.grid = grid;
         this.pathNotSet = true;
@@ -28,12 +27,12 @@ public class UnitData {
         gridFinder = new ThetaStarGridFinder<>(GridCell.class, opt);
     }
 
-    public void setPathToFollow(Unit unit, float x, float y) {
+    public void setPathToFollow(lia.api.UnitData unit, float x, float y) {
         follower = new PathFollower(grid, gridFinder, (int) unit.x, (int) unit.y, (int) x, (int) y);
         pathNotSet = false;
     }
 
-    public void followPath(Unit unit, Api api) {
+    public void followPath(lia.api.UnitData unit, Api api) {
         if (follower == null) return;
         pathNotSet = follower.follow(unit, api);
     }
