@@ -1,8 +1,6 @@
 # Java Bot #
 
-* ``` git clone https://bitbucket.org/codinghavoc/java-bot ```
-
-##### Build the project #####
+##### Build the project by hand #####
 * ``` gradlew build ```
 * Check if it works: ``` java -jar build/libs/java-bot.jar ```
 
