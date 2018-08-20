@@ -1,6 +1,6 @@
 # Java Bot #
 
-##### Build the project by hand #####
+##### Build the project manually #####
 * ``` gradlew build ```
 * Check if it works: ``` java -jar build/libs/java-bot.jar ```
 
