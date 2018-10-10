@@ -15,6 +15,11 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx-ai:1.6.0"
 }
 
+task downloadDependencies(type: Exec) {
+    configurations.testRuntime.files
+    commandLine 'echo', 'Downloaded all dependencies'
+}
+
 jar {
     archiveName 'my-bot.jar'
     manifest {
