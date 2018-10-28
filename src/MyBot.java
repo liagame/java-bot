@@ -6,72 +6,74 @@ import lia.api.GameState;
 import lia.api.UnitData;
 
 /**
- * This is your bot. Implement it with your logic.
+ * This is your bot that will play the game for you.
  *
- * In this example bot keeps sending units to random locations on map
- * and is able to shoot when it sees an opponent, it does not aim at
- * him though!
+ * Implementation below keeps sending units to random locations on the map
+ * and makes them shoot when they see opponents.
  */
 public class MyBot implements Bot {
 
-    // Here we will store a map that we will receive from game engine at the
-    // start of the game.
-    // x=0, y=0 presents a bottom left corner of the map, and the value on
-    // map is true if there is an obstacle
+    // Here we will store the map that the game will be played on. Map has values set
+    // to True where there is an obstacle. You can access (x,y) coordinate by calling
+    // map[x][y] and x=0, y=0 is placed at the bottom left corner.
     boolean[][] map;
 
-    // Called only once when the game is initialized holding data about the map.
+    // This method is called only once at the beginning of the game and holds the basic
+    // information about the game environment.
+    // - GameEnvironment reference: TODO link
     @Override
-    public synchronized void processGameEnvironment(GameEnvironment environment) {
-        // We store the map that game uses in our variable.
-        // https://docs.liagame.com/api/#mapdata for the data you receive
-        map = environment.map;
+    public synchronized void processGameEnvironment(GameEnvironment gameEnvironment) {
+
+        // Here we store the map that is used in current game. We will use it later.
+        map = gameEnvironment.map;
     }
 
-    // Repeatedly called 10 times per second from game engine with
-    // game state updates. Here is where all the things happen.
+    // This method is the main part of your bot. It is called 10 times per game seconds and
+    // it holds game's current state and the Api object which you use to control your units.
+    // - GameState reference: TODO link
+    // - Api reference:       TODO link
     @Override
     public synchronized void processGameState(GameState gameState, Api api) {
 
-        // Iterate through the data of all of your units
+        // First we iterate through all of our units that are still alive.
         for (int i = 0; i < gameState.units.length; i++) {
             UnitData unit = gameState.units[i];
 
-            // navigationPath is a field of your unit that shows the path
-            // on which the unit is currently using if you have sent it
-            // to a location using a api.navigationStart method.
-            // If it is empty it means there is no path set. In this case
-            // we choose a new destination and send the unit there.
+            // With api.navigationStart(...) method you can send your units to go to a
+            // specified point on the map all by themselves. If they are currently going
+            // somewhere then their path is stored in navigationPath field. If the field
+            // is empty the unit is not going anywhere automatically. Here, if the unit
+            // is not going anywhere we choose a new location and send it there.
             if (unit.navigationPath.length == 0) {
+
+                // Generate a point on the map where there is no obstacle.
                 int[] point = randomValidPointOnMap();
 
-                api.navigationStart(unit.id, point[0], point[1]); // x and y
+                // Make the unit go to the chosen x (point[0]) and y (point[1]).
+                api.navigationStart(unit.id, point[0], point[1]);
             }
 
-            // If the unit has an opponent in it's viewing area then
-            // make it shoot
+            // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.length > 0) {
                 api.shoot(unit.id);
             }
         }
     }
 
-    // Finds a random point on the map that is not on the obstacle
+    // Finds a random point on the map where there is no obstacle.
     int[] randomValidPointOnMap() {
-        int minDistanceToMapEdge = 2;
-
-        // Generate new x and y until you get one that is not placed on an obstacle
+        // Generate new x and y until you get a position that is not placed on an obstacle.
         while (true) {
-            int x = (int) (Math.random() * (map.length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
-            int y = (int) (Math.random() * (map[0].length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
-            // If true it means at (x,y) in map there is an obstacle
+            int x = (int) (Math.random() * (map.length));
+            int y = (int) (Math.random() * (map[0].length));
+            // False means that on (x,y) there is no obstacle.
             if (!map[x][y]) {
                 return new int[]{x, y};
             }
         }
     }
 
-    // This connects your bot to Lia game engine
+    // This connects your bot to Lia game engine, don't change it.
     public static void main(String[] args) throws Exception {
         NetworkingClient.connectNew(args, new MyBot());
     }
