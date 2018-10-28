@@ -42,7 +42,7 @@ public class MyBot implements Callable {
             // to a location using a api.navigationStart method.
             // If it is empty it means there is no path set. In this case
             // we choose a new destination and send the unit there.
-            if (unit.navigationPath == null) {
+            if (unit.navigationPath.length == 0) {
                 int[] point = randomValidPointOnMap();
 
                 api.navigationStart(unit.id, point[0], point[1]); // x and y
