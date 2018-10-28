@@ -5,9 +5,9 @@ public class UnitData {
     public int health;
     public float x;
     public float y;
-    public float orientation;
+    public float orientationAngle;
     public Speed speed;
-    public RotationSpeed rotationSpeed;
+    public Rotation rotation;
     public boolean canShoot;
     public int nBullets;
     public OpponentInView[] opponentsInView;
@@ -17,9 +17,9 @@ public class UnitData {
     public UnitData(int id,
                     int health,
                     float x, float y,
-                    float orientation,
+                    float orientationAngle,
                     Speed speed,
-                    RotationSpeed rotationSpeed,
+                    Rotation rotation,
                     boolean canShoot,
                     int nBullets,
                     OpponentInView[] opponentsInView,
@@ -29,9 +29,9 @@ public class UnitData {
         this.health = health;
         this.x = x;
         this.y = y;
-        this.orientation = orientation;
+        this.orientationAngle = orientationAngle;
         this.speed = speed;
-        this.rotationSpeed = rotationSpeed;
+        this.rotation = rotation;
         this.canShoot = canShoot;
         this.nBullets = nBullets;
         this.opponentsInView = opponentsInView;
