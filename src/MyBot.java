@@ -1,8 +1,8 @@
 import lia.Api;
-import lia.Callable;
+import lia.Bot;
 import lia.NetworkingClient;
-import lia.api.MapData;
-import lia.api.StateUpdate;
+import lia.api.GameEnvironment;
+import lia.api.GameState;
 import lia.api.UnitData;
 
 /**
@@ -12,7 +12,7 @@ import lia.api.UnitData;
  * and is able to shoot when it sees an opponent, it does not aim at
  * him though!
  */
-public class MyBot implements Callable {
+public class MyBot implements Bot {
 
     // Here we will store a map that we will receive from game engine at the
     // start of the game.
@@ -22,20 +22,20 @@ public class MyBot implements Callable {
 
     // Called only once when the game is initialized holding data about the map.
     @Override
-    public synchronized void process(MapData mapData) {
+    public synchronized void processGameEnvironment(GameEnvironment environment) {
         // We store the map that game uses in our variable.
         // https://docs.liagame.com/api/#mapdata for the data you receive
-        map = mapData.map;
+        map = environment.map;
     }
 
     // Repeatedly called 10 times per second from game engine with
     // game state updates. Here is where all the things happen.
     @Override
-    public synchronized void process(StateUpdate stateUpdate, Api api) {
+    public synchronized void processGameState(GameState gameState, Api api) {
 
         // Iterate through the data of all of your units
-        for (int i = 0; i < stateUpdate.units.length; i++) {
-            UnitData unit = stateUpdate.units[i];
+        for (int i = 0; i < gameState.units.length; i++) {
+            UnitData unit = gameState.units[i];
 
             // navigationPath is a field of your unit that shows the path
             // on which the unit is currently using if you have sent it
@@ -59,15 +59,16 @@ public class MyBot implements Callable {
     // Finds a random point on the map that is not on the obstacle
     int[] randomValidPointOnMap() {
         int minDistanceToMapEdge = 2;
-        int x, y;
 
         // Generate new x and y until you get one that is not placed on an obstacle
-        do {
-            x = (int) (Math.random() * (map.length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
-            y = (int) (Math.random() * (map[0].length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
-        } while (map[x][y]); // if true it means at (x,y) in map there is an obstacle
-
-        return new int[]{x, y};
+        while (true) {
+            int x = (int) (Math.random() * (map.length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
+            int y = (int) (Math.random() * (map[0].length - 2 * minDistanceToMapEdge)) + minDistanceToMapEdge;
+            // If true it means at (x,y) in map there is an obstacle
+            if (!map[x][y]) {
+                return new int[]{x, y};
+            }
+        }
     }
 
     // This connects your bot to Lia game engine
