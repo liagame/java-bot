@@ -3,18 +3,24 @@ package lia.api;
 public class Response {
     public long uid;
     public MessageType type;
-    public ThrustSpeedEvent[] thrustSpeedEvents;
-    public RotationEvent[] rotationEvents;
+    public SpeedEvent[] speedEvents;
+    public RotationSpeedEvent[] rotationSpeedEvents;
     public ShootEvent[] shootEvents;
+    public NavigationStartEvent[] navigationStartEvents;
+    public NavigationStopEvent[] navigationStopEvents;
 
     public Response(long uid, MessageType type,
-                    ThrustSpeedEvent[] thrustSpeedEvents,
-                    RotationEvent[] rotationEvents,
-                    ShootEvent[] shootEvents) {
+                    SpeedEvent[] speedEvents,
+                    RotationSpeedEvent[] rotationSpeedEvents,
+                    ShootEvent[] shootEvents,
+                    NavigationStartEvent[] navigationStartEvents,
+                    NavigationStopEvent[] navigationStopEvents) {
         this.uid = uid;
         this.type = type;
-        this.thrustSpeedEvents = thrustSpeedEvents;
-        this.rotationEvents = rotationEvents;
+        this.speedEvents = speedEvents;
+        this.rotationSpeedEvents = rotationSpeedEvents;
         this.shootEvents = shootEvents;
+        this.navigationStartEvents = navigationStartEvents;
+        this.navigationStopEvents = navigationStopEvents;
     }
 }

@@ -1,5 +1,5 @@
 package lia.api;
 
-public enum ThrustSpeed {
+public enum Speed {
     NONE, FORWARD, BACKWARD
 }

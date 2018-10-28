@@ -1,10 +1,10 @@
 package lia.api;
 
-public class ShootEvent {
+public class NavigationStopEvent {
     public int index;
     public int unitId;
 
-    public ShootEvent(int index, int unitId) {
+    public NavigationStopEvent(int index, int unitId) {
         this.index = index;
         this.unitId = unitId;
     }

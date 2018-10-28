@@ -6,34 +6,37 @@ public class UnitData {
     public float x;
     public float y;
     public float orientation;
-    public ThrustSpeed thrustSpeed;
-    public Rotation rotation;
+    public Speed speed;
+    public RotationSpeed rotationSpeed;
     public boolean canShoot;
     public int nBullets;
     public OpponentInView[] opponentsInView;
     public BulletInView[] bulletsInView;
+    public Point[] navigationPath;
 
     public UnitData(int id,
                     int health,
                     float x, float y,
                     float orientation,
-                    ThrustSpeed thrustSpeed,
-                    Rotation rotation,
+                    Speed speed,
+                    RotationSpeed rotationSpeed,
                     boolean canShoot,
                     int nBullets,
                     OpponentInView[] opponentsInView,
-                    BulletInView[] bulletsInView) {
+                    BulletInView[] bulletsInView,
+                    Point[] navigationPath) {
         this.id = id;
         this.health = health;
         this.x = x;
         this.y = y;
         this.orientation = orientation;
-        this.thrustSpeed = thrustSpeed;
-        this.rotation = rotation;
+        this.speed = speed;
+        this.rotationSpeed = rotationSpeed;
         this.canShoot = canShoot;
         this.nBullets = nBullets;
         this.opponentsInView = opponentsInView;
         this.bulletsInView = bulletsInView;
+        this.navigationPath = navigationPath;
     }
 }
 
