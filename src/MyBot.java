@@ -46,29 +46,27 @@ public class MyBot implements Bot {
             // is not going anywhere we choose a new location and send it there.
             if (unit.navigationPath.length == 0) {
 
-                // Generate a point on the map where there is no obstacle.
-                int[] point = randomValidPointOnMap();
+                // Find a point on the map where there is no obstacle by randomly generating
+                // x and y values until the
+                int x, y;
 
-                // Make the unit go to the chosen x (point[0]) and y (point[1]).
-                api.navigationStart(unit.id, point[0], point[1]);
+                // Generate new x and y until you get a position that is not placed on an obstacle.
+                while (true) {
+                    x = (int) (Math.random() * (map.length));
+                    y = (int) (Math.random() * (map[0].length));
+                    // False means that on (x,y) there is no obstacle.
+                    if (!map[x][y]) {
+                        break;
+                    }
+                }
+
+                // Make the unit go to the chosen x, y
+                api.navigationStart(unit.id, x, y);
             }
 
             // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.length > 0) {
                 api.shoot(unit.id);
-            }
-        }
-    }
-
-    // Finds a random point on the map where there is no obstacle.
-    int[] randomValidPointOnMap() {
-        // Generate new x and y until you get a position that is not placed on an obstacle.
-        while (true) {
-            int x = (int) (Math.random() * (map.length));
-            int y = (int) (Math.random() * (map[0].length));
-            // False means that on (x,y) there is no obstacle.
-            if (!map[x][y]) {
-                return new int[]{x, y};
             }
         }
     }
