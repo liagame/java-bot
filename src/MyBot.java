@@ -58,7 +58,6 @@ public class MyBot implements Bot {
 
             // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.length > 0) {
-
                 api.shoot(unit.id);
 
                 // Don't forget to make your unit brag. :)
