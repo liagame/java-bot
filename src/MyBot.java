@@ -6,51 +6,43 @@ import lia.api.GameState;
 import lia.api.UnitData;
 
 /**
- * This is your bot that will play the game for you.
- *
- * Implementation below keeps sending units to random locations on the map
- * and makes them shoot when they see opponents.
+ * Here is where you control your bot. Initial implementation keeps sending units
+ * to random locations on the map and makes them shoot when they see opponents.
  */
 public class MyBot implements Bot {
 
-    // Here we will store the map that the game will be played on. Map has values set
-    // to True where there is an obstacle. You can access (x,y) coordinate by calling
-    // map[x][y] and x=0, y=0 is placed at the bottom left corner.
+    // Here we store the map as a 2D array of booleans. If map[x][y] equals True that
+    // means that at (x,y) there is an obstacle. x=0, y=0 points to bottom left corner.
     boolean[][] map;
 
-    // This method is called only once at the beginning of the game and holds the basic
-    // information about the game environment.
+    // In this method we receive the basic information about the game environment.
     // - GameEnvironment reference: TODO link
     @Override
     public synchronized void processGameEnvironment(GameEnvironment gameEnvironment) {
 
-        // Here we store the map that is used in current game. We will use it later.
+        // We store the game map so that we can use it later.
         map = gameEnvironment.map;
     }
 
-    // This method is the main part of your bot. It is called 10 times per game seconds and
-    // it holds game's current state and the Api object which you use to control your units.
+    // This is the main method where you control your bot. 10 times per game second it receives
+    // current game state. Use Api object to call actions on your units.
     // - GameState reference: TODO link
     // - Api reference:       TODO link
     @Override
     public synchronized void processGameState(GameState gameState, Api api) {
 
-        // First we iterate through all of our units that are still alive.
+        // We iterate through all of our units that are still alive.
         for (int i = 0; i < gameState.units.length; i++) {
             UnitData unit = gameState.units[i];
 
-            // With api.navigationStart(...) method you can send your units to go to a
-            // specified point on the map all by themselves. If they are currently going
-            // somewhere then their path is stored in navigationPath field. If the field
-            // is empty the unit is not going anywhere automatically. Here, if the unit
-            // is not going anywhere we choose a new location and send it there.
+            // If the unit is not going anywhere, we choose a new valid point on the
+            // map and send the unit there.
             if (unit.navigationPath.length == 0) {
 
-                // Find a point on the map where there is no obstacle by randomly generating
-                // x and y values until the
                 int x, y;
 
-                // Generate new x and y until you get a position that is not placed on an obstacle.
+                // Generate new x and y until you get a position on the map where there
+                // is no obstacle.
                 while (true) {
                     x = (int) (Math.random() * (map.length));
                     y = (int) (Math.random() * (map[0].length));
@@ -60,18 +52,22 @@ public class MyBot implements Bot {
                     }
                 }
 
-                // Make the unit go to the chosen x, y
+                // Make the unit go to the chosen x and y.
                 api.navigationStart(unit.id, x, y);
             }
 
             // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.length > 0) {
+
                 api.shoot(unit.id);
+
+                // Don't forget to make your unit brag. :)
+                api.saySomething(unit.id, "I see you!");
             }
         }
     }
 
-    // This connects your bot to Lia game engine, don't change it.
+    // Connects your bot to Lia game engine, don't change it.
     public static void main(String[] args) throws Exception {
         NetworkingClient.connectNew(args, new MyBot());
     }
