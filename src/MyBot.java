@@ -1,9 +1,5 @@
-import lia.Api;
-import lia.Bot;
-import lia.NetworkingClient;
-import lia.api.GameEnvironment;
-import lia.api.GameState;
-import lia.api.UnitData;
+import lia.api.*;
+import lia.*;
 
 /**
  * Here is where you control your bot. Initial implementation keeps sending units
