@@ -54,10 +54,43 @@ public class MyBot implements Bot {
 
             // If the unit sees an opponent then make it shoot.
             if (unit.opponentsInView.length > 0) {
+                OpponentInView opponent = unit.opponentsInView[0];
+                float angle = MathUtil.angleBetweenUnitAndPoint(unit, opponent.x, opponent.y);
+
+                api.setSpeed(unit.id, Speed.NONE);
+
+                if (angle < 0) {
+                    api.setRotation(unit.id, Rotation.RIGHT);
+                } else {
+                    api.setRotation(unit.id, Rotation.LEFT);
+                }
+
                 api.shoot(unit.id);
 
                 // Don't forget to make your unit brag. :)
                 api.saySomething(unit.id, "I see you!");
+            }
+
+            if (unit.opponentsInView.length == 0) {
+
+                // Check if some teammate detected an opponent near the unit. If
+                // it did then send the unit to the location of the opponent.
+                for (UnitData teammate : gameState.units) {
+                    boolean found = false;
+
+                    for (OpponentInView opponent : teammate.opponentsInView) {
+                        // Calculate the distance between the unit and opponent.
+                        float dst = MathUtil.distance(unit.x, unit.y, opponent.x, opponent.y);
+
+                        if (dst < 25) {
+                            // We have detected an opponent that is very close!
+                            api.navigationStart(unit.id, opponent.x, opponent.y);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
             }
         }
     }
