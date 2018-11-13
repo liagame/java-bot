@@ -14,7 +14,7 @@ public class MathUtil {
 
     /**
      * Calculates the angle of a vector from (x1,y1) to (x2,y2) relative to the x-axis.
-     * Angles are towards the positive y-axis (typically counter-clockwise) and between 0 and 360
+     * Angles are towards the positive x-axis (typically counter-clockwise) and between 0 and 360
      * @return angle in degrees
      */
     public static float angle(float x1, float y1, float x2, float y2) {
