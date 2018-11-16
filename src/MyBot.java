@@ -12,7 +12,7 @@ public class MyBot implements Bot {
     boolean[][] map;
 
     // In this method we receive the basic information about the game environment.
-    // - GameEnvironment reference: TODO link
+    // - GameEnvironment reference: https://docs.liagame.com/api/#gameenvironment
     @Override
     public synchronized void processGameEnvironment(GameEnvironment gameEnvironment) {
 
@@ -22,8 +22,8 @@ public class MyBot implements Bot {
 
     // This is the main method where you control your bot. 10 times per game second it receives
     // current game state. Use Api object to call actions on your units.
-    // - GameState reference: TODO link
-    // - Api reference:       TODO link
+    // - GameState reference: https://docs.liagame.com/api/#gamestate
+    // - Api reference:       https://docs.liagame.com/api/#api-object
     @Override
     public synchronized void processGameState(GameState gameState, Api api) {
 
