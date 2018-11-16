@@ -10,7 +10,6 @@ public class UnitData {
     public Rotation rotation;
     public boolean canShoot;
     public int nBullets;
-    public boolean canSaySomething;
     public OpponentInView[] opponentsInView;
     public BulletInView[] bulletsInView;
     public Point[] navigationPath;
@@ -23,7 +22,6 @@ public class UnitData {
                     Rotation rotation,
                     boolean canShoot,
                     int nBullets,
-                    boolean canSaySomething,
                     OpponentInView[] opponentsInView,
                     BulletInView[] bulletsInView,
                     Point[] navigationPath) {
@@ -39,7 +37,6 @@ public class UnitData {
         this.opponentsInView = opponentsInView;
         this.bulletsInView = bulletsInView;
         this.navigationPath = navigationPath;
-        this.canSaySomething = canSaySomething;
     }
 }
 
