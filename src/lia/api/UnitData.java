@@ -11,7 +11,7 @@ public class UnitData {
     public boolean canShoot;
     public int nBullets;
     public OpponentInView[] opponentsInView;
-    public BulletInView[] bulletsInView;
+    public BulletInView[] opponentBulletsInView;
     public Point[] navigationPath;
 
     public UnitData(int id,
@@ -23,7 +23,7 @@ public class UnitData {
                     boolean canShoot,
                     int nBullets,
                     OpponentInView[] opponentsInView,
-                    BulletInView[] bulletsInView,
+                    BulletInView[] opponentBulletsInView,
                     Point[] navigationPath) {
         this.id = id;
         this.health = health;
@@ -35,7 +35,7 @@ public class UnitData {
         this.canShoot = canShoot;
         this.nBullets = nBullets;
         this.opponentsInView = opponentsInView;
-        this.bulletsInView = bulletsInView;
+        this.opponentBulletsInView = opponentBulletsInView;
         this.navigationPath = navigationPath;
     }
 }
