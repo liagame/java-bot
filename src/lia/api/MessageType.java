@@ -1,5 +1,5 @@
 package lia.api;
 
 public enum MessageType {
-    GAME_ENVIRONMENT, GAME_STATE, RESPONSE
+    GAME_SETUP, GAME_STATE, RESPONSE
 }

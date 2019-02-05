@@ -9,6 +9,7 @@ public class Response {
     public NavigationStartEvent[] navigationStartEvents;
     public NavigationStopEvent[] navigationStopEvents;
     public SaySomethingEvent[] saySomethingEvents;
+    public SpawnUnitEvent[] spawnUnitEvents;
 
     public Response(long uid, MessageType type,
                     SpeedEvent[] speedEvents,
@@ -16,7 +17,8 @@ public class Response {
                     ShootEvent[] shootEvents,
                     NavigationStartEvent[] navigationStartEvents,
                     NavigationStopEvent[] navigationStopEvents,
-                    SaySomethingEvent[] saySomethingEvents) {
+                    SaySomethingEvent[] saySomethingEvents,
+                    SpawnUnitEvent[] spawnUnitEvents) {
         this.uid = uid;
         this.type = type;
         this.speedEvents = speedEvents;
@@ -25,5 +27,6 @@ public class Response {
         this.navigationStartEvents = navigationStartEvents;
         this.navigationStopEvents = navigationStopEvents;
         this.saySomethingEvents = saySomethingEvents;
+        this.spawnUnitEvents = spawnUnitEvents;
     }
 }

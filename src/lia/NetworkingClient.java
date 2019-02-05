@@ -3,9 +3,8 @@ package lia;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import lia.api.GameEnvironment;
-import lia.api.MessageType;
 import lia.api.GameState;
+import lia.api.MessageType;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -97,25 +96,20 @@ public class NetworkingClient extends WebSocketClient {
         try {
             Api response = new Api();
 
-            if (message.contains(MessageType.GAME_ENVIRONMENT.toString())) {
+            if (message.contains(MessageType.GAME_SETUP.toString())) {
                 // Load constants
                 JsonParser parser = new JsonParser();
                 JsonObject jsonObject = parser.parse(message).getAsJsonObject();
                 JsonObject constantsJson = jsonObject.getAsJsonObject("constants");
                 Constants.load(constantsJson);
-
-                // Extract GameEnvironment and send it to bot
-                GameEnvironment gameEnvironment = gson.fromJson(message, GameEnvironment.class);
-                response.setUid(gameEnvironment.uid);
-                myBot.processGameEnvironment(gameEnvironment);
+                response.setUid(jsonObject.get("uid").getAsLong());
 
             } else if (message.contains(MessageType.GAME_STATE.toString())) {
                 // Extract GameState and send it to bot
                 GameState gameState = gson.fromJson(message, GameState.class);
                 response.setUid(gameState.uid);
-                myBot.processGameState(gameState, response);
+                myBot.update(gameState, response);
             }
-
             send(response.toJson());
 
         } catch (Exception e) {

@@ -2,6 +2,7 @@ package lia.api;
 
 public class UnitData {
     public int id;
+    public UnitType type;
     public int health;
     public float x;
     public float y;
@@ -12,9 +13,11 @@ public class UnitData {
     public int nBullets;
     public OpponentInView[] opponentsInView;
     public BulletInView[] opponentBulletsInView;
+    public ResourceInView[] resourcesInView;
     public Point[] navigationPath;
 
     public UnitData(int id,
+                    UnitType type,
                     int health,
                     float x, float y,
                     float orientationAngle,
@@ -24,8 +27,10 @@ public class UnitData {
                     int nBullets,
                     OpponentInView[] opponentsInView,
                     BulletInView[] opponentBulletsInView,
+                    ResourceInView[] resourcesInView,
                     Point[] navigationPath) {
         this.id = id;
+        this.type = type;
         this.health = health;
         this.x = x;
         this.y = y;
@@ -36,6 +41,7 @@ public class UnitData {
         this.nBullets = nBullets;
         this.opponentsInView = opponentsInView;
         this.opponentBulletsInView = opponentBulletsInView;
+        this.resourcesInView = resourcesInView;
         this.navigationPath = navigationPath;
     }
 }

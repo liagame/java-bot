@@ -1,10 +1,10 @@
 package lia.api;
 
 public class BulletInView {
-    float x;
-    float y;
-    float orientation;
-    float velocity;
+    public float x;
+    public float y;
+    public float orientation;
+    public float velocity;
 
     public BulletInView(float x, float y,
                         float orientation, float velocity) {
