@@ -31,8 +31,8 @@ public class MyBot implements Bot {
                 // Generate new x and y until you get a position on the map
                 // where there is no obstacle. Then move the unit there.
                 while (true) {
-                    int x = (int) (Math.random() * Constants.MAP.length);
-                    int y = (int) (Math.random() * Constants.MAP[0].length);
+                    int x = (int) (Math.random() * Constants.MAP_WIDTH);
+                    int y = (int) (Math.random() * Constants.MAP_HEIGHT);
 
                     // Map is a 2D array of booleans. If map[x][y] equals false it means that
                     // at (x,y) there is no obstacle and we can safely move our unit there.
